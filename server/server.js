@@ -1,8 +1,11 @@
 let express = require('express');
 let app = express();
-require('dotenv').config();
 
-let {PORT = 5000} = process.env;
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+  }
+
+let {PORT = 5555} = process.env
 
 app.get("/", (req, res) => {
     res.send({'hello': "harm"})
