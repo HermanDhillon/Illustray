@@ -1,11 +1,12 @@
 let express = require('express');
 let app = express();
+let {pool} = require('./config/database');
 
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
   }
 
-let {PORT = 5555} = process.env
+let {PORT} = process.env;
 
 app.get("/", (req, res) => {
     res.send({'hello': "harm"})
