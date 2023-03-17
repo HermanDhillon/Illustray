@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
-const {pool} = require('./config/database');
+const pgPool= require('./config/database');
 const authRouter = require('./routes//auth');
 const dotenv = require('dotenv');
 
@@ -21,7 +21,7 @@ app.use(express.urlencoded({extended: true}));
 // Session store and session config
 app.use(session({
     store: new pgSession({
-      pool : pool,                
+      pool : pgPool,                
       tableName : 'user_sessions',
       createTableIfMissing: true,
       // Insert connect-pg-simple options here
