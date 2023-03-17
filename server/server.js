@@ -3,12 +3,13 @@ const app = express();
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
 const {pool} = require('./config/database');
+const authRouter = require('./routes//auth');
 const dotenv = require('dotenv');
 
 if (process.env.NODE_ENV === 'production') {
     dotenv.config('./.env.prod');
   }else{
-    dotenv.config('./.env');
+    dotenv.config('./.env.dev');
   }
 
 let {PORT} = process.env;
@@ -31,9 +32,7 @@ app.use(session({
     // Insert express-session options here
   }));
 
-app.get("/api", (req, res) => {
-    res.send({'hello': "harm"})
-})
+app.use("/api/auth", authRouter)
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on port: ${PORT}`)
