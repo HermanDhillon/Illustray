@@ -1,0 +1,9 @@
+# Ignoring directories
+**/node_modules/**
+build
+dist
+public
+./src/assets
+
+# Ignoring non-js files
+*.html
