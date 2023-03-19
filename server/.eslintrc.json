@@ -1,0 +1,16 @@
+{
+  "extends": ["eslint:recommended", "eslint-config-prettier"],
+  "env": {
+    "node": true,
+    "browser": false
+  },
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "rules": {
+    "no-unused-vars": "error",
+    "semi": ["error", "always"],
+    "quotes": ["error", "single"],
+    "no-trailing-spaces": "error"
+  }
+}

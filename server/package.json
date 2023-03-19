@@ -7,14 +7,18 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node server.js",
-    "dev": "NODE_ENV=dev nodemon server.js"
+    "dev": "NODE_ENV=dev nodemon server.js",
+    "lint": "eslint . --ext .js"
   },
   "name": "server",
   "version": "1.0.0",
   "main": "server.js",
   "devDependencies": {
     "dotenv": "^16.0.3",
-    "nodemon": "^2.0.21"
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.7.0",
+    "nodemon": "^2.0.21",
+    "prettier": "2.8.4"
   },
   "author": "Herman Dhillon",
   "license": "ISC",

@@ -1,0 +1,10 @@
+# Ignore directories
+
+**/node_modules/**
+
+# Ignore files
+
+.prettierignore
+.prettierrc.cjs
+package.json
+package-lock.json

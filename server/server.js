@@ -2,15 +2,9 @@ const express = require('express');
 const app = express();
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
-const pgPool= require('./config/database');
+const {pgPool} = require('./config/database');
 const authRouter = require('./routes//auth');
-const dotenv = require('dotenv');
-
-if (process.env.NODE_ENV === 'production') {
-    dotenv.config('./.env.prod');
-  }else{
-    dotenv.config('./.env.dev');
-  }
+require('dotenv').config();
 
 let {PORT} = process.env;
 
@@ -26,6 +20,7 @@ app.use(session({
       createTableIfMissing: true,
       // Insert connect-pg-simple options here
     }),
+    saveUninitialized: true,
     secret: process.env.SESSION_COOKIE_SECRET,
     resave: false,
     cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
