@@ -1,11 +1,6 @@
 const { Pool } = require('pg');
-const dotenv = require('dotenv');
+require('dotenv').config();
 
-if (process.env.NODE_ENV === 'production') {
-  dotenv.config('./.env.prod');
-} else {
-  dotenv.config('./.env.dev');
-}
 
 const pool = new Pool({
   host: process.env.DB_HOST,
@@ -23,4 +18,4 @@ pool.connect((err, client, release) => {
   release();
 });
 
-module.exports = { pool };
+module.exports = { pgPool: pool };
