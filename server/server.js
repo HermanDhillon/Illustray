@@ -4,6 +4,7 @@ const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
 const {pgPool} = require('./config/database');
 const authRouter = require('./routes//auth');
+const passport = require('passport');
 require('dotenv').config();
 
 let {PORT} = process.env;
