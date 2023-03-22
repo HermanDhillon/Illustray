@@ -5,6 +5,7 @@ const pgSession = require('connect-pg-simple')(session);
 const {pgPool} = require('./config/database');
 const authRouter = require('./routes/auth');
 require('dotenv').config();
+require("./config/passport");
 
 let {PORT} = process.env;
 
@@ -23,11 +24,15 @@ app.use(session({
     saveUninitialized: true,
     secret: process.env.SESSION_COOKIE_SECRET,
     resave: false,
-    cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
+    cookie: { maxAge: 24 * 60 * 60 * 1000 } // 01 days
     // Insert express-session options here
   }));
 
-app.use('/api/auth', authRouter);
+// passport initialize and session integration
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use("/api/auth", authRouter);
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on port: ${PORT}`);

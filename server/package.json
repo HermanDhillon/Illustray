@@ -5,7 +5,8 @@
     "express-session": "^1.17.3",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
-    "pg": "^8.10.0"
+    "pg": "^8.10.0",
+    "validator": "^13.9.0"
   },
   "scripts": {
     "start": "NODE_ENV=production node server.js",
