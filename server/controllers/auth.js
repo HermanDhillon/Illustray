@@ -3,6 +3,7 @@ let {hashifier} = require('../utils/password');
 const validator = require('validator');
 
 module.exports = {
+
     postLogin: (req, res, next) => {
         const validationErrors = [];
         if (!validator.isEmail(req.body.email))

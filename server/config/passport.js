@@ -21,7 +21,7 @@ function verify(username, password, cb) {
     })
 }
 
-let strategy = new LocalStrategy(verify(username, passport, cb));
+let strategy = new LocalStrategy(verify(username, password, cb));
 
 passport.use(strategy);
 
