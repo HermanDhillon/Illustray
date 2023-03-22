@@ -4,6 +4,9 @@ const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
 const {pgPool} = require('./config/database');
 const authRouter = require('./routes/auth');
+const passport = require('passport');
+const flash = require("express-flash");
+
 require('dotenv').config();
 require("./config/passport");
 
@@ -32,6 +35,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+//Use flash messages for errors, info, ect...
+app.use(flash());
+
+// routes 
 app.use("/api/auth", authRouter);
 
 app.listen(PORT, ()=>{

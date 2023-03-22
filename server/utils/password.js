@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+ // TODO: convert to  bcrypt
 
 function hashifier(password) {
     let salt = crypto.randomBytes(32).toString('hex');
