@@ -1,5 +1,5 @@
 const passport = require('passport');
-const LocalStrategy = require('passport-local');
+const LocalStrategy = require('passport-local').Strategy;
 const {pgPool} = require('./database');
 const {validatePass}= require('../utils/password');
 
@@ -21,7 +21,7 @@ function verify(username, password, cb) {
     })
 }
 
-let strategy = new LocalStrategy(verify(username, password, cb));
+let strategy = new LocalStrategy(verify);
 
 passport.use(strategy);
 
