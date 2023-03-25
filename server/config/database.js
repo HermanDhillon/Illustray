@@ -18,4 +18,4 @@ pool.connect((err, client, release) => {
   release();
 });
 
-module.exports = { pgPool: pool };
+module.exports = {pgPool: pool};
