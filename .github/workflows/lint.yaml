@@ -1,9 +1,11 @@
 name: Lint
+
 on:
   push:
+
 jobs:
   eslint:
-    name: Lint JavaScript files
+    name: Server
     runs-on: ubuntu-latest
 
     steps:
@@ -12,10 +14,10 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: "18"
       - name: Install packages
         run: npm ci
         working-directory: server
-      - name: Run ESlint
+      - name: Run ESLint
         run: npm run lint
         working-directory: server
