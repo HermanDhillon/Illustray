@@ -5,21 +5,21 @@ const {validatePass}= require('../utils/password');
 
 // Verify callback function passed into local strategy for verifying password.
 function verify(username, password, cb) {
-    pgPool.query('SELECT * FROM users WHERE username = $1', [ username ], (err, user) => {
+    pgPool.query('SELECT * FROM users WHERE username = $1', [ username ], (err, res) => {
         if (err) {
             return cb(err);
         }
+        let user = res.rows[0];
         if (!user) {
             return cb(null, false, { message: 'Incorrect username or password.'});
         }
-
-        if (!validatePass(password, user.hash, user.salt)) {
+        if (!validatePass(password, user.hash)) {
             return cb(null, false, {message: 'Incorrect username or password.'});
         }
 
-        return cb(null, user);
+        return cb(null, res);
     });
-}
+};
 
 let strategy = new LocalStrategy(verify);
 

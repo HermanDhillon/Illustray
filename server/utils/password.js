@@ -1,18 +1,12 @@
-const crypto = require('crypto');
- // TODO: convert to  bcrypt
+const bcrypt = require('bcryptjs');
+require('dotenv').config();
 
 function hashifier(password) {
-    let salt = crypto.randomBytes(32).toString('hex');
-    let hashedPass = crypto.pbkdf2Sync(password, salt, 150000, 64, 'sha512').toString('hex');
-    return {
-        salt: salt,
-        hash: hashedPass,
-    };
+    return bcrypt.hash(password, 15, (err, hash) => hash);
 }
 
-function validatePass(password, hash, salt) {
-    let verifyHash = crypto.pbkdf2Sync(password, salt, 150000, 64, 'sha512').toString('hex');
-    return hash === verifyHash;
+function validatePass(password, hash) {
+    return bcrypt.compareSync(password, hash);
 }
 
 module.exports = {
