@@ -33,5 +33,5 @@ passport.serializeUser((user, cb) => {
 passport.deserializeUser((id, cb) => {
     pgPool.query('SELECT * FROM users WHERE id = $1', [id], (err, user) => {
         cb(null, user);
-    })
+    });
 });
