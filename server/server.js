@@ -3,8 +3,7 @@ const app = express();
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
 const {pgPool} = require('./config/database');
-const authRouter = require('./routes//auth');
-const passport = require('passport');
+const authRouter = require('./routes/auth');
 require('dotenv').config();
 
 let {PORT} = process.env;
@@ -16,7 +15,7 @@ app.use(express.urlencoded({extended: true}));
 // Session store and session config
 app.use(session({
     store: new pgSession({
-      pool : pgPool,                
+      pool : pgPool,
       tableName : 'user_sessions',
       createTableIfMissing: true,
       // Insert connect-pg-simple options here
@@ -28,8 +27,8 @@ app.use(session({
     // Insert express-session options here
   }));
 
-app.use("/api/auth", authRouter)
+app.use('/api/auth', authRouter);
 
 app.listen(PORT, ()=>{
-    console.log(`Server is running on port: ${PORT}`)
-})
+    console.log(`Server is running on port: ${PORT}`);
+});
