@@ -1,5 +1,5 @@
-let {pgPool} = require('../config/passport');
-let {hashifier} = require('../utils/password'); 
+// let {pgPool} = require('../config/passport');
+// let {hashifier} = require('../utils/password');
 const validator = require('validator');
 const passport = require('passport');
 

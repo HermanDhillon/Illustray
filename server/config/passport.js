@@ -7,20 +7,19 @@ const {validatePass}= require('../utils/password');
 function verify(username, password, cb) {
     pgPool.query('SELECT * FROM users WHERE username = $1', [ username ], (err, res) => {
         if (err) {
-            return cb(err); 
+            return cb(err);
         }
         let user = res.rows[0];
         if (!user) {
-            return cb(null, false, { message: 'Incorrect username or password.'}); 
-        }   
-
+            return cb(null, false, { message: 'Incorrect username or password.'});
+        }
         if (!validatePass(password, user.hash)) {
-            return cb(null, false, {message: 'Incorrect username or password.'})
+            return cb(null, false, {message: 'Incorrect username or password.'});
         }
 
-        return cb(null, res)
-    })
-}
+        return cb(null, res);
+    });
+};
 
 let strategy = new LocalStrategy(verify);
 

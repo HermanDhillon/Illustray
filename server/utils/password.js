@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs'); 
+const bcrypt = require('bcryptjs');
 require('dotenv').config();
 
 function hashifier(password) {
@@ -6,7 +6,7 @@ function hashifier(password) {
 }
 
 function validatePass(password, hash) {
-    return bcrypt.compareSync(password, hash);   
+    return bcrypt.compareSync(password, hash);
 }
 
 module.exports = {
