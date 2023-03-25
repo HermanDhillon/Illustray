@@ -5,10 +5,10 @@ const pgSession = require('connect-pg-simple')(session);
 const {pgPool} = require('./config/database');
 const authRouter = require('./routes/auth');
 const passport = require('passport');
-const flash = require("express-flash");
+const flash = require('express-flash');
 
 require('dotenv').config();
-require("./config/passport");
+require('./config/passport');
 
 let {PORT} = process.env;
 
@@ -38,8 +38,8 @@ app.use(passport.session());
 //Use flash messages for errors, info, ect...
 app.use(flash());
 
-// routes 
-app.use("/api/auth", authRouter);
+// routes
+app.use('/api/auth', authRouter);
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on port: ${PORT}`);
