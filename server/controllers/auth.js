@@ -36,4 +36,7 @@ module.exports = {
         })(req, res, next);
     },
 
+    postSignUp: (res, req, next) => {
+      console.log(res, req, next());
+    }
 };
