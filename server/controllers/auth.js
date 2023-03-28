@@ -31,9 +31,13 @@ module.exports = {
               return next(err);
             }
             req.flash('success', { msg: 'Success! You are logged in.' });
-            res.redirect(req.session.returnTo || '/');
+            // res.redirect(req.session.returnTo || '/');
+            res.json({login: 'successful'});
           });
         })(req, res, next);
     },
 
+    postSignUp: (res, req, next) => {
+      console.log(res, req, next());
+    }
 };
