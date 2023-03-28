@@ -5,8 +5,8 @@ module.exports = {
     create: async (username, email, hash) => {
         try{
             if(username && email && hash){
-                let result = await pgPool.query('INSERT INTO users (username, email, hash) VALUES ($1, $2, $3)', [username, email, hash]);
-                return result;
+                let result = await pgPool.query('INSERT INTO users (username, email, hash) VALUES ($1, $2, $3) RETURNING *', [username, email, hash]);
+                return result.rows[0];
             }else{
                 console.error('Username, Email, and Hash are all required.');
             }
@@ -32,6 +32,19 @@ module.exports = {
         try{
             if(email){
                 let result = await pgPool.query('SELECT * from users WHERE email=$1', [email]);
+                return result.rows[0]; // returns a single object
+            }else{
+                console.error('Email is a required input.');
+            }
+        } catch (err) {
+            console.log(err);
+        };
+    },
+
+    findByEmailOrUsername: async (email, username) => {
+        try{
+            if(email){
+                let result = await pgPool.query('SELECT * from users WHERE email=$1 OR username=$2', [email, username]);
                 return result.rows[0]; // returns a single object
             }else{
                 console.error('Email is a required input.');
