@@ -1,4 +1,4 @@
-const pgPool = require('../config/database');
+const {pgPool} = require('../config/database');
 
 class User{
     constructor(username=null, email=null, hash=null){
