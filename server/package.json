@@ -13,12 +13,16 @@
   "scripts": {
     "start": "NODE_ENV=production node server.js",
     "dev": "NODE_ENV=dev nodemon server.js",
-    "lint": "eslint . --ext .js"
+    "lint": "eslint . --ext .js",
+    "build": "babel . -d lib"
   },
   "name": "server",
   "version": "1.0.0",
   "main": "server.js",
   "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.3",
+    "@babel/preset-env": "^7.20.2",
     "dotenv": "^16.0.3",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.7.0",
