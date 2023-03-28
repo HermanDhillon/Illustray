@@ -19,6 +19,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.3",
     "dotenv": "^16.0.3",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.7.0",
