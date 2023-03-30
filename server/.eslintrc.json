@@ -1,5 +1,9 @@
 {
-  "extends": ["eslint:recommended", "eslint-config-prettier"],
+  "extends": [
+    "eslint:recommended",
+    "eslint-config-prettier",
+    "stylelint-config-prettier"
+  ],
   "env": {
     "node": true,
     "browser": false
@@ -7,10 +11,47 @@
   "parserOptions": {
     "ecmaVersion": 6
   },
+  "plugins": [],
   "rules": {
-    "no-unused-vars": "error",
-    "semi": ["error", "always"],
+    // BRB
+    // logic
+    "no-var": "error",
+    "no-unused-vars": "warn",
+    "no-new-object": "error",
+    "object-shorthand": "error",
+    "quote-props": "error",
+    "no-prototype-builtins": "error",
+    "prefer-spread": "error",
+    "no-array-constructor": "error",
+    "array-callback-return": "error",
+    "prefer-destructuring": "error",
+    "template-curly-spacing": "error",
+    "wrap-iife": "error",
+    "no-loop-func": "error",
+    "prefer-rest-params": "error",
+    "no-useless-escape": "error",
+    "default-param-last": "error",
+    "no-new-func": "error",
+    "no-param-reassign": "error",
+    "prefer-arrow-callback": "error",
+    "no-confusing-arrow": "error",
+    "no-useless-constructor": "error",
+    "no-dupe-class-members": "error",
+    "class-methods-use-this": "error",
+    "no-duplicate-imports": "error",
+    "import/no-mutable-exports": "error",
+    "import/prefer-default-export": "error",
+    "import/first": "error",
+    // layout & formatting
+    "semi": "error",
     "quotes": ["error", "single"],
-    "no-trailing-spaces": "error"
+    "space-before-function-paren": "error",
+    "space-before-blocks": "error",
+    "no-trailing-spaces": "error",
+    "arrow-parens": "error",
+    "arrow-spacing": "error",
+    "block-spacing": "error",
+    "function-paren-newline": "error",
+    "object-curly-newline": "error"
   }
 }
