@@ -39,7 +39,7 @@ module.exports = {
 
   postSignUp: async (req, res, next) => {
     const validationErrors = [];
-    const {username, password, confirmPassword} = req.body;
+    const {username, password} = req.body;
     let {email} = req.body;
 
     if (!validator.isEmail(email)){
@@ -47,9 +47,6 @@ module.exports = {
     }
     if (!validator.isStrongPassword(password)){
       validationErrors.push({ msg: 'Password must be atleast 8 characters long, Contain atleast 1 lowercase letter, 1 uppercase letter, 1 number and 1 symbol.'});
-    }
-    if (password !== confirmPassword){
-      validationErrors.push({ msg: 'Passwords do not match.'});
     }
     if (!validator.isAlphanumeric(username, 'en-US', {ignore: '_'})){
       validationErrors.push({ msg: 'Username can only contain letters, numbers and underscores.'});
@@ -59,24 +56,18 @@ module.exports = {
     }
     if (validationErrors.length) {
       req.flash('errors', validationErrors);
-      return res.redirect('../signup');
+      return res.redirect('/signup');
     }
 
     email = validator.normalizeEmail(email, { gmail_remove_dots: true });
     const hash = await hashifier(password);
-    //check to see if username or email already exists
-    const response = await User.findByEmailOrUsername(email, username);
+    //Check to see if username or email already exists.
+    const userLookup = await User.findByEmailOrUsername(email, username);
 
-    if (response.email === email){
-      req.flash('errors', { msg: 'Account with that email address already exists'});
+    if (userLookup){
+      req.flash('errors', { msg: 'Username or email already in use.'});
       console.log('email already exists');
-      return res.redirect('../signup');
-    }
-
-    if (response.username === username){
-      console.log('username already exists');
-      req.flash('errors', { msg: 'Username is already in use.'});
-      return res.redirect('../signup');
+      return res.redirect('/signup');
     }
 
     const user = await User.create(username, email, hash);
