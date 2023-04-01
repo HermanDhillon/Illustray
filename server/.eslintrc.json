@@ -7,7 +7,7 @@
   "parserOptions": {
     "ecmaVersion": 6
   },
-  "plugins": [],
+  "plugins": ["@babel"],
   "rules": {
     // BRB
     // logic
