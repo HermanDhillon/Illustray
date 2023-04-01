@@ -16,7 +16,6 @@
     "no-unused-vars": "warn",
     "no-new-object": "error",
     "object-shorthand": "error",
-    "quote-props": "error",
     "no-prototype-builtins": "error",
     "prefer-spread": "error",
     "no-array-constructor": "error",
