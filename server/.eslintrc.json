@@ -49,5 +49,6 @@
     "block-spacing": "error",
     "function-paren-newline": "error",
     "object-curly-newline": "error"
-  }
+  },
+  "ignorePatterns": ["/node_modules", "/lib"]
 }
