@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node server.js",
-    "dev": "NODE_ENV=dev nodemon server.js",
+    "dev": "nodemon ./lib/server.js",
     "lint": "eslint . --ext .js",
     "build": "babel . -d lib"
   },
