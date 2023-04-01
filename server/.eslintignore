@@ -1,6 +1,7 @@
 # Ignore directories
 
-**/node_modules/**
+/node_modules
+/lib
 
 # Ignore files
 
