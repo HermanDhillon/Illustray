@@ -5,7 +5,8 @@
     "browser": false
   },
   "parserOptions": {
-    "ecmaVersion": 6
+    "ecmaVersion": 6,
+    "sourceType": "module"
   },
   "plugins": ["@babel"],
   "rules": {
@@ -35,9 +36,6 @@
     "no-dupe-class-members": "error",
     "class-methods-use-this": "error",
     "no-duplicate-imports": "error",
-    "import/no-mutable-exports": "error",
-    "import/prefer-default-export": "error",
-    "import/first": "error",
     // layout & formatting
     "semi": "error",
     "quotes": ["error", "single"],
