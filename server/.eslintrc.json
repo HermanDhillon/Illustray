@@ -1,9 +1,5 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "eslint-config-prettier",
-    "stylelint-config-prettier"
-  ],
+  "extends": ["eslint:recommended", "eslint-config-prettier"],
   "env": {
     "node": true,
     "browser": false
