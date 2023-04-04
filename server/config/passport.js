@@ -1,18 +1,15 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const { validatePass }= require('../utils/password');
-const User = require('../models/user');
+const User = require('../models/User');
 
 // Verify callback function passed into local strategy for verifying password.
 async function verify(username, password, cb) {
     try{
         const user = await User.findByUsername(username);
 
-        if (!user) {
+        if (!user || !validatePass(password, user.hash)) {
             return cb(null, false, { message: 'Incorrect username or password.'});
-        }
-        if (!validatePass(password, user.hash)) {
-            return cb(null, false, {message: 'Incorrect username or password.'});
         }
 
         return cb(null, user);
