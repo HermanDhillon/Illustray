@@ -1,8 +1,8 @@
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
 
-function hashifier(password) {
-    return bcrypt.hash(password, 15, (err, hash) => hash);
+async function hashifier(password) {
+    return await bcrypt.hash(password, 15);
 }
 
 function validatePass(password, hash) {
