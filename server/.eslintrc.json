@@ -40,6 +40,10 @@
     "no-dupe-class-members": "error",
     "class-methods-use-this": "error",
     "no-duplicate-imports": "error",
+    "no-restricted-globals": [
+      "error",
+      { "name": "require", "message": "Use import ... from ... instead." }
+    ],
     // layout & formatting
     "semi": "error",
     "quotes": ["error", "single"],
