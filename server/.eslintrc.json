@@ -14,7 +14,7 @@
     "ecmaVersion": 8,
     "sourceType": "module"
   },
-  "plugins": ["@babel", "eslint-plugin", "import"],
+  "plugins": ["@babel", "import"],
   "rules": {
     // BRB
     // logic
