@@ -1,0 +1,47 @@
+version: '3.1'
+services:
+
+    postgres:
+        image: postgres:15.3-alpine
+        restart: always
+        ports:
+            - "${DB_PORT}:${DB_PORT}"
+        environment:
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+        volumes:
+            - postgresqlData:/var/lib/postgresql/data
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U postgres"]
+            interval: 1s
+            timeout: 5s
+            retries: 5
+
+    api:
+        build:
+            context: ./server
+            dockerfile: Dockerfile
+        volumes:
+            - /app/node_modules
+            - ./server:/app
+        environment:
+            - PORT=${PORT}
+            - DB_HOST=${DB_HOST}
+            - DB_PORT=${DB_PORT}
+            - DB_USER=${DB_USER}
+            - DB_PASSWORD=${DB_PASSWORD}
+            - SESSION_COOKIE_SECRET=${SESSION_COOKIE_SECRET}
+        ports:
+            - "${PORT}:${PORT}"
+        depends_on:
+            postgres:
+                condition: service_healthy
+
+    ui:
+        build:
+            context: ./client
+            dockerfile: Dockerfile
+        volumes:
+            - /app/node_modules
+            - ./client:/app
+        ports:
+            - "5173:5173"
