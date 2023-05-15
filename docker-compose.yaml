@@ -23,13 +23,8 @@ services:
         volumes:
             - /app/node_modules
             - ./server:/app
-        environment:
-            - PORT=${PORT}
-            - DB_HOST=${DB_HOST}
-            - DB_PORT=${DB_PORT}
-            - DB_USER=${DB_USER}
-            - DB_PASSWORD=${DB_PASSWORD}
-            - SESSION_COOKIE_SECRET=${SESSION_COOKIE_SECRET}
+        env_file:
+            - .env
         ports:
             - "${PORT}:${PORT}"
         depends_on:
