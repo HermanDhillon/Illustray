@@ -9,7 +9,7 @@ services:
         environment:
             - POSTGRES_PASSWORD=${DB_PASSWORD}
         volumes:
-            - postgresqlData:/var/lib/postgresql/data
+            - pgdata:/var/lib/postgresql/data
         healthcheck:
             test: ["CMD-SHELL", "pg_isready -U postgres"]
             interval: 1s
@@ -45,3 +45,5 @@ services:
             - ./client:/app
         ports:
             - "5173:5173"
+volumes:
+    pgdata:
