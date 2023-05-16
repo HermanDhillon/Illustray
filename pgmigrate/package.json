@@ -4,8 +4,12 @@
   "description": "Runs Postgres DB migrations",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "migrate": "node-pg-migrate"
   },
   "author": "Herman Dhillon",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "node-pg-migrate": "^6.2.2",
+    "pg": "^8.11.0"
+  }
 }
