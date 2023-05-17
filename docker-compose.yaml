@@ -24,6 +24,7 @@ services:
             - ./pgmigrate:/app
         environment:
             - DATABASE_URL=${DATABASE_URL}
+        entrypoint: ["npm", "run", "migrate", "up"]
         depends_on:
             postgres:
                 condition: service_healthy
