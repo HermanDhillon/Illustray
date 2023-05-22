@@ -5,13 +5,14 @@ const pool = new Pool({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   user: process.env.DB_USER,
+  database: process.env.DB_DATABASE,
   password: process.env.DB_PASSWORD,
   max: 20,
 });
 
 pool.connect((err, client, release) => {
   if (err) {
-    return console.error('Error acquiring client', err.stack);
+    return console.error('Cannot connect to DB', err.stack);
   }
   console.log('Postgres DB connected!');
   release();
