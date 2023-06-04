@@ -1,20 +1,38 @@
+import { useEffect } from 'react'
+import { useCookies } from 'react-cookie'
+
 export default function Navbar() {
+  const [cookies, setCookie] = useCookies('userid')
+  cookies.userid = 0 // for testing userid cookie presence
+  let avatarVis = cookies.userid ? '' : 'hidden '
+  let loginVis = cookies.userid ? 'hidden ' : ''
+
   return (
     //TODO: hide profile image if user not logged in, and replace with 'login/signup'
     //TODO: add user specific profile pic from url stored in DB
     <nav className="navbar bg-base-100 drop-shadow-md">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl">Illustray</a>
+        <a href="/" className="btn btn-ghost normal-case text-xl">
+          Illustray
+        </a>
       </div>
-      <div className="flex-none gap-2">
-        <div className="form-control">
-          <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered"
-          />
+      <div className="flex-none gap-3">
+        {/* The button to open modal */}
+        <div className={loginVis}>
+          <a
+            href="#Login"
+            className="btn btn-primary animate-pulse h-9 min-h-full"
+          >
+            Login
+          </a>
         </div>
-        <div className="dropdown dropdown-end">
+        <div className={loginVis}>
+          <a href="/Signup" className="btn btn-ghost h-9 min-h-full">
+            Sign Up
+          </a>
+        </div>
+
+        <div className={avatarVis + 'dropdown dropdown-end'}>
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
               <img src="https://cdn.dribbble.com/users/6142/screenshots/5679189/media/052967c305a8f96a4b40b79ce5e61b0d.png" />

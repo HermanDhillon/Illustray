@@ -1,10 +1,14 @@
+import Login from './components/Login'
 import Navbar from './components/Navbar'
+import Signup from './components/Signup'
 
 function App() {
   return (
-    <html data-theme="light">
+    <>
       <Navbar />
-    </html>
+      <Login />
+      <Signup />
+    </>
   )
 }
 
