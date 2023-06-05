@@ -26,8 +26,8 @@ module.exports = {
     //   validationErrors.push({ msg: 'Please enter a valid email address.' });
     // }
     if (
-      validator.isEmpty(req.body.password)
-      || validator.isEmpty(req.body.username)
+      validator.isEmpty(req.body.password) ||
+      validator.isEmpty(req.body.username)
     ) {
       return res.json({ error: 'Fields cannot be blank.' });
     }
