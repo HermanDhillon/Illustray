@@ -21,7 +21,7 @@
     // logic
 
     "consistent-return": "off",
-    "no-console":"off",
+    "no-console": "off",
     "no-var": "error",
     "no-unused-vars": "warn",
     "no-new-object": "error",
@@ -55,7 +55,17 @@
     "arrow-spacing": "error",
     "block-spacing": "error",
     "function-paren-newline": "error",
-    "object-curly-newline": "error"
+    "object-curly-newline": "error",
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "never",
+        "objects": "never",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
+      }
+    ]
   },
   "ignorePatterns": ["/node_modules", "/lib"]
 }

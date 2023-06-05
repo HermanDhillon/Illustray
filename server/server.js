@@ -22,13 +22,13 @@ app.use(
     store: new PgSession({
       pool: pgPool,
       tableName: 'user_sessions',
-      createTableIfMissing: true,
+      createTableIfMissing: true
       // Insert connect-pg-simple options here
     }),
     saveUninitialized: true,
     secret: process.env.SESSION_COOKIE_SECRET,
     resave: false,
-    cookie: { maxAge: 24 * 60 * 60 * 1000 }, // 01 days
+    cookie: { maxAge: 24 * 60 * 60 * 1000 } // 01 days
     // Insert express-session options here
   })
 );

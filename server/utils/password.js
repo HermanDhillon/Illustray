@@ -12,5 +12,5 @@ function validatePass(password, hash) {
 
 module.exports = {
   hashifier,
-  validatePass,
+  validatePass
 };
