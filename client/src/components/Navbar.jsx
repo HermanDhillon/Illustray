@@ -1,16 +1,40 @@
 import { useEffect } from 'react'
 import { useCookies } from 'react-cookie'
+import axios from 'axios'
 
 export default function Navbar() {
   const [cookies, setCookie] = useCookies('userid')
-  cookies.userid = 0 // for testing userid cookie presence
-  let avatarVis = cookies.userid ? '' : 'hidden '
-  let loginVis = cookies.userid ? 'hidden ' : ''
+  //console.log(cookies.userid) // for testing userid cookie presence
+
+  let avatarVis
+  let loginVis
+
+  if (cookies.userid != undefined) {
+    loginVis = 'hidden '
+    avatarVis = ''
+  } else {
+    loginVis = ''
+    avatarVis = 'hidden '
+  }
+
+  function handleClick(event) {
+    event.preventDefault()
+    axios({
+      method: 'get',
+      url: '/api/auth/logout',
+    })
+      .then((response) => {
+        console.log(response.data)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  }
 
   return (
     //TODO: hide profile image if user not logged in, and replace with 'login/signup'
     //TODO: add user specific profile pic from url stored in DB
-    <nav className="navbar bg-base-100 drop-shadow-md">
+    <nav className="navbar z-50 bg-base-100 drop-shadow-md">
       <div className="flex-1">
         <a href="/" className="btn btn-ghost normal-case text-xl">
           Illustray
@@ -27,14 +51,14 @@ export default function Navbar() {
           </a>
         </div>
         <div className={loginVis}>
-          <a href="/Signup" className="btn btn-ghost h-9 min-h-full">
+          <a href="/signup" className="btn btn-ghost h-9 min-h-full">
             Sign Up
           </a>
         </div>
 
         <div className={avatarVis + 'dropdown dropdown-end'}>
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
+          <label tabIndex={0} className="btn btn-ghost avatar">
+            <div className="w-12 mask mask-squircle">
               <img src="https://cdn.dribbble.com/users/6142/screenshots/5679189/media/052967c305a8f96a4b40b79ce5e61b0d.png" />
             </div>
           </label>
@@ -49,10 +73,10 @@ export default function Navbar() {
               </a>
             </li>
             <li>
-              <a>Settings</a>
+              <a href="/settings">Settings</a>
             </li>
             <li>
-              <a>Logout</a>
+              <button onClick={handleClick}>Logout</button>
             </li>
           </ul>
         </div>
