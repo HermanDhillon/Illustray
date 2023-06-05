@@ -4,7 +4,6 @@ const app = express();
 const session = require('express-session');
 const PgSession = require('connect-pg-simple')(session);
 const passport = require('passport');
-const flash = require('express-flash');
 const { pgPool } = require('./config/database');
 const authRouter = require('./routes/auth');
 
@@ -18,26 +17,25 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Session store and session config
-app.use(session({
-  store: new PgSession({
-    pool: pgPool,
-    tableName: 'user_sessions',
-    createTableIfMissing: true,
-    // Insert connect-pg-simple options here
-  }),
-  saveUninitialized: true,
-  secret: process.env.SESSION_COOKIE_SECRET,
-  resave: false,
-  cookie: { maxAge: 24 * 60 * 60 * 1000 }, // 01 days
-  // Insert express-session options here
-}));
+app.use(
+  session({
+    store: new PgSession({
+      pool: pgPool,
+      tableName: 'user_sessions',
+      createTableIfMissing: true,
+      // Insert connect-pg-simple options here
+    }),
+    saveUninitialized: true,
+    secret: process.env.SESSION_COOKIE_SECRET,
+    resave: false,
+    cookie: { maxAge: 24 * 60 * 60 * 1000 }, // 01 days
+    // Insert express-session options here
+  })
+);
 
 // passport initialize and session integration
 app.use(passport.initialize());
 app.use(passport.session());
-
-// Use flash messages for errors, info, ect...
-app.use(flash());
 
 // routes
 app.use('/api/auth', authRouter);

@@ -2,9 +2,8 @@ FROM node:18.16.0-alpine
 EXPOSE 5173 
 WORKDIR /app
 COPY ./package.json ./ 
-COPY ./.eslintrc.js ./
-COPY ./.prettierrc.cjs ./
-COPY ./.prettierignore ./
+COPY tailwind.config.js ./
+COPY postcss.config.js ./
 COPY ./vite.config.js ./
 RUN npm install
 COPY . .
