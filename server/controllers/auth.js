@@ -4,7 +4,7 @@ const User = require('../models/User');
 const { hashifier } = require('../utils/password');
 
 module.exports = {
-  logout: (req, res, next) => {
+  logout: (req, res) => {
     req.logout(() => {
       console.log('User has logged out.');
     });
@@ -26,8 +26,8 @@ module.exports = {
     //   validationErrors.push({ msg: 'Please enter a valid email address.' });
     // }
     if (
-      validator.isEmpty(req.body.password) ||
-      validator.isEmpty(req.body.username)
+      validator.isEmpty(req.body.password)
+      || validator.isEmpty(req.body.username)
     ) {
       return res.json({ error: 'Fields cannot be blank.' });
     }
@@ -36,7 +36,7 @@ module.exports = {
     //   gmail_remove_dots: true,
     // });
 
-    passport.authenticate('local', (err, user, info) => {
+    passport.authenticate('local', (err, user) => {
       if (err) {
         return next(err);
       }
@@ -102,5 +102,5 @@ module.exports = {
       res.cookie('userid', user.id, { maxAge: 24 * 60 * 60 * 1000 }); // Expires in 01 days
       res.json({ signup: 'successful' });
     });
-  },
+  }
 };
