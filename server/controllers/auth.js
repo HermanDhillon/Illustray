@@ -4,6 +4,23 @@ const User = require('../models/User');
 const { hashifier } = require('../utils/password');
 
 module.exports = {
+  logout: (req, res, next) => {
+    req.logout(() => {
+      console.log('User has logged out.');
+    });
+    req.session.regenerate((err) => {
+      if (err) {
+        console.log(
+          'Error : Failed to destroy the session during logout.',
+          err
+        );
+      }
+      req.user = null;
+      res.clearCookie('userid');
+      res.json({ logout: 'successful' });
+    });
+  },
+
   postLogin: (req, res, next) => {
     // if (!validator.isEmail(req.body.email)) {
     //   validationErrors.push({ msg: 'Please enter a valid email address.' });
