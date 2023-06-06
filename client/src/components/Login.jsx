@@ -1,8 +1,10 @@
 import { useState } from 'react'
-import { redirect } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 export default function Login() {
+  let navigate = useNavigate()
+
   const [loginData, setLoginData] = useState({
     username: '',
     password: '',
@@ -26,7 +28,7 @@ export default function Login() {
         }
         if (response.data.login === 'successful') {
           console.log(response.data)
-          return redirect('/settings')
+          navigate(0) // <-- redirect
         }
       })
       .catch(function (error) {

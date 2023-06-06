@@ -2,9 +2,11 @@ import Login from './Login'
 import Navbar from './Navbar'
 import { useState } from 'react'
 import axios from 'axios'
-import { redirect } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function Signup() {
+  let navigate = useNavigate()
+
   const [signupData, setSignupData] = useState({
     username: '',
     password: '',
@@ -29,8 +31,9 @@ export default function Signup() {
         if (response.data.error) {
           console.log(...response.data.error)
         }
-        if (response.signup === 'successful') {
-          return redirect('/')
+        if (response.data.signup === 'successful') {
+          navigate('/')
+          navigate(0)
         }
       })
       .catch(function (error) {

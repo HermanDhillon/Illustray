@@ -2,7 +2,10 @@ import { useEffect } from 'react'
 import { useCookies } from 'react-cookie'
 import axios from 'axios'
 
+import { useNavigate } from 'react-router-dom'
+
 export default function Navbar() {
+  let navigate = useNavigate()
   const [cookies, setCookie] = useCookies('userid')
   //console.log(cookies.userid) // for testing userid cookie presence
 
@@ -25,6 +28,8 @@ export default function Navbar() {
     })
       .then((response) => {
         console.log(response.data)
+        navigate('/')
+        navigate(0)
       })
       .catch(function (error) {
         console.log(error)
