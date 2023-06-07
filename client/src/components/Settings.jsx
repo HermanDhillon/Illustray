@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
-import Navbar from './Navbar'
 import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
+import Navbar from './Navbar'
 import Footer from './Footer'
+
 export default function Settings() {
   const [cookies, setCookie] = useCookies('userid')
   const navigate = useNavigate()
@@ -85,7 +86,7 @@ export default function Settings() {
                         Photo
                       </label>
                       <div className="mt-2 flex items-center gap-x-3">
-                        <div className="w-20 mask mask-squircle">
+                        <div className="w-32 mask mask-squircle">
                           <img src="https://cdn.dribbble.com/users/6142/screenshots/5679189/media/052967c305a8f96a4b40b79ce5e61b0d.png" />
                         </div>
                         <button

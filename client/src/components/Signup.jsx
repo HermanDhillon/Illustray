@@ -1,8 +1,8 @@
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import Login from './Login'
 import Navbar from './Navbar'
-import { useState } from 'react'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 import Footer from './Footer'
 
 export default function Signup() {
