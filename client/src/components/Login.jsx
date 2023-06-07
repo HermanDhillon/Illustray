@@ -28,7 +28,11 @@ export default function Login() {
         }
         if (response.data.login === 'successful') {
           console.log(response.data)
-          navigate(0) // <-- redirect
+          if (window.location.pathname === '/signup') {
+            navigate('/') // <-- redirect
+          } else {
+            navigate(0) // <-- refresh
+          }
         }
       })
       .catch(function (error) {
@@ -53,7 +57,7 @@ export default function Login() {
             <input
               type="text"
               placeholder="Username"
-              className="w-full input input-bordered"
+              className="w-full input input-bordered input-primary"
               name="username"
               onChange={handleInput}
             />
@@ -65,19 +69,22 @@ export default function Login() {
             <input
               type="password"
               placeholder="Enter Password"
-              className="w-full input input-bordered"
+              className="w-full input input-bordered input-primary"
               name="password"
               onChange={handleInput}
             />
           </div>
           <a
             href="https://media.tenor.com/OoTeyZ1HtIkAAAAC/welp.gif"
-            className="text-xs text-gray-600 hover:underline hover:text-blue-600"
+            className="text-xs text-gray-600 hover:underline hover:text-blue-600 "
           >
             Forgot Password?
           </a>
           <div>
-            <button type="submit" className="btn btn-primary btn-block">
+            <button
+              type="submit"
+              className="btn btn-primary btn-block border-none bg-gradient-to-b from-violet-500 to-fuchsia-500 hover:shadow-lg hover:shadow-[#6025F5]/50"
+            >
               Login
             </button>
           </div>
