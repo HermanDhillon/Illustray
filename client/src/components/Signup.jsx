@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import Footer from './Footer'
 
 export default function Signup() {
   let navigate = useNavigate()
@@ -44,9 +45,9 @@ export default function Signup() {
     <>
       <Navbar />
       <Login />
-      <div className="bg-contain bg-repeat  bg-[url('https://img.freepik.com/free-vector/space-doodle_102902-2356.jpg?w=2000&t=st=1685933525~exp=1685934125~hmac=401d6b362f5d5b9ceb80eb3b64b19a881c43804d4af94d790c3a89e2141063df')]">
+      <div className="bg-contain  bg-[url('./src/assets/SpaceDoodleC.webp')]">
         <div className="relative flex flex-col justify-center h-screen overflow-hidden">
-          <div className="w-11/12 p-6 m-auto bg-white rounded-lg shadow-2xl drop-shadow-2xl sm:max-w-lg">
+          <div className="w-11/12 p-6 m-auto bg-white rounded-lg border border-#c4c9d28b shadow-2xl drop-shadow-2xl sm:max-w-lg">
             <h1 className="text-3xl font-semibold text-center ">
               Create an Account
             </h1>
@@ -118,6 +119,7 @@ export default function Signup() {
           on Freepik
         </div>
       </div>
+      <Footer />
     </>
   )
 }
