@@ -20,7 +20,7 @@ export default function Settings() {
       <Navbar />
       <div className="bg-contain bg-repeat  bg-[url('./src/assets/SpaceDoodleC.webp')]">
         <div className="w-11/12 py-8 m-auto">
-          <div className="p-8 rounded-xl shadow-2xl border border-#c4c9d28b bg-white bg-opacity-95">
+          <div className="p-8 rounded-xl shadow-2xl  drop-shadow-2xl border border-#c4c9d28b bg-white bg-opacity-95">
             <form>
               <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">

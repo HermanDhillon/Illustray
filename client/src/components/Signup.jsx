@@ -48,9 +48,9 @@ export default function Signup() {
       <div className="bg-contain  bg-[url('./src/assets/SpaceDoodleC.webp')]">
         <div className="relative flex flex-col justify-center h-screen overflow-hidden">
           <div className="w-11/12 p-6 m-auto bg-white rounded-lg border border-#c4c9d28b shadow-2xl drop-shadow-2xl sm:max-w-lg">
-            <h1 className="text-3xl font-semibold text-center ">
+            <h2 className="text-3xl font-semibold text-center ">
               Create an Account
-            </h1>
+            </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="label">

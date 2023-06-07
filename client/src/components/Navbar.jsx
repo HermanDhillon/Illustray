@@ -60,7 +60,7 @@ export default function Navbar() {
           </a>
         </div>
 
-        <div className={avatarVis + 'dropdown dropdown-end'}>
+        <div className={avatarVis + 'dropdown dropdown-end pr-4'}>
           <label
             tabIndex={0}
             className="rounded-2xl avatar btn-ghost shadow-md hover:shadow-[#6025F5]/50 border-none "
