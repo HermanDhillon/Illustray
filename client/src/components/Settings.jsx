@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
-import Navbar from './Navbar'
 import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
+import Navbar from './Navbar'
+import Footer from './Footer'
 
 export default function Settings() {
   const [cookies, setCookie] = useCookies('userid')
@@ -17,9 +18,9 @@ export default function Settings() {
   return (
     <>
       <Navbar />
-      <div className="bg-contain bg-repeat  bg-[url('https://img.freepik.com/free-vector/space-doodle_102902-2356.jpg?w=2000&t=st=1685933525~exp=1685934125~hmac=401d6b362f5d5b9ceb80eb3b64b19a881c43804d4af94d790c3a89e2141063df')]">
+      <div className="bg-contain bg-repeat  bg-[url('./src/assets/SpaceDoodleC.webp')]">
         <div className="w-11/12 py-8 m-auto">
-          <div className="p-8 rounded-xl shadow-2xl  bg-white bg-opacity-95">
+          <div className="p-8 rounded-xl shadow-2xl  drop-shadow-2xl border border-#c4c9d28b bg-white bg-opacity-95">
             <form>
               <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
@@ -85,7 +86,7 @@ export default function Settings() {
                         Photo
                       </label>
                       <div className="mt-2 flex items-center gap-x-3">
-                        <div className="w-20 mask mask-squircle">
+                        <div className="w-32 mask mask-squircle">
                           <img src="https://cdn.dribbble.com/users/6142/screenshots/5679189/media/052967c305a8f96a4b40b79ce5e61b0d.png" />
                         </div>
                         <button
@@ -462,6 +463,7 @@ export default function Settings() {
           on Freepik
         </div>
       </div>
+      <Footer />
     </>
   )
 }

@@ -60,8 +60,11 @@ export default function Navbar() {
           </a>
         </div>
 
-        <div className={avatarVis + 'dropdown dropdown-end'}>
-          <label tabIndex={0} className="btn btn-ghost avatar">
+        <div className={avatarVis + 'dropdown dropdown-end pr-4'}>
+          <label
+            tabIndex={0}
+            className="rounded-2xl avatar btn-ghost shadow-md hover:shadow-[#6025F5]/50 border-none "
+          >
             <div className="w-12 mask mask-squircle">
               <img src="https://cdn.dribbble.com/users/6142/screenshots/5679189/media/052967c305a8f96a4b40b79ce5e61b0d.png" />
             </div>
