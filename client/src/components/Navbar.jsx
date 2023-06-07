@@ -7,8 +7,7 @@ import { useNavigate } from 'react-router-dom'
 export default function Navbar() {
   let navigate = useNavigate()
   const [cookies, setCookie] = useCookies('userid')
-  //console.log(cookies.userid) // for testing userid cookie presence
-
+  // cookies.userid = 1 // for testing userid cookie presence
   let avatarVis
   let loginVis
 
@@ -39,7 +38,7 @@ export default function Navbar() {
   return (
     //TODO: hide profile image if user not logged in, and replace with 'login/signup'
     //TODO: add user specific profile pic from url stored in DB
-    <nav className="navbar z-50 bg-base-100 drop-shadow-md">
+    <nav className="navbar z-50 bg-base-100 drop-shadow-md relative">
       <div className="flex-1">
         <a href="/" className="btn btn-ghost normal-case text-xl">
           Illustray
@@ -50,7 +49,7 @@ export default function Navbar() {
         <div className={loginVis}>
           <a
             href="#Login"
-            className="btn btn-primary animate-pulse h-9 min-h-full"
+            className="btn animate-pulse h-9 min-h-full bg-gradient-to-b from-violet-500 to-fuchsia-500 hover:shadow-lg hover:shadow-[#6025F5]/50 border-none"
           >
             Login
           </a>

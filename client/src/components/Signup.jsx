@@ -103,7 +103,7 @@ export default function Signup() {
               <div>
                 <button
                   type="submit"
-                  className="border-none btn btn-block bg-gradient-to-b from-violet-500 to-fuchsia-500 hover:(bg-gradient-to-b from-violet-500 to-fuchsia-100)"
+                  className="border-none btn btn-block bg-gradient-to-b from-violet-500 to-fuchsia-500 hover:shadow-lg hover:shadow-[#6025F5]/50"
                 >
                   Sign Up
                 </button>
