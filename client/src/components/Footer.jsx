@@ -4,7 +4,7 @@ export default function Footer() {
   let year = new Date().getFullYear()
   return (
     <>
-      <footer className="shadow-[3px_3px_10px_6px_rgba(0,0,0,0.55)] rounded-t items-center p-4  bg-primary  font-semibold text-neutral-content flex justify-between footer">
+      <footer className="relative shadow-[3px_3px_10px_6px_rgba(0,0,0,0.55)] rounded-t items-center p-4  bg-primary  font-semibold text-neutral-content flex justify-between footer">
         <div className="items-center grid-flow-col">
           <img className="w-2 h-8" src={img}></img>
           <p>Copyright Illustray © {year}</p>

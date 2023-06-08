@@ -3,14 +3,10 @@ import Navbar from './Navbar'
 
 export default function Profile() {
   return (
-    <>
+    <div className="bg-contain bg-repeat  bg-[url('./src/assets/SpaceDoodleC.webp')]">
       <Navbar />
-      {/* <img
-        src="./src/assets/banner.jpg"
-        className=" shadow-inner w-full max-h-96 absolute mt-5 -z-50"
-      ></img> */}
-      <div className="p-16 h-screen">
-        <div className="p-8 bg-white bg-opacity-95 rounded-xl shadow-2xl  drop-shadow-2xl border border-#c4c9d28b mt-24">
+      <div className=" md:min-h-screen ">
+        <div className="w-11/12 m-auto p-8 bg-white bg-opacity-95 rounded-xl shadow-2xl  drop-shadow-2xl border border-#c4c9d28b mt-24">
           {' '}
           <div className="grid grid-cols-1 md:grid-cols-3">
             {' '}
@@ -52,13 +48,10 @@ export default function Profile() {
           <div className="mt-20 text-center border-b pb-12">
             {' '}
             <h1 className="text-4xl font-medium text-gray-700">
-              Jessica Jones,{' '}
-              <span className="font-light text-gray-500">27</span>
+              Sudo Mateo, <span className="font-light text-gray-500">27</span>
             </h1>{' '}
             <p className="font-light text-gray-600 mt-3">Bucharest, Romania</p>{' '}
-            <p className="mt-8 text-gray-500">
-              Solution Manager - Creative Tim Officer
-            </p>{' '}
+            <p className="mt-8 text-gray-500">Digital Artist</p>{' '}
             <p className="mt-2 text-gray-500">University of Computer Science</p>{' '}
           </div>{' '}
           <div className="mt-12 flex flex-col justify-center">
@@ -77,6 +70,6 @@ export default function Profile() {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   )
 }

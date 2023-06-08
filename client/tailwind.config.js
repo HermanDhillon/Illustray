@@ -1,11 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{html,js,jsx}'],
-  plugins: [
-    require('daisyui'),
-    require('@tailwindcss/forms'),
-    require('tailwindcss-3d'),
-  ],
+  plugins: [require('daisyui'), require('@tailwindcss/forms')],
   // daisyUI config (optional)
   daisyui: {
     styled: true,
