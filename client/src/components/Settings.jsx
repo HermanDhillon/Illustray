@@ -16,7 +16,7 @@ export default function Settings() {
   }, [])
 
   return (
-    <div className="bg-contain bg-repeat  bg-[url('./src/assets/settingsDoodle.jpg')]">
+    <div className="bg-contain bg-repeat  bg-[url('./src/assets/doodles.webp')]">
       <Navbar />
       <div className="w-11/12 py-8 m-auto">
         <div className="p-8 rounded-xl shadow-2xl  drop-shadow-2xl border border-#c4c9d28b bg-white bg-opacity-95">
@@ -455,8 +455,8 @@ export default function Settings() {
           </form>
         </div>
       </div>
-      <a href="https://www.freepik.com/free-vector/time-management-seamless-pattern-with-sketch-planning-strategy-elements_4352602.htm#from_view=detail_alsolike">
-        Image by macrovector_official
+      <a href="https://www.freepik.com/free-vector/hand-drawing-illustration-mixed-set-lifestyle_2780438.htm#page=2&query=doodle&position=35&from_view=search&track=sph">
+        Image by rawpixel.com
       </a>{' '}
       on Freepik
       <Footer />
