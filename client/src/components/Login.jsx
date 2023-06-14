@@ -83,7 +83,7 @@ export default function Login() {
           <div>
             <button
               type="submit"
-              className="btn btn-primary btn-block border-none bg-gradient-to-b from-violet-500 to-fuchsia-500 hover:shadow-lg hover:shadow-[#6025F5]/50"
+              className=" btn btn-primary btn-block border-none bg-gradient-to-b from-violet-500 to-fuchsia-500 hover:shadow-lg hover:shadow-[#6025F5]/50"
             >
               Login
             </button>

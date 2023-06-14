@@ -6,7 +6,7 @@ export default function Home() {
     <>
       <Navbar />
       <Login />
-      <main>content</main>
+      <main className=" min-h-screen">content</main>
       <Footer />
     </>
   )
