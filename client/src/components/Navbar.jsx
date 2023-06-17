@@ -38,7 +38,7 @@ export default function Navbar() {
   return (
     //TODO: hide profile image if user not logged in, and replace with 'login/signup'
     //TODO: add user specific profile pic from url stored in DB
-    <nav className="navbar z-50 bg-base-100 drop-shadow-md relative">
+    <nav className="navbar z-10 bg-base-100 drop-shadow-md relative">
       <div className="flex-1">
         <a href="/" className="btn btn-ghost normal-case text-xl">
           Illustray

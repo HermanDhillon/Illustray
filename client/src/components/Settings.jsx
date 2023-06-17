@@ -18,7 +18,7 @@ export default function Settings() {
   return (
     <div className="bg-contain bg-repeat  bg-[url('./src/assets/doodles.webp')]">
       <Navbar />
-      <div className="w-11/12 py-8 m-auto">
+      <div className="w-11/12 my-10 mx-auto">
         <div className="p-8 rounded-xl shadow-2xl  drop-shadow-2xl border border-#c4c9d28b bg-white bg-opacity-95">
           <form>
             <div className="space-y-12">
