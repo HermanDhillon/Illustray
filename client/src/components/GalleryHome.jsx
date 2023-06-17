@@ -38,9 +38,9 @@ export default function GalleryHome(props) {
 
       <dialog
         id="image_modal"
-        className="drop-shadow-2xl shadow-2xl rounded-xl w-[100rem] max-h-[80vh] overflow-hidden "
+        className="drop-shadow-2xl shadow-2xl rounded-xl w-[100rem] max-h-[80vh] overflow-hidden md:max-h-[90vh]"
       >
-        <div className="flex flex-col justify-between my-[2.5vh] mx-auto md:flex-row">
+        <div className="flex flex-col justify-between  mx-auto md:flex-row">
           <button
             onClick={() => window.image_modal.close()}
             className="btn btn-sm btn-circle absolute right-2 top-2 border-none"
@@ -53,7 +53,7 @@ export default function GalleryHome(props) {
               className="rounded-xl max-h-[45vh] md:max-h-[71vh] m-auto p-auto"
             ></img>
           </div>
-          <div className="mt-5 max-h-[40vh] rounded-xl border border-#c4c9d28b md:ml-5 md:mt-0 md:w-[35%] md:max-h-[71vh] ">
+          <div className="mt-5 h-[20vh] rounded-xl border border-#c4c9d28b md:h-auto md:ml-5 md:mt-0 md:w-[35%] md:max-h-[71vh] ">
             <h3>Comments</h3>
           </div>
         </div>
