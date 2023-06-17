@@ -47,13 +47,13 @@ export default function GalleryHome(props) {
           >
             ✘
           </button>
-          <div className=" flex flex-col align-middle rounded-xl bg-slate-500 bg-opacity-10 md:w-[65%] md:max-h-[71vh]">
+          <div className=" flex flex-col align-middle rounded-xl bg-gray-400 bg-opacity-10 md:w-[65%] md:max-h-[71vh]">
             <img
               src={source}
               className="rounded-xl max-h-[45vh] md:max-h-[71vh] m-auto p-auto"
             ></img>
           </div>
-          <div className="mt-5 h-[20vh] rounded-xl border border-#c4c9d28b md:h-auto md:ml-5 md:mt-0 md:w-[35%] md:max-h-[71vh] ">
+          <div className="bg-gray-400 bg-opacity-10 mt-5 h-[20vh] rounded-xl border border-#c4c9d28b md:h-auto md:ml-5 md:mt-0 md:w-[35%] md:max-h-[71vh] md:min-h-[60vh] ">
             <h3>Comments</h3>
           </div>
         </div>
