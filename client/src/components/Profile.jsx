@@ -23,7 +23,7 @@ export default function Profile() {
               </div>
             </div>
             <div className="">
-              <div className="mask mask-squircle w-48 h-48 bg-indigo-100 mx-auto absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500 avatar">
+              <div className="mask mask-squircle w-48 h-48 bg-indigo-100 mx-auto absolute inset-x-0 top-0  flex items-center justify-center text-indigo-500 avatar mt-24 md:-mt-24">
                 <img className="" src="./src/assets/userAstronaut.png"></img>
               </div>
             </div>
