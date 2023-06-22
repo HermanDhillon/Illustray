@@ -31,14 +31,14 @@ const photos = unsplashPhotos.map((photo) => ({
   src: unsplashLink(photo.id, photo.width, photo.height),
   width: photo.width,
   height: photo.height,
-  srcSet: breakpoints.map((breakpoint) => {
-    const height = Math.round((photo.height / photo.width) * breakpoint)
-    return {
-      src: unsplashLink(photo.id, breakpoint, height),
-      width: breakpoint,
-      height,
-    }
-  }),
+  // srcSet: breakpoints.map((breakpoint) => {
+  //   const height = Math.round((photo.height / photo.width) * breakpoint)
+  //   return {
+  //     src: unsplashLink(photo.id, breakpoint, height),
+  //     width: breakpoint,
+  //     height,
+  //   }
+  // }),
 }))
 
 export default photos

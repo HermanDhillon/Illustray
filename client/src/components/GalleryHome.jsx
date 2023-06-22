@@ -9,7 +9,6 @@ export default function GalleryHome(props) {
   const [source, setSource] = useState(null)
   function handleClick(image) {
     setSource(image.src)
-    console.log(image)
     window.image_modal.showModal()
   }
   return (
@@ -35,6 +34,7 @@ export default function GalleryHome(props) {
         })}
         onClick={({ photo }) => handleClick(photo)}
       />
+      <span className="loading loading-spinner loading-lg"></span>
 
       <dialog
         id="image_modal"
