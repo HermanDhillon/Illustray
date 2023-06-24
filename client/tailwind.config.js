@@ -14,11 +14,10 @@ export default {
     darkTheme: 'dark',
   },
   theme: {
-    fontFamily: {
-      sans: ['ui-sans-serif', 'system-ui'],
-      serif: ['ui-serif', 'Georgia'],
-      mono: ['ui-monospace', 'SFMono-Regular'],
-      pacifico: ['"Pacifico", "cursive"'],
+    extend: {
+      fontFamily: {
+        pacifico: ['"Pacifico", "cursive"'],
+      },
     },
   },
 }
