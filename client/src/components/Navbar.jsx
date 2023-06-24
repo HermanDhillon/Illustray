@@ -40,7 +40,10 @@ export default function Navbar() {
     //TODO: add user specific profile pic from url stored in DB
     <nav className="navbar z-10 bg-base-100 drop-shadow-md relative">
       <div className="flex-1">
-        <a href="/" className="btn btn-ghost normal-case text-xl">
+        <a
+          href="/"
+          className="btn btn-ghost normal-case  text-2xl font-pacifico"
+        >
           Illustray
         </a>
       </div>
