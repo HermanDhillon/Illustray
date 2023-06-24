@@ -41,8 +41,8 @@ export default function Login() {
   }
 
   return (
-    <div className="modal" id="Login">
-      <div className="modal-box">
+    <div className="modal " id="Login">
+      <div className="modal-box shadow-2xl  drop-shadow-2xl border border-#c4c9d28b">
         <a href="#" className="btn btn-sm btn-circle absolute right-2 top-2">
           ✘
         </a>
