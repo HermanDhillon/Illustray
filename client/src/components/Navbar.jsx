@@ -42,7 +42,7 @@ export default function Navbar() {
       <div className="flex-1">
         <a
           href="/"
-          className="btn btn-ghost normal-case  text-2xl font-pacifico"
+          className="btn btn-ghost normal-case  text-3xl font-pacifico"
         >
           Illustray
         </a>
