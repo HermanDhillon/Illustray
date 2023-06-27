@@ -31,6 +31,7 @@ export default function Login() {
           window.login_modal.close()
           if (window.location.pathname === '/signup') {
             navigate('/') // <-- redirect
+            navigate(0)
           } else {
             navigate(0) // <-- refresh
           }
