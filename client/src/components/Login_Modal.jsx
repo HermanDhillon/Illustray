@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-export default function Login() {
+export default function Login_Modal() {
   let navigate = useNavigate()
 
   const [loginData, setLoginData] = useState({

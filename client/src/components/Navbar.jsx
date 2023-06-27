@@ -1,6 +1,6 @@
 import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
-import Login from './Login'
+import Login_Modal from './Login_Modal'
 import axios from 'axios'
 
 export default function Navbar() {
@@ -52,7 +52,7 @@ export default function Navbar() {
           <div className={loginVis}>
             <button
               onClick={() => window.login_modal.showModal()}
-              className="btn animate-pulse h-9 min-h-full bg-gradient-to-b from-violet-500 to-fuchsia-500 hover:shadow-lg hover:shadow-[#6025F5]/50 border-none"
+              className="btn  h-9 min-h-full bg-gradient-to-b from-violet-500 to-fuchsia-500 hover:shadow-lg hover:shadow-[#6025F5]/50 border-none"
             >
               Login
             </button>
@@ -92,7 +92,7 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-      <Login />
+      <Login_Modal />
     </>
   )
 }
