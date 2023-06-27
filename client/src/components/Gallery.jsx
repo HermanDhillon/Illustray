@@ -23,6 +23,7 @@ export default function Gallery(props) {
   return (
     <div className="">
       <PhotoAlbum
+        className="border-8 border-solid border-red-500"
         layout={props.layout}
         columns={(containerWidth) => {
           if (containerWidth < 300) return 1
