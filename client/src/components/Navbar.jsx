@@ -50,12 +50,12 @@ export default function Navbar() {
         <div className="flex-none gap-3">
           {/* The button to open modal */}
           <div className={loginVis}>
-            <a
-              href="#Login"
+            <button
+              onClick={() => window.login_modal.showModal()}
               className="btn animate-pulse h-9 min-h-full bg-gradient-to-b from-violet-500 to-fuchsia-500 hover:shadow-lg hover:shadow-[#6025F5]/50 border-none"
             >
               Login
-            </a>
+            </button>
           </div>
           <div className={loginVis}>
             <a href="/signup" className="btn btn-ghost h-9 min-h-full">

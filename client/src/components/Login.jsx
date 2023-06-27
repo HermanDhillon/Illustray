@@ -28,6 +28,7 @@ export default function Login() {
         }
         if (response.data.login === 'successful') {
           console.log(response.data)
+          window.login_modal.close()
           if (window.location.pathname === '/signup') {
             navigate('/') // <-- redirect
           } else {
@@ -41,11 +42,17 @@ export default function Login() {
   }
 
   return (
-    <div className="modal " id="Login">
-      <div className="modal-box shadow-2xl  drop-shadow-2xl border border-#c4c9d28b">
-        <a href="#" className="btn btn-sm btn-circle absolute right-2 top-2">
+    <dialog
+      className="modal-box shadow-2xl  drop-shadow-2xl border border-#c4c9d28b"
+      id="login_modal"
+    >
+      <div className="">
+        <button
+          onClick={() => window.login_modal.close()}
+          className="btn btn-sm btn-circle absolute right-2 top-2"
+        >
           ✘
-        </a>
+        </button>
         <h1 className="text-3xl font-semibold text-center text-gray-700">
           Login
         </h1>
@@ -90,6 +97,6 @@ export default function Login() {
           </div>
         </form>
       </div>
-    </div>
+    </dialog>
   )
 }

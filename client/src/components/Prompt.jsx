@@ -1,6 +1,4 @@
-import Footer from './Footer'
 import Gallery from './Gallery'
-import Navbar from './Navbar'
 import { useState } from 'react'
 
 export default function Prompt() {
@@ -8,7 +6,6 @@ export default function Prompt() {
   return (
     <div className="bg-[url('./src/assets/im3.jpg')] bg-opacity-10 ">
       <div className="bg-white bg-opacity-90">
-        <Navbar />
         <div className="min-h-screen py-[4vw]  ">
           <div className="w-[85vw] mx-auto mb-[65px] bg-white bg-opacity-95 rounded-xl shadow-xl  drop-shadow-2xl border border-#c4c9d28b  md:min-h-[20vw] flex flex-col md:flex-row md:w-[60vw]">
             <div className="m-[2vh] mb-0 md:w-[70%] relative flex flex-col justify-between md:mb-[1vw]">
@@ -35,7 +32,6 @@ export default function Prompt() {
           </div>
           <Gallery layout="columns" />
         </div>
-        <Footer />
       </div>
     </div>
   )
