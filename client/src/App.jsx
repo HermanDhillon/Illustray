@@ -3,6 +3,7 @@ import Home from './components/Home'
 import Signup from './components/Signup'
 import Settings from './components/Settings'
 import Profile from './components/Profile'
+import Prompt from './components/Prompt'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/prompt" element={<Prompt />} />
       </Routes>
     </>
   )
