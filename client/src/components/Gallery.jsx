@@ -47,7 +47,7 @@ export default function Gallery(props) {
 
       <dialog
         id="image_modal"
-        className="drop-shadow-2xl shadow-2xl rounded-xl w-[100vw] max-h-[80vh] overflow-hidden md:max-h-[90vh] p-0 "
+        className="drop-shadow-2xl shadow-2xl rounded-xl w-[100vw] max-h-[80vh] overflow-hidden md:max-h-[90vh] md:w-[92vw] p-0 "
       >
         <div className="flex flex-col justify-between md:flex-row ">
           <button

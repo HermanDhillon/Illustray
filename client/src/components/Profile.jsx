@@ -1,10 +1,6 @@
-import Footer from './Footer'
-import Navbar from './Navbar'
-
 export default function Profile() {
   return (
     <div className="bg-contain bg-repeat  bg-[url('./src/assets/spacedoodle1.webp')]">
-      <Navbar />
       <div className=" md:min-h-screen py-10">
         <div className=" w-11/12 mx-auto py-10 bg-white bg-opacity-95 rounded-xl shadow-2xl  drop-shadow-2xl border border-#c4c9d28b mt-24">
           <div className="grid grid-cols-1 md:grid-cols-3">
@@ -57,7 +53,6 @@ export default function Profile() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   )
 }

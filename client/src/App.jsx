@@ -4,10 +4,14 @@ import Signup from './components/Signup'
 import Settings from './components/Settings'
 import Profile from './components/Profile'
 import Prompt from './components/Prompt'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+
 
 function App() {
   return (
     <>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
@@ -15,6 +19,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/prompt" element={<Prompt />} />
       </Routes>
+      <Footer />
     </>
   )
 }
