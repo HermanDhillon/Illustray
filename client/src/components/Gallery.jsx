@@ -44,32 +44,37 @@ export default function Gallery(props) {
         })}
         onClick={({ photo }) => handleClick(photo)}
       />
-
-      <dialog
-        id="image_modal"
-        className="drop-shadow-2xl shadow-2xl rounded-xl w-[100vw] max-h-[80vh] overflow-hidden md:max-h-[90vh] md:w-[92vw] p-0 "
-      >
-        <div className="flex flex-col justify-between md:flex-row ">
-          <button
-            onClick={() => window.image_modal.close()}
-            className="btn btn-sm btn-circle absolute right-2 top-2 border-none"
-          >
-            ✘
-          </button>
-          <div className=" min-h-[30vh] flex flex-col align-middle  bg-black bg-opacity-100 md:w-[65%] md:max-h-[71vh]">
-            <img
-              src={source?.src}
-              className="max-h-[45vh] md:max-h-[71vh] m-auto p-auto hover:cursor-zoom-in"
-              onClick={() => setLightbox(true)}
-            ></img>
-          </div>
-          <div className="min-h-[25vh] bg-gray-400 bg-opacity-100 bg-[url('./src/assets/hello.jpg')]  h-[20vh] rounded-xl border border-#c4c9d28b md:h-auto  md:mt-0 md:w-[35%] md:max-h-[71vh] md:min-h-[60vh] ">
-            <div className="bg-white bg-opacity-95 h-full">
-              <h3>Comments</h3>
+      {source && (
+        <dialog
+          id="image_modal"
+          className="w-full h-full fixed z-20 inset-0 flex justify-center items-center bg-transparent overflow-hidden p-0"
+        >
+          <div 
+            className='z-10 fixed inset-0 bg-black opacity-50'
+            onClick={() => setSource(null)}
+          />
+          <div className="md:w-[92vw] relative z-20 flex flex-col justify-between md:flex-row rounded-xl overflow-hidden">
+            <button
+              onClick={() => setSource(null)}
+              className="btn btn-sm btn-circle absolute right-2 top-2 border-none"
+            >
+              ✘
+            </button>
+            <div className="min-h-[30vh] flex flex-col align-middle bg-black bg-opacity-100 md:w-[65%] md:max-h-[71vh]">
+              <img
+                src={source?.src}
+                className="max-h-[45vh] md:max-h-[71vh] m-auto p-auto hover:cursor-zoom-in"
+                onClick={() => setLightbox(true)}
+              ></img>
+            </div>
+            <div className="min-h-[25vh] bg-gray-400 bg-opacity-100 bg-[url('./src/assets/hello.jpg')]  h-[20vh] rounded-xl border border-#c4c9d28b md:h-auto  md:mt-0 md:w-[35%] md:max-h-[71vh] md:min-h-[60vh] ">
+              <div className="bg-white bg-opacity-95 h-full">
+                <h3>Comments</h3>
+              </div>
             </div>
           </div>
-        </div>
-      </dialog>
+        </dialog>
+      )}
 
       <Lightbox
         slides={[source]}
