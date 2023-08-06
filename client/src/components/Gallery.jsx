@@ -50,10 +50,10 @@ export default function Gallery(props) {
           className="w-full h-full fixed z-20 inset-0 flex justify-center items-center bg-transparent overflow-hidden p-0"
         >
           <div 
-            className='z-10 fixed inset-0 bg-black opacity-50'
+            className='z-10 fixed inset-0 bg-black opacity-75'
             onClick={() => setSource(null)}
           />
-          <div className="md:w-[92vw] relative z-20 flex flex-col justify-between md:flex-row rounded-xl overflow-hidden">
+          <div className="w-[92vw] relative z-20 flex flex-col justify-between md:flex-row rounded-xl overflow-hidden">
             <button
               onClick={() => setSource(null)}
               className="btn btn-sm btn-circle absolute right-2 top-2 border-none"
@@ -67,7 +67,7 @@ export default function Gallery(props) {
                 onClick={() => setLightbox(true)}
               ></img>
             </div>
-            <div className="min-h-[25vh] bg-gray-400 bg-opacity-100 bg-[url('./src/assets/hello.jpg')]  h-[20vh] rounded-xl border border-#c4c9d28b md:h-auto  md:mt-0 md:w-[35%] md:max-h-[71vh] md:min-h-[60vh] ">
+            <div className="min-h-[25vh] bg-gray-400 bg-opacity-100 bg-[url('./src/assets/hello.jpg')]  h-[20vh] rounded-xl md:h-auto  md:mt-0 md:w-[35%] md:max-h-[71vh] md:min-h-[60vh] ">
               <div className="bg-white bg-opacity-95 h-full">
                 <h3>Comments</h3>
               </div>
