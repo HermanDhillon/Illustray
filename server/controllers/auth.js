@@ -16,7 +16,7 @@ module.exports = {
         );
       }
       req.user = null;
-      res.clearCookie('userid');
+      res.clearCookie('username');
       res.json({ logout: 'successful' });
     });
   },
@@ -48,7 +48,7 @@ module.exports = {
           return next(error);
         }
         // res.redirect(req.session.returnTo || '/');
-        res.cookie('userid', user.id, { maxAge: 24 * 60 * 60 * 1000 }); // Expires in 01 days
+        res.cookie('username', user.username, { maxAge: 24 * 60 * 60 * 1000 }); // Expires in 01 days
         res.json({ login: 'successful' });
       });
     })(req, res, next);
@@ -99,7 +99,7 @@ module.exports = {
       if (err) {
         return next(err);
       }
-      res.cookie('userid', user.id, { maxAge: 24 * 60 * 60 * 1000 }); // Expires in 01 days
+      res.cookie('username', user.username, { maxAge: 24 * 60 * 60 * 1000 }); // Expires in 01 days
       res.json({ signup: 'successful' });
     });
   }

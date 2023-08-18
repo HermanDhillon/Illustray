@@ -34,7 +34,7 @@ export default function Signup() {
           navigate(0)
         }
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error)
       })
   }

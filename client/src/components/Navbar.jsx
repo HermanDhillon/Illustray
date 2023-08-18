@@ -1,16 +1,13 @@
-import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
 import Login_Modal from './Login_Modal'
 import axios from 'axios'
 
-export default function Navbar() {
+export default function Navbar(props) {
   let navigate = useNavigate()
-  const [cookies, setCookie] = useCookies('userid')
-  // cookies.userid = 1 // for testing userid cookie presence
   let avatarVis
   let loginVis
 
-  if (cookies.userid != undefined) {
+  if (props.cookies.username != undefined) {
     loginVis = 'hidden '
     avatarVis = ''
   } else {
@@ -77,7 +74,10 @@ export default function Navbar() {
               className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
             >
               <li>
-                <a href="/profile" className="justify-between">
+                <a
+                  href={`/user/${props.cookies.username}`}
+                  className="justify-between"
+                >
                   Profile
                   <span className="badge">New</span>
                 </a>
