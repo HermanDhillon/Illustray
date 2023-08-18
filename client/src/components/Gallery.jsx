@@ -17,7 +17,6 @@ export default function Gallery(props) {
 
   function handleClick(image) {
     setSource(image)
-    window.image_modal.showModal()
   }
 
   return (
@@ -49,8 +48,8 @@ export default function Gallery(props) {
           id="image_modal"
           className="w-full h-full fixed z-20 inset-0 flex justify-center items-center bg-transparent overflow-hidden p-0"
         >
-          <div 
-            className='z-10 fixed inset-0 bg-black opacity-75'
+          <div
+            className="z-10 fixed inset-0 bg-black opacity-75"
             onClick={() => setSource(null)}
           />
           <div className="w-[92vw] relative z-20 flex flex-col justify-between md:flex-row rounded-xl overflow-hidden">

@@ -1,6 +1,26 @@
-export default function Profile() {
+import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+
+export default function User() {
+  let [userData, setUserData] = useState({ username: 'N/A' })
+  const { username } = useParams()
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: `/api/user/${username}`,
+    })
+      .then((response) => {
+        console.log(response.data)
+        setUserData(response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [username])
   return (
-    <div className="bg-contain bg-repeat  bg-[url('./src/assets/spacedoodle1.webp')]">
+    <div className="bg-contain bg-repeat  bg-[url('/./src/assets/spacedoodle1.webp')]">
       <div className=" md:min-h-screen py-10">
         <div className=" w-11/12 mx-auto py-10 bg-white bg-opacity-95 rounded-xl shadow-2xl  drop-shadow-2xl border border-#c4c9d28b mt-24">
           <div className="grid grid-cols-1 md:grid-cols-3">
@@ -20,7 +40,7 @@ export default function Profile() {
             </div>
             <div className="">
               <div className="mask mask-squircle w-48 h-48 bg-indigo-100 mx-auto absolute inset-x-0 top-0  flex items-center justify-center text-indigo-500 avatar mt-24 md:-mt-24">
-                <img className="" src="./src/assets/userAstronaut.png"></img>
+                <img className="" src={userData.profileimage}></img>
               </div>
             </div>
             <div className="space-x-8 flex justify-around mt-32 md:mt-0 md:justify-center">
@@ -34,7 +54,7 @@ export default function Profile() {
           </div>
           <div className="mt-20 text-center border-b pb-12">
             <h1 className="text-4xl font-medium text-gray-700">
-              Harm Dylan, <span className="font-light text-gray-500">32</span>
+              {userData.username}
             </h1>
             <p className="font-light text-gray-600 mt-3">Citysville, USA</p>
             <p className="mt-8 text-gray-500">Title</p>
@@ -42,10 +62,7 @@ export default function Profile() {
           </div>
           <div className="mt-12 flex flex-col justify-center">
             <p className="text-gray-600 text-center font-light lg:px-16">
-              An artist of considerable range, Sudo — the name taken by
-              Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs
-              and records all of his own music, giving it a warm, intimate feel
-              with a solid groove structure. An artist of considerable range.
+              {userData.bio}
             </p>
             <button className="text-indigo-500 py-2 px-4  font-medium mt-4">
               Show more

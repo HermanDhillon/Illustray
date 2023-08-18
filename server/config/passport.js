@@ -7,7 +7,6 @@ const User = require('../models/User');
 async function verify(username, password, cb) {
   try {
     const user = await User.findByUsername(username);
-
     if (!user || !validatePass(password, user.hash)) {
       return cb(null, false, { message: 'Incorrect username or password.' });
     }
@@ -23,9 +22,9 @@ const strategy = new LocalStrategy(verify);
 passport.use(strategy);
 
 passport.serializeUser((user, cb) => {
-  cb(null, user.id);
+  cb(null, user.username);
 });
 
-passport.deserializeUser((userId, cb) => {
-  cb(null, userId);
+passport.deserializeUser((username, cb) => {
+  cb(null, username);
 });
