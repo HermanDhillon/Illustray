@@ -38,7 +38,7 @@ export default function Gallery(props) {
           },
           imageProps: {
             className:
-              ' rounded-lg shadow-lg drop-shadow-lg overflow-hidden transistion transform hover:-translate-y-1 hover:brightness-50 duration-300',
+              ' rounded-md shadow-lg drop-shadow-lg overflow-hidden transistion transform hover:-translate-y-1 hover:brightness-50 duration-300 hover:rounded-none duration-300',
           },
         })}
         onClick={({ photo }) => handleClick(photo)}
@@ -52,7 +52,7 @@ export default function Gallery(props) {
             className="z-10 fixed inset-0 bg-black opacity-75"
             onClick={() => setSource(null)}
           />
-          <div className="w-[92vw] relative z-20 flex flex-col justify-between md:flex-row rounded-xl overflow-hidden">
+          <div className="w-[92vw] relative z-20 flex flex-col justify-between md:flex-row rounded-lg overflow-hidden">
             <button
               onClick={() => setSource(null)}
               className="btn btn-sm btn-circle absolute right-2 top-2 border-none"
@@ -66,7 +66,7 @@ export default function Gallery(props) {
                 onClick={() => setLightbox(true)}
               ></img>
             </div>
-            <div className="min-h-[25vh] bg-gray-400 bg-opacity-100 bg-[url('./src/assets/hello.jpg')]  h-[20vh] rounded-xl md:h-auto  md:mt-0 md:w-[35%] md:max-h-[71vh] md:min-h-[60vh] ">
+            <div className="min-h-[25vh] bg-gray-400 bg-opacity-100 bg-[url('./src/assets/hello.jpg')]  h-[20vh]  md:h-auto  md:mt-0 md:w-[35%] md:max-h-[71vh] md:min-h-[60vh] ">
               <div className="bg-white bg-opacity-95 h-full">
                 <h3>Comments</h3>
               </div>
