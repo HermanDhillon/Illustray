@@ -2,13 +2,12 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-export default function User() {
+export default function User(props) {
   let [userData, setUserData] = useState({
     username: 'Loading...',
     bio: 'Loading...',
   })
   const { username } = useParams()
-
   useEffect(() => {
     axios({
       method: 'get',
@@ -22,6 +21,9 @@ export default function User() {
         console.log(error)
       })
   }, [username])
+
+  let ownPage = props.cookies.username == username
+
   return (
     <div className="bg-contain bg-repeat  bg-[url('/./src/assets/spacedoodle1.webp')]">
       <div className=" md:min-h-screen py-10">
@@ -47,14 +49,23 @@ export default function User() {
                   <img className="" src={userData.profileimage}></img>
                 </div>
               </div>
-              <div className="space-x-8 flex justify-around mt-32 md:mt-0 md:justify-center">
-                <button className="btn btn-primary border-none bg-primary hover:shadow-lg hover:shadow-[#6025F5]/50">
-                  Connect
-                </button>
-                <button className="btn btn-secondary border-none hover:shadow-lg hover:shadow-[#6025F5]/50">
-                  Message
-                </button>
-              </div>
+              {!ownPage && (
+                <div className="space-x-8 flex justify-around mt-32 md:mt-0 md:justify-center">
+                  <button className="btn btn-primary border-none bg-primary hover:shadow-lg hover:shadow-[#6025F5]/50">
+                    Connect
+                  </button>
+                  <button className="btn btn-secondary border-none hover:shadow-lg hover:shadow-[#6025F5]/50">
+                    Message
+                  </button>
+                </div>
+              )}
+              {ownPage && (
+                <div className="space-x-8 flex justify-center mt-32 md:mt-0 md:justify-center">
+                  <button className="btn btn-secondary border-none hover:shadow-lg hover:shadow-[#6025F5]/50">
+                    New Prompt
+                  </button>
+                </div>
+              )}
             </div>
             <div className="mt-20 text-center border-b pb-12">
               <h1 className="text-4xl font-medium text-gray-700">
