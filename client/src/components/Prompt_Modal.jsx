@@ -23,8 +23,9 @@ export default function Prompt_Modal() {
     })
       .then((response) => {
         // redirect if successful
+        console.log(response.data)
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error)
       })
   }

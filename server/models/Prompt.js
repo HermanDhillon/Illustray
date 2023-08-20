@@ -1,18 +1,20 @@
 const { pgPool } = require('../config/database');
 
 module.exports = {
-  create: async (categoryId, creatorId, promptText) => {
+  create: async (categoryId, creatorId, title, promptText) => {
     try {
-      if (categoryId && creatorId && promptText) {
+      if (categoryId && creatorId && title && promptText) {
         const result = await pgPool.query(
-          'INSERT INTO prompts (category_id, creator_id, prompt_text) VALUES ($1, $2, $3) RETURNING *',
-          [categoryId, creatorId, promptText]
+          'INSERT INTO prompts (category_id, creator_id, title, prompt_text) VALUES ($1, $2, $3, $4) RETURNING *',
+          [categoryId, creatorId, title, promptText]
         );
         return result.rows[0];
       }
-      console.error('categoryId, creatorId, and promptText are all required.');
+      console.error(
+        'categoryId, creatorId, title, and promptText are all required.'
+      );
     } catch (err) {
-      console.log(err);
+      return new Error(err);
     }
   },
 
