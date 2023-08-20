@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import Prompt_Modal from './Prompt_Modal'
+
 import axios from 'axios'
 
 export default function User(props) {
@@ -33,11 +35,11 @@ export default function User(props) {
               <div className="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0">
                 <div>
                   <p className="font-bold text-gray-700 text-xl">22</p>
-                  <p className="text-gray-400">Friends</p>
+                  <p className="text-gray-400">Prompts</p>
                 </div>
                 <div>
                   <p className="font-bold text-gray-700 text-xl">10</p>
-                  <p className="text-gray-400">Photos</p>
+                  <p className="text-gray-400">Posts</p>
                 </div>
                 <div>
                   <p className="font-bold text-gray-700 text-xl">89</p>
@@ -61,7 +63,10 @@ export default function User(props) {
               )}
               {ownPage && (
                 <div className="space-x-8 flex justify-center mt-32 md:mt-0 md:justify-center">
-                  <button className="btn btn-secondary border-none hover:shadow-lg hover:shadow-[#6025F5]/50">
+                  <button
+                    onClick={() => window.prompt_modal.showModal()}
+                    className="btn btn-secondary border-none hover:shadow-lg hover:shadow-[#6025F5]/50"
+                  >
                     New Prompt
                   </button>
                 </div>
@@ -93,6 +98,7 @@ export default function User(props) {
           </div>
         )}
       </div>
+      <Prompt_Modal />
     </div>
   )
 }

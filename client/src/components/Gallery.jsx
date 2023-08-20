@@ -55,9 +55,22 @@ export default function Gallery(props) {
           <div className="w-[92vw] relative z-20 flex flex-col justify-between md:flex-row rounded-lg overflow-hidden">
             <button
               onClick={() => setSource(null)}
-              className="btn btn-sm btn-circle absolute right-2 top-2 border-none"
+              className="btn btn-sm btn-circle btn-outline absolute right-2 top-2"
             >
-              ✘
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
             </button>
             <div className="min-h-[30vh] flex flex-col align-middle bg-black bg-opacity-100 md:w-[65%] md:max-h-[71vh]">
               <img

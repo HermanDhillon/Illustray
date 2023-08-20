@@ -7,6 +7,7 @@ const passport = require('passport');
 const { pgPool } = require('./config/database');
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
+const promptRouter = require('./routes/prompt');
 
 require('dotenv').config();
 require('./config/passport');
@@ -41,6 +42,7 @@ app.use(passport.session());
 // routes
 app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
+app.use('/api/prompt', promptRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);

@@ -7,6 +7,7 @@ exports.up = (pgm) => {
         id serial PRIMARY KEY,
         category_id INT NOT NULL,
         creator_id INT NOT NULL,
+        title VARCHAR(50) NOT NULL,
         prompt_text VARCHAR(250) UNIQUE NOT NULL,
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (creator_id) REFERENCES users (id),
