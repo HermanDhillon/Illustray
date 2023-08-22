@@ -27,9 +27,9 @@ export default function Prompt() {
         } else {
           setPromptData({
             title: response.data.title,
-            promptText: response.data.prompt_text,
-            creatorID: response.data.creator_id,
-            createdAt: response.data.created_at,
+            promptText: response.data.promptText,
+            creatorID: response.data.creatorId,
+            createdAt: response.data.createdAt,
           })
           setUserData({
             username: response.data.username,
