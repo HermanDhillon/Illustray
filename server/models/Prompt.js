@@ -14,7 +14,9 @@ module.exports = {
         'categoryId, creatorId, title, and promptText are all required.'
       );
     } catch (err) {
-      return new Error(err);
+      return {
+        Error: err.detail
+      };
     }
   },
 
@@ -41,7 +43,7 @@ module.exports = {
         ]);
         return result.rows[0]; // returns a single object
       }
-      console.error('Id is a requied input.');
+      console.error('Id is a required input.');
     } catch (err) {
       console.log(err);
     }

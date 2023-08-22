@@ -23,7 +23,7 @@ export default function Prompt_Modal() {
     })
       .then((response) => {
         // redirect if successful
-        console.log(response.data)
+        navigate(`/prompt/${response.data.id}`)
       })
       .catch((error) => {
         console.log(error)

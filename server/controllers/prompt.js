@@ -1,24 +1,23 @@
 const Prompt = require('../models/Prompt');
-
+const User = require('../models/User');
 module.exports = {
   create: async (req, res) => {
     const { title, promptText } = req.body;
-    try {
-      const promptData = await Prompt.create(1, req.user, title, promptText);
-      // res.json({ prompt: 'created' });
-    } catch (error) {
-      res.json('error');
-    }
+    const promptData = await Prompt.create(1, req.user.id, title, promptText);
+    res.json(promptData);
   },
 
   getPrompt: async (req, res) => {
-    try {
-      // const promptData = await Prompt.findByUsername(req.params.username);
-      // const { username, bio, profileimage } = userData;
-      // res.json({ username, bio, profileimage });
-      res.json({ prompt: 'here it is' });
-    } catch (error) {
-      res.json({ prompt: 'I couldnt find it' });
+    console.log(req.params.promptId);
+    const promptData = await Prompt.findById(req.params.promptId);
+    if (!promptData) {
+      res.json({ Error: 'Prompt not found.' });
+    } else {
+      const { title, prompt_text, creator_id, created_at } = promptData;
+      const userData = await User.findById(creator_id);
+      const { username, bio, profileimage } = userData;
+
+      res.json({ title, prompt_text, created_at, username, bio, profileimage });
     }
   }
 };

@@ -10,21 +10,26 @@ export default function User(props) {
     bio: 'Loading...',
   })
   const { username } = useParams()
+  let ownPage = props.cookies.username == username
+
   useEffect(() => {
     axios({
       method: 'get',
       url: `/api/user/${username}`,
     })
       .then((response) => {
-        console.log(response.data)
-        setUserData(response.data)
+        if ('Error' in response.data) {
+          console.log(response.data)
+          setUserData(false)
+        } else {
+          setUserData(response.data)
+          console.log(response.data)
+        }
       })
       .catch((error) => {
         console.log(error)
       })
   }, [username])
-
-  let ownPage = props.cookies.username == username
 
   return (
     <div className="bg-contain bg-repeat  bg-[url('/./src/assets/spacedoodle1.webp')]">

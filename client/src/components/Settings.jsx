@@ -8,7 +8,7 @@ export default function Settings() {
   // cookies.userid = 1 // for testing userid cookie presence, comment out when not acm-autog.
 
   useEffect(() => {
-    if (!cookies.userid) {
+    if (!cookies.username) {
       navigate('/#Login')
     }
   }, [])

@@ -2,12 +2,12 @@ const User = require('../models/User');
 
 module.exports = {
   getUserProfile: async (req, res) => {
-    try {
-      const userData = await User.findByUsername(req.params.username);
+    const userData = await User.findByUsername(req.params.username);
+    if (!userData) {
+      res.json({ Error: 'User not found.' });
+    } else {
       const { username, bio, profileimage } = userData;
       res.json({ username, bio, profileimage });
-    } catch (error) {
-      res.json(false);
     }
   }
 };
