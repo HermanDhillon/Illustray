@@ -1,13 +1,16 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import Prompt_Modal from './Prompt_Modal'
+
 import axios from 'axios'
 
-export default function User() {
+export default function User(props) {
   let [userData, setUserData] = useState({
     username: 'Loading...',
     bio: 'Loading...',
   })
   const { username } = useParams()
+  let ownPage = props.cookies.username == username
 
   useEffect(() => {
     axios({
@@ -15,13 +18,19 @@ export default function User() {
       url: `/api/user/${username}`,
     })
       .then((response) => {
-        console.log(response.data)
-        setUserData(response.data)
+        if ('Error' in response.data) {
+          console.log(response.data)
+          setUserData(false)
+        } else {
+          setUserData(response.data)
+          console.log(response.data)
+        }
       })
       .catch((error) => {
         console.log(error)
       })
   }, [username])
+
   return (
     <div className="bg-contain bg-repeat  bg-[url('/./src/assets/spacedoodle1.webp')]">
       <div className=" md:min-h-screen py-10">
@@ -31,11 +40,11 @@ export default function User() {
               <div className="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0">
                 <div>
                   <p className="font-bold text-gray-700 text-xl">22</p>
-                  <p className="text-gray-400">Friends</p>
+                  <p className="text-gray-400">Prompts</p>
                 </div>
                 <div>
                   <p className="font-bold text-gray-700 text-xl">10</p>
-                  <p className="text-gray-400">Photos</p>
+                  <p className="text-gray-400">Posts</p>
                 </div>
                 <div>
                   <p className="font-bold text-gray-700 text-xl">89</p>
@@ -47,14 +56,26 @@ export default function User() {
                   <img className="" src={userData.profileimage}></img>
                 </div>
               </div>
-              <div className="space-x-8 flex justify-around mt-32 md:mt-0 md:justify-center">
-                <button className="btn btn-primary border-none bg-primary hover:shadow-lg hover:shadow-[#6025F5]/50">
-                  Connect
-                </button>
-                <button className="btn btn-secondary border-none hover:shadow-lg hover:shadow-[#6025F5]/50">
-                  Message
-                </button>
-              </div>
+              {!ownPage && (
+                <div className="space-x-8 flex justify-around mt-32 md:mt-0 md:justify-center">
+                  <button className="btn btn-primary border-none bg-primary hover:shadow-lg hover:shadow-[#6025F5]/50">
+                    Connect
+                  </button>
+                  <button className="btn btn-secondary border-none hover:shadow-lg hover:shadow-[#6025F5]/50">
+                    Message
+                  </button>
+                </div>
+              )}
+              {ownPage && (
+                <div className="space-x-8 flex justify-center mt-32 md:mt-0 md:justify-center">
+                  <button
+                    onClick={() => window.prompt_modal.showModal()}
+                    className="btn btn-secondary border-none hover:shadow-lg hover:shadow-[#6025F5]/50"
+                  >
+                    New Prompt
+                  </button>
+                </div>
+              )}
             </div>
             <div className="mt-20 text-center border-b pb-12">
               <h1 className="text-4xl font-medium text-gray-700">
@@ -82,6 +103,7 @@ export default function User() {
           </div>
         )}
       </div>
+      <Prompt_Modal />
     </div>
   )
 }

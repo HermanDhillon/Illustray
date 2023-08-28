@@ -22,9 +22,10 @@ const strategy = new LocalStrategy(verify);
 passport.use(strategy);
 
 passport.serializeUser((user, cb) => {
-  cb(null, user.username);
+  cb(null, user.id);
 });
 
-passport.deserializeUser((username, cb) => {
-  cb(null, username);
+passport.deserializeUser(async (id, cb) => {
+  const user = await User.findById(id);
+  cb(null, user);
 });
