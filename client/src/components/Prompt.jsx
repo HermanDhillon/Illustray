@@ -2,6 +2,7 @@ import Gallery from './Gallery'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import Uploader from './Upload_Modal'
 
 export default function Prompt() {
   let [userData, setUserData] = useState({
@@ -64,8 +65,10 @@ export default function Prompt() {
                   <span className="mt-auto ml-auto italic">
                     {promptData.createdAt.slice(0, 10)}
                   </span>
-                  <button className="btn btn-primary btn-block mt-auto mb-[2vw] border-none bg-gradient-to-b from-violet-500 to-fuchsia-500 hover:shadow-lg hover:shadow-[#6025F5]/50 h-[3vw] text-[1.5vh] lg:mb-[0] ">
-                    {' '}
+                  <button
+                    className="btn btn-primary btn-block mt-auto mb-[2vw] border-none bg-gradient-to-b from-violet-500 to-fuchsia-500 hover:shadow-lg hover:shadow-[#6025F5]/50 h-[3vw] text-[1.5vh] lg:mb-[0] "
+                    onClick={() => window.upload_modal.showModal()}
+                  >
                     Submit your Art!
                   </button>
                 </div>
@@ -93,6 +96,7 @@ export default function Prompt() {
           )}
         </div>
       </div>
+      <Uploader />
     </div>
   )
 }

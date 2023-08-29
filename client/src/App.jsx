@@ -6,6 +6,7 @@ import User from './components/User'
 import Prompt from './components/Prompt'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import Uploader from './components/Upload_Modal'
 import { useCookies } from 'react-cookie'
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/settings" element={<Settings />} />
         <Route path="/user/:username" element={<User cookies={cookies} />} />
         <Route path="/prompt/:promptId" element={<Prompt />} />
+        <Route path="/upload" element={<Uploader />} />
       </Routes>
       <Footer />
     </>
