@@ -9,7 +9,6 @@ module.exports = {
   },
 
   getPrompt: async (req, res) => {
-    console.log(req.params.promptId);
     const promptData = await Prompt.findById(req.params.promptId);
     if (!promptData) {
       res.json({ Error: 'Prompt not found.' });

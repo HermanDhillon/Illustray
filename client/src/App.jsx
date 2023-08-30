@@ -1,13 +1,12 @@
+import { useCookies } from 'react-cookie'
 import { Routes, Route } from 'react-router-dom'
+import User from './components/User'
 import Home from './components/Home'
 import Signup from './components/Signup'
-import Settings from './components/Settings'
-import User from './components/User'
 import Prompt from './components/Prompt'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import Uploader from './components/Upload_Modal'
-import { useCookies } from 'react-cookie'
+import Settings from './components/Settings'
 
 function App() {
   const [cookies, setCookie] = useCookies('username')
@@ -19,9 +18,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="/user/:username" element={<User cookies={cookies} />} />
         <Route path="/prompt/:promptId" element={<Prompt />} />
-        <Route path="/upload" element={<Uploader />} />
+        <Route path="/user/:username" element={<User cookies={cookies} />} />
       </Routes>
       <Footer />
     </>
