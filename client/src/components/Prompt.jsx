@@ -96,7 +96,7 @@ export default function Prompt() {
           )}
         </div>
       </div>
-      <Uploader />
+      <Uploader uploadUrl="" />
     </div>
   )
 }

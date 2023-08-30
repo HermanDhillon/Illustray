@@ -4,14 +4,14 @@ import Webcam from '@uppy/webcam'
 import XHR from '@uppy/xhr-upload'
 import { Dashboard } from '@uppy/react'
 import Compressor from '@uppy/compressor'
-import ImageEditor from '@uppy/image-editor'
+// import ImageEditor from '@uppy/image-editor'
 
 // Don't forget the CSS: core and the UI components + plugins you are using.
 import '@uppy/core/dist/style.min.css'
 import '@uppy/dashboard/dist/style.min.css'
 import '@uppy/webcam/dist/style.min.css'
 
-export default function Uploader() {
+export default function Uploader(props) {
   // Don’t forget to keep the Uppy instance outside of your component.
   const uppy = new Uppy({
     restrictions: {
@@ -22,7 +22,7 @@ export default function Uploader() {
   })
     .use(Webcam)
     .use(Compressor)
-    .use(XHR, { endpoint: 'https://your-domain.com/upload' })
+    .use(XHR, { endpoint: props.uploadUrl })
   // .use(ImageEditor, {
   //   cropperOptions: {
   //     viewMode: 1,

@@ -32,9 +32,13 @@ export default function Prompt_Modal() {
 
   return (
     <dialog
-      className="modal-box shadow-2xl  drop-shadow-2xl border border-#c4c9d28b"
+      className="w-11/12 border border-#c4c9d28b rounded-lg lg:w-4/12"
       id="prompt_modal"
     >
+      <div
+        className="-z-10 inset-0 fixed"
+        onClick={() => window.prompt_modal.close()}
+      />
       <div className="">
         <button
           onClick={() => window.prompt_modal.close()}
@@ -64,6 +68,7 @@ export default function Prompt_Modal() {
               <span className="text-base label-text">Title</span>
             </label>
             <input
+              required
               type="text"
               placeholder="Title"
               className="w-full text-xl input input-bordered input-primary"
@@ -76,7 +81,7 @@ export default function Prompt_Modal() {
               required
               type="text"
               placeholder="Write your Prompt here"
-              className="text-xl w-full min-h-[150px] input input-bordered input-primary"
+              className="text-xl w-full min-h-[150px] input input-primary textarea-bordered"
               name="promptText"
               onChange={handleInput}
             />

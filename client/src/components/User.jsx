@@ -103,6 +103,10 @@ export default function User(props) {
           </div>
         )}
       </div>
+      <a href="https://www.freepik.com/free-vector/space-doodle_10837997.htm#query=doodles&position=34&from_view=search&track=sph">
+        Image by tartila
+      </a>{' '}
+      on Freepik
       <Prompt_Modal />
     </div>
   )
