@@ -6,7 +6,7 @@ exports.up = (pgm) => {
   pgm.sql(`CREATE TABLE posts (
         id serial PRIMARY KEY,
         user_id INT NOT NULL,
-        image_url VARCHAR(64),
+        image_url VARCHAR(500),
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
         category_id INT NOT NULl,
         likes INT DEFAULT 0,

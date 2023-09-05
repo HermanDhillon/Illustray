@@ -1,22 +1,15 @@
 const { pgPool } = require('../config/database');
 
 module.exports = {
-  create: async (userId, imageUrl, categoryId) => {
-    try {
-      if (userId && imageUrl && categoryId) {
-        const result = await pgPool.query(
-          'INSERT INTO posts (user_id, image_url, categoryId) VALUES ($1, $2, $3) RETURNING *',
-          [userId, imageUrl, categoryId]
-        );
-        return result.rows[0];
-      }
-      console.error('userID, imageUrl, and categoryId are all required.');
-    } catch (err) {
-      console.log(err);
-      return {
-        Error: err.detail
-      };
+  create: async (categoryId, userId, imageUrl) => {
+    if (userId && imageUrl && categoryId) {
+      const result = await pgPool.query(
+        'INSERT INTO posts (user_id, image_url, category_id) VALUES ($1, $2, $3)',
+        [userId, imageUrl, categoryId]
+      );
+      return result.rows[0];
     }
+    throw Error('Missing at least one required argument in Post.create model.');
   },
 
   findManyByUserId: async (userId) => {

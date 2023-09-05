@@ -92,7 +92,7 @@ export default function Prompt() {
           )}
         </div>
       </div>
-      <Uploader uploadUrl="" />
+      <Uploader uploadUrl="/api/post" />
     </div>
   )
 }

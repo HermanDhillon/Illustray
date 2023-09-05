@@ -25,14 +25,13 @@ module.exports = {
       const creatorId = promptData.creator_id;
       const createdAt = promptData.created_at;
       const userData = await User.findById(creatorId);
-      const { username, bio, profileimage } = userData;
+      const { username, profileimage } = userData;
 
       res.json({
         title,
         promptText,
         createdAt,
         username,
-        bio,
         profileimage
       });
     } catch (err) {
