@@ -1,5 +1,5 @@
-const Prompt = require('../models/Prompt');
-const User = require('../models/User');
+const Prompt = require('../models/prompt');
+const User = require('../models/user');
 
 module.exports = {
   create: async (req, res) => {

@@ -1,5 +1,5 @@
 const cloudinary = require('../middleware/cloudinary');
-const Post = require('../models/Post');
+const Post = require('../models/post');
 
 module.exports = {
   createPost: async (req, res) => {
