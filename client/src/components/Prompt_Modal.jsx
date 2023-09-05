@@ -4,7 +4,6 @@ import axios from 'axios'
 
 export default function Prompt_Modal() {
   let navigate = useNavigate()
-
   const [promptData, setPromptData] = useState({
     title: '',
     promptText: '',
@@ -26,7 +25,7 @@ export default function Prompt_Modal() {
         navigate(`/prompt/${response.data.id}`)
       })
       .catch((error) => {
-        console.log(error)
+        alert(error.response.data)
       })
   }
 

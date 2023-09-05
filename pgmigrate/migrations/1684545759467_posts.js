@@ -8,9 +8,9 @@ exports.up = (pgm) => {
         user_id INT NOT NULL,
         image_url VARCHAR(64),
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-        deleted BOOLEAN DEFAULT false,
-        categoryId INT NOT NULl,
-        FOREIGN KEY (categoryId) REFERENCES categories (id),
+        category_id INT NOT NULl,
+        likes INT DEFAULT 0,
+        FOREIGN KEY (category_id) REFERENCES categories (id),
         FOREIGN KEY (user_id) REFERENCES users (id)
     );`);
 };

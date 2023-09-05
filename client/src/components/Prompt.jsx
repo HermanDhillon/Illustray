@@ -5,7 +5,8 @@ import { useParams } from 'react-router-dom'
 import Uploader from './Upload_Modal'
 
 export default function Prompt() {
-  let [userData, setUserData] = useState({
+  const [errorData, setErrorData] = useState(false)
+  const [userData, setUserData] = useState({
     username: 'Loading...',
     bio: 'Loading...',
   })
@@ -22,26 +23,21 @@ export default function Prompt() {
       url: `/api/prompt/${promptId}`,
     })
       .then((response) => {
-        if ('Error' in response.data) {
-          console.log(response.data)
-          setPromptData(false)
-        } else {
-          setPromptData({
-            title: response.data.title,
-            promptText: response.data.promptText,
-            creatorID: response.data.creatorId,
-            createdAt: response.data.createdAt,
-          })
-          setUserData({
-            username: response.data.username,
-            bio: response.data.bio,
-            profileImage: response.data.profileimage,
-          })
-          console.log(response.data)
-        }
+        setPromptData({
+          title: response.data.title,
+          promptText: response.data.promptText,
+          creatorID: response.data.creatorId,
+          createdAt: response.data.createdAt,
+        })
+        setUserData({
+          username: response.data.username,
+          bio: response.data.bio,
+          profileImage: response.data.profileimage,
+        })
+        console.log(response.data)
       })
       .catch((error) => {
-        console.log(error)
+        setErrorData(error.response.data)
       })
   }, [promptId])
 
@@ -49,7 +45,7 @@ export default function Prompt() {
     <div className="bg-[url('/./src/assets/im3.jpg')] bg-opacity-10 ">
       <div className="bg-white bg-opacity-90">
         <div className="min-h-screen py-[4vw]  ">
-          {promptData && (
+          {!errorData && (
             <div>
               <div className="w-[85vw] mx-auto mb-[65px] bg-white bg-opacity-95 rounded-xl shadow-xl  drop-shadow-2xl border border-#c4c9d28b  lg:min-h-[20vw] flex flex-col-reverse lg:flex-row lg:w-[60vw]">
                 <div className="m-[2vh] mb-0 md:mt-0 lg:w-[70%] relative flex flex-col lg:mb-[1vw] ">
@@ -87,10 +83,10 @@ export default function Prompt() {
               <Gallery layout="columns" />
             </div>
           )}
-          {!promptData && (
+          {errorData && (
             <div className="flex justify-center w-11/12 mx-auto py-10 bg-white bg-opacity-95 rounded-xl shadow-2xl  drop-shadow-2xl border border-#c4c9d28b mt-24">
               <h1 className="text-3xl font-medium text-gray-700">
-                This prompt doesnt exist.
+                {errorData}
               </h1>
             </div>
           )}

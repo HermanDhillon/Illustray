@@ -2,22 +2,16 @@ const { pgPool } = require('../config/database');
 
 module.exports = {
   create: async (categoryId, creatorId, title, promptText) => {
-    try {
-      if (categoryId && creatorId && title && promptText) {
-        const result = await pgPool.query(
-          'INSERT INTO prompts (category_id, creator_id, title, prompt_text) VALUES ($1, $2, $3, $4) RETURNING *',
-          [categoryId, creatorId, title, promptText]
-        );
-        return result.rows[0];
-      }
-      console.error(
-        'categoryId, creatorId, title, and promptText are all required.'
+    if (categoryId && creatorId && title && promptText) {
+      const result = await pgPool.query(
+        'INSERT INTO prompts (category_id, creator_id, title, prompt_text) VALUES ($1, $2, $3, $4) RETURNING *',
+        [categoryId, creatorId, title, promptText]
       );
-    } catch (err) {
-      return {
-        Error: err.detail
-      };
+      return result.rows[0];
     }
+    throw new Error(
+      'Missing at least one required argument in Prompt.create model '
+    );
   },
 
   findManyByCreatorId: async (creatorId) => {
@@ -35,18 +29,21 @@ module.exports = {
     }
   },
 
-  findById: async (Id) => {
-    try {
-      if (Id) {
-        const result = await pgPool.query('SELECT * from prompts WHERE id=$1', [
-          Id
-        ]);
-        return result.rows[0]; // returns a single object
+  findByPromptId: async (Id) => {
+    if (Id) {
+      const result = await pgPool.query('SELECT * from prompts WHERE id=$1', [
+        Id
+      ]);
+      if (!result.rows[0]) {
+        throw new Error('Prompt table returned no rows', {
+          cause: 'Prompt does not exist'
+        });
       }
-      console.error('Id is a required input.');
-    } catch (err) {
-      console.log(err);
+      return result.rows[0]; // returns a single object
     }
+    throw new Error(
+      'Missing at least one required argument in Prompt.findById model '
+    );
   },
 
   findMany: async () => {
