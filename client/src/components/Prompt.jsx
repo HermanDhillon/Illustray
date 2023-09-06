@@ -62,7 +62,7 @@ export default function Prompt() {
                     {promptData.createdAt.slice(0, 10)}
                   </span>
                   <button
-                    className="btn btn-primary btn-block mt-auto mb-[2vw] border-none bg-gradient-to-b from-violet-500 to-fuchsia-500 hover:shadow-lg hover:shadow-[#6025F5]/50 h-[3vw] text-[1.5vh] lg:mb-[0] "
+                    className="btn btn-primary btn-block mt-auto mb-[2vw] border-none bg-gradient-to-b from-violet-500 to-fuchsia-500 hover:shadow-lg hover:shadow-[#6025F5]/50 h-[3vw] text-[1.5vh] lg:mb-[0] md:mt-2 "
                     onClick={() => window.upload_modal.showModal()}
                   >
                     Submit your Art!
@@ -71,7 +71,7 @@ export default function Prompt() {
                 <div className="m-[2vw] mb-0 py-2 rounded-xl border border-#c4c9d28b lg:w-[20vw]  lg:m-[1vw] lg:ml-0 lg:min-h-[20vw]">
                   <div className="flex flex-row">
                     <img
-                      className="h-[4vw] min-h-[4rem] mask mask-squircle overflow-hidden flex-start"
+                      className="h-[4vw] min-h-[4rem] mx-2 mask mask-squircle overflow-hidden flex-start"
                       src={userData.profileImage}
                     />
                     <h4 className=" my-auto mr-auto text-lg">

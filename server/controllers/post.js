@@ -7,7 +7,13 @@ module.exports = {
       // Upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);
 
-      await Post.create(1, req.user.id, result.url);
+      await Post.create(
+        1,
+        req.user.id,
+        result.url,
+        result.width,
+        result.height
+      );
       res.send('Post created');
     } catch (err) {
       console.log(err);

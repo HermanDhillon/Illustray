@@ -6,7 +6,6 @@ module.exports = {
     try {
       const userData = await User.findByUsername(req.params.username);
       const { username, bio, profileimage } = userData;
-
       res.json({ username, bio, profileimage });
     } catch (err) {
       res.status(502).send('Error in getting User');
@@ -14,6 +13,11 @@ module.exports = {
   },
   updateProfilePic: async (req, res) => {
     try {
+      const imageUrl = new URL(req.user.profileimage);
+      const publicId = imageUrl.pathname.split('/').at(-1).split('.')[0];
+      await cloudinary.uploader
+        .destroy(publicId)
+        .then((resp) => console.log('RESP: ', resp));
       const result = await cloudinary.uploader.upload(req.file.path);
       await User.findByUsernameAndUpdateProfilePic(
         req.user.username,
@@ -21,6 +25,7 @@ module.exports = {
       );
       res.send('Profile Pic updated');
     } catch (err) {
+      console.log(err);
       res.status(502);
     }
   }

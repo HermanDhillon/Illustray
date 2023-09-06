@@ -7,6 +7,8 @@ exports.up = (pgm) => {
         id serial PRIMARY KEY,
         user_id INT NOT NULL,
         image_url VARCHAR(500),
+        width INT NOT NULL,
+        height INT NOT NULL,
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
         category_id INT NOT NULl,
         likes INT DEFAULT 0,
