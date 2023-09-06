@@ -48,7 +48,7 @@ export default function User(props) {
                 </div>
               </div>
               <div className="">
-                <div className="mask mask-squircle w-48 h-48 bg-indigo-100 mx-auto absolute inset-x-0 top-0  flex items-center justify-center text-indigo-500 avatar mt-24 md:-mt-24">
+                <div className="mask mask-squircle w-48 h-48 bg-transparent mx-auto absolute inset-x-0 top-0  flex items-center justify-center text-indigo-500 avatar mt-24 md:-mt-24">
                   <img className="" src={userData.profileimage}></img>
                 </div>
               </div>
@@ -73,7 +73,7 @@ export default function User(props) {
                 </div>
               )}
             </div>
-            <div className="mt-20 text-center border-b pb-12">
+            <div className="mt-5 text-center border-b pb-12">
               <h1 className="text-4xl font-medium text-gray-700">
                 {userData.username}
               </h1>

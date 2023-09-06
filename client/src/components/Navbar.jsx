@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 import Login_Modal from './Login_Modal'
 import axios from 'axios'
+import { useEffect, useState } from 'react'
 
 export default function Navbar(props) {
+  const [userData, setUserData] = useState({})
   let navigate = useNavigate()
   let avatarVis
   let loginVis
@@ -30,6 +32,19 @@ export default function Navbar(props) {
         console.log(error)
       })
   }
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: `/api/user/${props.cookies.username}`,
+    })
+      .then((response) => {
+        setUserData(response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [props.cookies.username])
 
   return (
     //TODO: hide profile image if user not logged in, and replace with 'login/signup'
@@ -60,13 +75,13 @@ export default function Navbar(props) {
             </a>
           </div>
 
-          <div className={avatarVis + 'dropdown dropdown-end pr-4'}>
+          <div className={avatarVis + 'dropdown dropdown-end pr-4 '}>
             <label
               tabIndex={0}
               className="rounded-2xl avatar btn-ghost shadow-md hover:shadow-[#6025F5]/50 border-none "
             >
               <div className="w-12 mask mask-squircle">
-                <img src="https://cdn.dribbble.com/users/6142/screenshots/5679189/media/052967c305a8f96a4b40b79ce5e61b0d.png" />
+                <img className="inline-block" src={userData.profileimage} />
               </div>
             </label>
             <ul
@@ -79,7 +94,7 @@ export default function Navbar(props) {
                   className="justify-between"
                 >
                   Profile
-                  <span className="badge">New</span>
+                  {/* <span className="badge">New</span> */}
                 </a>
               </li>
               <li>

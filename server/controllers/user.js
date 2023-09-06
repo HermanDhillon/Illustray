@@ -23,13 +23,5 @@ module.exports = {
     } catch (err) {
       res.status(502);
     }
-  },
-  getSelfUserData: (req, res) => {
-    try {
-      const { username, bio, profileimage } = req.user;
-      res.json({ username, bio, profileimage });
-    } catch (err) {
-      res.send(502);
-    }
   }
 };
