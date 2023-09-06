@@ -2,11 +2,11 @@ const { query } = require('express');
 const { pgPool } = require('../config/database');
 
 module.exports = {
-  create: async (categoryId, userId, imageUrl, width, height) => {
+  create: async (categoryId, userId, imageUrl, width, height, promptId) => {
     if (userId && imageUrl && categoryId) {
       const result = await pgPool.query(
-        'INSERT INTO posts (user_id, image_url, category_id, width, height) VALUES ($1, $2, $3, $4, $5)',
-        [userId, imageUrl, categoryId, width, height]
+        'INSERT INTO posts (user_id, image_url, category_id, width, height, prompt_id) VALUES ($1, $2, $3, $4, $5, $6)',
+        [userId, imageUrl, categoryId, width, height, promptId]
       );
       return result.rows[0];
     }

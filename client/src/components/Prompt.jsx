@@ -43,6 +43,8 @@ export default function Prompt() {
   }, [promptId])
 
   useEffect(() => {
+    console.log('PromptID: ', promptId)
+
     axios({
       method: 'get',
       url: `/api/post/prompt/${promptId}`,
@@ -112,7 +114,7 @@ export default function Prompt() {
           )}
         </div>
       </div>
-      <Uploader uploadUrl="/api/post" />
+      <Uploader uploadUrl={`/api/post/${promptId}`} />
     </div>
   )
 }
