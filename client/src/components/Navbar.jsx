@@ -83,7 +83,9 @@ export default function Navbar(props) {
                 </a>
               </li>
               <li>
-                <a href="/settings">Settings</a>
+                <a href={`/user/${props.cookies.username}/settings`}>
+                  Settings
+                </a>
               </li>
               <li>
                 <button onClick={handleClick}>Logout</button>

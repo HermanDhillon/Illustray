@@ -18,15 +18,11 @@ export default function User(props) {
       url: `/api/user/${username}`,
     })
       .then((response) => {
-        if ('Error' in response.data) {
-          console.log(response.data)
-          setUserData(false)
-        } else {
-          setUserData(response.data)
-          console.log(response.data)
-        }
+        setUserData(response.data)
+        console.log(response.data)
       })
       .catch((error) => {
+        setUserData(false)
         console.log(error)
       })
   }, [username])

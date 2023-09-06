@@ -1,13 +1,35 @@
 const User = require('../models/user');
+const cloudinary = require('../middleware/cloudinary');
 
 module.exports = {
   getUserProfile: async (req, res) => {
-    const userData = await User.findByUsername(req.params.username);
-    if (!userData) {
-      res.json({ Error: 'User not found.' });
-    } else {
+    try {
+      const userData = await User.findByUsername(req.params.username);
       const { username, bio, profileimage } = userData;
+
       res.json({ username, bio, profileimage });
+    } catch (err) {
+      res.status(502).send('Error in getting User');
+    }
+  },
+  updateProfilePic: async (req, res) => {
+    try {
+      const result = await cloudinary.uploader.upload(req.file.path);
+      await User.findByUsernameAndUpdateProfilePic(
+        req.user.username,
+        result.url
+      );
+      res.send('Profile Pic updated');
+    } catch (err) {
+      res.status(502);
+    }
+  },
+  getSelfUserData: (req, res) => {
+    try {
+      const { username, bio, profileimage } = req.user;
+      res.json({ username, bio, profileimage });
+    } catch (err) {
+      res.send(502);
     }
   }
 };

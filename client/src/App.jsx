@@ -9,7 +9,7 @@ import Footer from './components/Footer'
 import Settings from './components/Settings'
 
 function App() {
-  const [cookies, setCookie] = useCookies('username')
+  const [cookies, setCookie] = useCookies()
 
   return (
     <>
@@ -17,8 +17,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/settings" element={<Settings />} />
         <Route path="/prompt/:promptId" element={<Prompt />} />
+        <Route
+          path="/user/:username/settings"
+          element={<Settings cookies={cookies} />}
+        />
         <Route path="/user/:username" element={<User cookies={cookies} />} />
       </Routes>
       <Footer />
