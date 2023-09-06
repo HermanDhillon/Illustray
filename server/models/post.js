@@ -28,18 +28,15 @@ module.exports = {
     }
   },
 
-  findOneByPostId: async (postId) => {
-    try {
-      if (postId) {
-        const result = await pgPool.query('SELECT 1 from posts WHERE id=$1', [
-          postId
-        ]);
-        return result.rows[0]; // returns a single object
-      }
-      console.error('postId is a required input.');
-    } catch (err) {
-      console.log(err);
+  findManyByPromptId: async (promptId) => {
+    if (promptId) {
+      const result = await pgPool.query(
+        'SELECT * from posts WHERE prompt_id=$1',
+        [promptId]
+      );
+      return result.rows; // returns a single object
     }
+    throw new Error('promptId is a required input.');
   },
 
   findAll: async () => {

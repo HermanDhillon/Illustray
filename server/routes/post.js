@@ -7,5 +7,6 @@ const postController = require('../controllers/post');
 
 router.post('/', ensureAuth, upload.single('file'), postController.createPost);
 router.get('/', postController.getPost);
+router.get('/prompt/:promptId', postController.getPromptPage);
 
 module.exports = router;

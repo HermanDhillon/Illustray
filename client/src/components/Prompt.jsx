@@ -6,6 +6,7 @@ import Uploader from './Upload_Modal'
 
 export default function Prompt() {
   const [errorData, setErrorData] = useState(false)
+  const [postData, setPostData] = useState(null)
   const [userData, setUserData] = useState({
     username: 'Loading...',
     bio: 'Loading...',
@@ -34,10 +35,29 @@ export default function Prompt() {
           bio: response.data.bio,
           profileImage: response.data.profileimage,
         })
+      })
+      .catch((error) => {
+        console.log(error)
+        setErrorData(error.response.data)
+      })
+  }, [promptId])
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: `/api/post/prompt/${promptId}`,
+    })
+      .then((response) => {
+        const posts = response.data.map((post) => ({
+          src: post.image_url,
+          width: post.width,
+          height: post.height,
+        }))
+        setPostData(posts)
         console.log(response.data)
       })
       .catch((error) => {
-        setErrorData(error.response.data)
+        console.log(error)
       })
   }, [promptId])
 
@@ -80,7 +100,7 @@ export default function Prompt() {
                   </div>
                 </div>
               </div>
-              <Gallery layout="columns" />
+              <Gallery photos={postData} layout="columns" />
             </div>
           )}
           {errorData && (

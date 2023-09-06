@@ -12,7 +12,8 @@ module.exports = {
         req.user.id,
         result.url,
         result.width,
-        result.height
+        result.height,
+        req.params.promptId
       );
       res.send('Post created');
     } catch (err) {
@@ -34,6 +35,18 @@ module.exports = {
       res.render('feed.ejs', { posts });
     } catch (err) {
       console.log(err);
+    }
+  },
+  getPromptPage: async (req, res) => {
+    try {
+      const response = await Post.findManyByPromptId(req.params.promptId);
+      if (!response) {
+        res.json({});
+      }
+      res.json(response);
+    } catch (err) {
+      console.log(err);
+      res.status(502).send('Error in getting posts');
     }
   },
   getPost: async (req, res) => {
