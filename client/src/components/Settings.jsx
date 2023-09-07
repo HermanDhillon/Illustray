@@ -29,7 +29,6 @@ export default function Settings() {
           bio: response.data.bio,
           profileImage: response.data.profileimage,
         })
-        console.log(userData)
       })
       .catch((error) => {
         console.log(error)

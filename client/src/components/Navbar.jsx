@@ -32,18 +32,19 @@ export default function Navbar(props) {
         console.log(error)
       })
   }
-
   useEffect(() => {
-    axios({
-      method: 'get',
-      url: `/api/user/${props.cookies.username}`,
-    })
-      .then((response) => {
-        setUserData(response.data)
+    if (props.cookies.username) {
+      axios({
+        method: 'get',
+        url: `/api/user/${props.cookies.username}`,
       })
-      .catch((error) => {
-        console.log(error)
-      })
+        .then((response) => {
+          setUserData(response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
   }, [props.cookies.username])
 
   return (

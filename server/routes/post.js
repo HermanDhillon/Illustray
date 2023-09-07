@@ -12,6 +12,8 @@ router.post(
   postController.createPost
 );
 router.get('/', postController.getPost);
-router.get('/prompt/:promptId', postController.getPromptPage);
+router.get('/prompt/:promptId', postController.getPromptPosts);
+router.get('/home', postController.getHomePosts);
+router.get('/user/:username', postController.getUserPosts);
 
 module.exports = router;

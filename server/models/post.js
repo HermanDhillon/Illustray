@@ -13,30 +13,34 @@ module.exports = {
     throw Error('Missing at least one required argument in Post.create model.');
   },
 
-  findManyByUserId: async (userId) => {
-    try {
-      if (userId) {
-        const result = await pgPool.query(
-          'SELECT * from posts WHERE user_id=$1',
-          [userId]
-        );
-        return result.rows; // returns a list of objects
-      }
-      console.error('userId is a required input');
-    } catch (err) {
-      console.log(err);
+  findByUsername: async (username) => {
+    if (username) {
+      const result = await pgPool.query(
+        'SELECT posts.prompt_id, posts.image_url, posts.id, posts.width, posts.height from posts INNER JOIN users ON posts.user_id = users.id WHERE users.username = $1 ORDER BY posts.created_at DESC',
+        [username]
+      );
+      return result.rows; // returns a list of objects
     }
+    throw new Error('username is a required input');
   },
 
-  findManyByPromptId: async (promptId) => {
+  findByPromptId: async (promptId) => {
     if (promptId) {
       const result = await pgPool.query(
         'SELECT * from posts WHERE prompt_id=$1',
         [promptId]
       );
-      return result.rows; // returns a single object
+      return result.rows; // returns list of object
     }
     throw new Error('promptId is a required input.');
+  },
+
+  findNewestFive: async (count = 5) => {
+    const result = await pgPool.query(
+      'SELECT * FROM posts ORDER BY created_at DESC LIMIT $1',
+      [count]
+    );
+    return result.rows;
   },
 
   findAll: async () => {

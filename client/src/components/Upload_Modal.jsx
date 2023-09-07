@@ -23,6 +23,11 @@ export default function Uploader(props) {
     .use(Webcam)
     .use(Compressor)
     .use(XHR, { endpoint: props.uploadUrl })
+    .on('complete', () => {
+      setTimeout(() => {
+        window.upload_modal.close()
+      }, 1000)
+    })
   // .use(ImageEditor, {
   //   cropperOptions: {
   //     viewMode: 1,

@@ -43,8 +43,6 @@ export default function Prompt() {
   }, [promptId])
 
   useEffect(() => {
-    console.log('PromptID: ', promptId)
-
     axios({
       method: 'get',
       url: `/api/post/prompt/${promptId}`,
@@ -56,7 +54,6 @@ export default function Prompt() {
           height: post.height,
         }))
         setPostData(posts)
-        console.log(response.data)
       })
       .catch((error) => {
         console.log(error)
