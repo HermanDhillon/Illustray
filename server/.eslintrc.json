@@ -19,6 +19,7 @@
   "rules": {
     // BRB
     // logic
+    "import/no-extraneous-dependencies": "off",
     "operator-linebreak": "off",
     "consistent-return": "off",
     "no-console": "off",

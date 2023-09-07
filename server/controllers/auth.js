@@ -1,6 +1,6 @@
 const validator = require('validator');
 const passport = require('passport');
-const User = require('../models/User');
+const User = require('../models/user');
 const { hashifier } = require('../utils/password');
 
 module.exports = {

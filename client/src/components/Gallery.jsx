@@ -1,5 +1,4 @@
 import PhotoAlbum from 'react-photo-album'
-import photos from './photos'
 
 import Lightbox from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
@@ -9,7 +8,7 @@ import Fullscreen from 'yet-another-react-lightbox/plugins/fullscreen'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import 'yet-another-react-lightbox/plugins/thumbnails.css'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Gallery(props) {
   const [source, setSource] = useState(null)
@@ -31,7 +30,7 @@ export default function Gallery(props) {
           if (containerWidth < 930) return 4
           return 5
         }}
-        photos={photos}
+        photos={props.photos}
         componentsProps={() => ({
           containerProps: {
             className: 'my-10 w-11/12 mx-auto',

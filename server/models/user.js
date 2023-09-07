@@ -15,22 +15,29 @@ module.exports = {
       console.log(err);
     }
   },
+  findByUsernameAndUpdateProfilePic: async (username, imageUrl) => {
+    if (username && imageUrl) {
+      const result = await pgPool.query(
+        'UPDATE users SET profileImage = $1 WHERE username = $2',
+        [imageUrl, username]
+      );
+      return result.rows[0]; // returns a single object
+    }
+    throw Error('missing a required argument');
+  },
 
   findByUsername: async (username) => {
-    try {
-      if (username) {
-        const result = await pgPool.query(
-          'SELECT * from users WHERE username=$1',
-          [username]
-        );
-        return result.rows[0]; // returns a single object
+    if (username) {
+      const result = await pgPool.query(
+        'SELECT * from users WHERE username=$1',
+        [username]
+      );
+      if (!result.rows[0]) {
+        throw new Error('User not found');
       }
-      console.error('Username is a required input');
-    } catch (err) {
-      return {
-        Error: err.detail
-      };
+      return result.rows[0]; // returns a single object
     }
+    throw new Error('Username is a required input');
   },
 
   findByEmail: async (email) => {

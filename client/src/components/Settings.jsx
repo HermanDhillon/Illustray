@@ -1,12 +1,16 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+
+import axios from 'axios'
 import Uploader from './Upload_Modal'
 
 export default function Settings() {
-  const [cookies, setCookie] = useCookies('userid')
+  const [userData, setUserData] = useState({})
+  const [cookies, setCookie] = useCookies()
   const navigate = useNavigate()
-  // cookies.userid = 1 // for testing userid cookie presence, comment out when not acm-autog.
+  const { username } = useParams()
 
   useEffect(() => {
     if (!cookies.username) {
@@ -14,8 +18,25 @@ export default function Settings() {
     }
   }, [])
 
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: `/api/user/${cookies.username}`,
+    })
+      .then((response) => {
+        setUserData({
+          username: response.data.username,
+          bio: response.data.bio,
+          profileImage: response.data.profileimage,
+        })
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [username])
+
   return (
-    <div className="bg-contain bg-repeat  bg-[url('./src/assets/doodles.webp')]">
+    <div className="bg-contain bg-repeat  bg-[url('/./src/assets/doodles.webp')]">
       <div className="w-11/12 my-10 mx-auto">
         <div className="p-8 rounded-xl shadow-2xl  drop-shadow-2xl border border-#c4c9d28b bg-white bg-opacity-95">
           <form>
@@ -65,7 +86,7 @@ export default function Settings() {
                         name="about"
                         rows={3}
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        defaultValue={''}
+                        defaultValue={userData.bio}
                       />
                     </div>
                     <p className="mt-3 text-sm leading-6 text-gray-600">
@@ -82,7 +103,7 @@ export default function Settings() {
                     </label>
                     <div className="mt-2 flex items-center gap-x-3">
                       <div className="w-32 mask mask-squircle">
-                        <img src="https://cdn.dribbble.com/users/6142/screenshots/5679189/media/052967c305a8f96a4b40b79ce5e61b0d.png" />
+                        <img src={userData.profileImage} />
                       </div>
                       <button
                         type="button"
@@ -456,7 +477,7 @@ export default function Settings() {
         Image by rawpixel.com
       </a>{' '}
       on Freepik
-      <Uploader uploadUrl="" />
+      <Uploader uploadUrl={`/api/user/profilepic`} />
     </div>
   )
 }

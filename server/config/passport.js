@@ -1,7 +1,7 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const { validatePass } = require('../utils/password');
-const User = require('../models/User');
+const User = require('../models/user');
 
 // Verify callback function passed into local strategy for verifying password.
 async function verify(username, password, cb) {

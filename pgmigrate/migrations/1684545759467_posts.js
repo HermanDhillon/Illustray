@@ -6,11 +6,13 @@ exports.up = (pgm) => {
   pgm.sql(`CREATE TABLE posts (
         id serial PRIMARY KEY,
         user_id INT NOT NULL,
-        image_url VARCHAR(64),
+        image_url VARCHAR(500),
+        width INT NOT NULL,
+        height INT NOT NULL,
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-        deleted BOOLEAN DEFAULT false,
-        categoryId INT NOT NULl,
-        FOREIGN KEY (categoryId) REFERENCES categories (id),
+        category_id INT NOT NULl,
+        likes INT DEFAULT 0,
+        FOREIGN KEY (category_id) REFERENCES categories (id),
         FOREIGN KEY (user_id) REFERENCES users (id)
     );`);
 };

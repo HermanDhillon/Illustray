@@ -27,7 +27,6 @@ export default function Login_Modal() {
           console.log(response.data.error)
         }
         if (response.data.login === 'successful') {
-          console.log(response.data)
           window.login_modal.close()
           if (window.location.pathname === '/signup') {
             navigate('/') // <-- redirect

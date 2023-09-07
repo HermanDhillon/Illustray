@@ -1,11 +1,12 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Prompt_Modal from './Prompt_Modal'
-
 import axios from 'axios'
+import Gallery from './Gallery'
 
 export default function User(props) {
-  let [userData, setUserData] = useState({
+  const [postData, setPostData] = useState(null)
+  const [userData, setUserData] = useState({
     username: 'Loading...',
     bio: 'Loading...',
   })
@@ -18,13 +19,24 @@ export default function User(props) {
       url: `/api/user/${username}`,
     })
       .then((response) => {
-        if ('Error' in response.data) {
-          console.log(response.data)
-          setUserData(false)
-        } else {
-          setUserData(response.data)
-          console.log(response.data)
-        }
+        setUserData(response.data)
+      })
+      .catch((error) => {
+        setUserData(false)
+        console.log(error)
+      })
+
+    axios({
+      method: 'get',
+      url: `/api/post/user/${username}`,
+    })
+      .then((response) => {
+        const posts = response.data.map((post) => ({
+          src: post.image_url,
+          width: post.width,
+          height: post.height,
+        }))
+        setPostData(posts)
       })
       .catch((error) => {
         console.log(error)
@@ -52,7 +64,7 @@ export default function User(props) {
                 </div>
               </div>
               <div className="">
-                <div className="mask mask-squircle w-48 h-48 bg-indigo-100 mx-auto absolute inset-x-0 top-0  flex items-center justify-center text-indigo-500 avatar mt-24 md:-mt-24">
+                <div className="mask mask-squircle w-48 h-48 bg-transparent mx-auto  inset-x-0 top-0  flex items-center justify-center text-indigo-500 avatar mt-24 md:-mt-24">
                   <img className="" src={userData.profileimage}></img>
                 </div>
               </div>
@@ -77,24 +89,27 @@ export default function User(props) {
                 </div>
               )}
             </div>
-            <div className="mt-20 text-center border-b pb-12">
+            <div className="mt-5 text-center border-b pb-12">
               <h1 className="text-4xl font-medium text-gray-700">
                 {userData.username}
               </h1>
-              <p className="font-light text-gray-600 mt-3">Citysville, USA</p>
-              <p className="mt-8 text-gray-500">Title</p>
-              <p className="mt-2 text-gray-500">Company Name</p>
+              <div className="mt-12 flex flex-col justify-center">
+                <p className="text-gray-600 text-center font-light lg:px-16">
+                  {userData.bio}
+                </p>
+              </div>
             </div>
-            <div className="mt-12 flex flex-col justify-center">
-              <p className="text-gray-600 text-center font-light lg:px-16">
-                {userData.bio}
-              </p>
-              <button className="text-indigo-500 py-2 px-4  font-medium mt-4">
-                Show more
-              </button>
+            <div className="flex justify-center my-7">
+              <div className="tabs tabs-boxed">
+                <a className="tab tab-lg tab-lifted tab-active">Posts</a>
+                <a className="tab tab-lg tab-lifted">Prompts</a>
+              </div>
             </div>
           </div>
         )}
+        <div className="bg-white bg-opacity-80">
+          <Gallery photos={postData} layout="columns" />
+        </div>
         {!userData && (
           <div className="flex justify-center w-11/12 mx-auto py-10 bg-white bg-opacity-95 rounded-xl shadow-2xl  drop-shadow-2xl border border-#c4c9d28b mt-24">
             <h1 className="text-3xl font-medium text-gray-700">
