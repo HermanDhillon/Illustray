@@ -6,12 +6,39 @@ import Gallery from './Gallery'
 
 export default function User(props) {
   const [postData, setPostData] = useState(null)
+  const [promptData, setPromptData] = useState([])
+  const [postCount, setPostCount] = useState('N/A')
+  const [promptCount, setPromptCount] = useState('N/A')
+
+  const [toggleView, setToggleView] = useState({
+    promptVis: ' hidden',
+    promptStat: '',
+    postVis: '',
+    postStat: ' tab-active',
+  })
   const [userData, setUserData] = useState({
     username: 'Loading...',
     bio: 'Loading...',
   })
   const { username } = useParams()
   let ownPage = props.cookies.username == username
+
+  function togglePrompt() {
+    setToggleView({
+      promptVis: '',
+      promptStat: ' tab-active',
+      postVis: ' hidden',
+      postStat: '',
+    })
+  }
+  function togglePost() {
+    setToggleView({
+      promptVis: ' hidden',
+      promptStat: '',
+      postVis: '',
+      postStat: ' tab-active',
+    })
+  }
 
   useEffect(() => {
     axios({
@@ -36,7 +63,20 @@ export default function User(props) {
           width: post.width,
           height: post.height,
         }))
+        setPostCount(posts.length)
         setPostData(posts)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+
+    axios({
+      method: 'get',
+      url: `/api/prompt/user/${username}`,
+    })
+      .then((response) => {
+        setPromptCount(response.data.length)
+        setPromptData(response.data)
       })
       .catch((error) => {
         console.log(error)
@@ -44,22 +84,24 @@ export default function User(props) {
   }, [username])
 
   return (
-    <div className="bg-contain bg-repeat  bg-[url('/./src/assets/spacedoodle1.webp')]">
+    <div className="bg-contain bg-repeat-x bg-[url('/./src/assets/spacedoodle1.webp')]">
       <div className=" md:min-h-screen py-10">
         {userData && (
           <div className=" w-11/12 mx-auto py-10 bg-white bg-opacity-95 rounded-xl shadow-2xl  drop-shadow-2xl border border-#c4c9d28b mt-24">
             <div className="grid grid-cols-1 md:grid-cols-3">
               <div className="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0">
                 <div>
-                  <p className="font-bold text-gray-700 text-xl">22</p>
+                  <p className="font-bold text-gray-700 text-xl">
+                    {promptCount}
+                  </p>
                   <p className="text-gray-400">Prompts</p>
                 </div>
                 <div>
-                  <p className="font-bold text-gray-700 text-xl">10</p>
+                  <p className="font-bold text-gray-700 text-xl">{postCount}</p>
                   <p className="text-gray-400">Posts</p>
                 </div>
                 <div>
-                  <p className="font-bold text-gray-700 text-xl">89</p>
+                  <p className="font-bold text-gray-700 text-xl">0</p>
                   <p className="text-gray-400">Comments</p>
                 </div>
               </div>
@@ -101,14 +143,54 @@ export default function User(props) {
             </div>
             <div className="flex justify-center my-7">
               <div className="tabs tabs-boxed">
-                <a className="tab tab-lg tab-lifted tab-active">Posts</a>
-                <a className="tab tab-lg tab-lifted">Prompts</a>
+                <a
+                  onClick={togglePost}
+                  className={'tab tab-lg tab-lifted' + toggleView.postStat}
+                >
+                  Posts
+                </a>
+                <a
+                  onClick={togglePrompt}
+                  className={'tab tab-lg tab-lifted' + toggleView.promptStat}
+                >
+                  Prompts
+                </a>
               </div>
             </div>
           </div>
         )}
         <div className="bg-white bg-opacity-80">
-          <Gallery photos={postData} layout="columns" />
+          <div className={toggleView.postVis}>
+            <Gallery photos={postData} layout="columns" />
+          </div>
+          <div
+            className={
+              'my-10 mx-5 flex flex-col gap-10 align-middle justify-evenly md:flex-wrap md:px-[3rem]' +
+              toggleView.promptVis
+            }
+          >
+            {promptData.map((prompt, i) => (
+              <div
+                key={i + 1}
+                className="card max-w-96 bg-base-100 shadow-2xl drop-shadow-2xl"
+              >
+                <div className="card-body overflow-hidden break-words">
+                  <h2 className="card-title text-primary">{prompt.title}</h2>
+                  <p>{prompt.prompt_text}</p>
+                  <div className="card-actions justify-between">
+                    <span className="mt-auto italic">
+                      {prompt.created_at.slice(0, 10)}
+                    </span>
+                    <a href={`/prompt/${prompt.id}`}>
+                      <button className="btn btn-outline btn-secondary ">
+                        Go to Prompt
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
         {!userData && (
           <div className="flex justify-center w-11/12 mx-auto py-10 bg-white bg-opacity-95 rounded-xl shadow-2xl  drop-shadow-2xl border border-#c4c9d28b mt-24">

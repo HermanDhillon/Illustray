@@ -18,6 +18,9 @@ export default {
       fontFamily: {
         pacifico: ['"Pacifico", "cursive"'],
       },
+      screens: {
+        ssm: '360px',
+      },
     },
   },
 }

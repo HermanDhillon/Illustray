@@ -78,7 +78,7 @@ export default function Prompt() {
                     {promptData.promptText}
                   </p>
                   <span className="mt-auto ml-auto italic">
-                    {promptData.createdAt.slice(0, 10)}
+                    {new Date(promptData.createdAt).toDateString()}
                   </span>
                   <button
                     className="btn btn-primary btn-block mt-auto mb-[2vw] border-none bg-gradient-to-b from-violet-500 to-fuchsia-500 hover:shadow-lg hover:shadow-[#6025F5]/50 h-[3vw] text-[1.5vh] lg:mb-[0] md:mt-2 "
@@ -89,11 +89,13 @@ export default function Prompt() {
                 </div>
                 <div className="m-[2vw] mb-0 py-2 rounded-xl border border-#c4c9d28b lg:w-[20vw]  lg:m-[1vw] lg:ml-0 lg:min-h-[20vw]">
                   <div className="flex flex-row">
-                    <img
-                      className="h-[4vw] min-h-[4rem] mx-2 mask mask-squircle overflow-hidden flex-start"
-                      src={userData.profileImage}
-                    />
-                    <h4 className=" my-auto mr-auto text-lg">
+                    <a href={`/user/${userData.username}`}>
+                      <img
+                        className="h-[4vw] min-h-[4rem] mx-2 mask mask-squircle overflow-hidden flex-start"
+                        src={userData.profileImage}
+                      />
+                    </a>
+                    <h4 className=" my-auto mr-auto text-lg break-words">
                       {userData.username}
                     </h4>
                   </div>

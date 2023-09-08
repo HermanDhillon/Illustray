@@ -14,19 +14,15 @@ module.exports = {
     );
   },
 
-  findManyByCreatorId: async (creatorId) => {
-    try {
-      if (creatorId) {
-        const result = await pgPool.query(
-          'SELECT * from prompts WHERE creator_id=$1',
-          [creatorId]
-        );
-        return result.rows[0]; // returns a single object
-      }
-      console.error('creatorId is a required input');
-    } catch (err) {
-      console.log(err);
+  findByUsername: async (username) => {
+    if (username) {
+      const result = await pgPool.query(
+        'SELECT prompts.id, prompts.title, prompts.prompt_text, prompts.created_at from prompts INNER JOIN users ON prompts.creator_id = users.id WHERE users.username = $1 ORDER BY prompts.created_at DESC',
+        [username]
+      );
+      return result.rows; // returns a list of objects.
     }
+    throw new Error('username is a required input');
   },
 
   findByPromptId: async (Id) => {
@@ -46,14 +42,18 @@ module.exports = {
     );
   },
 
+  findNewestFive: async (count = 5) => {
+    const result = await pgPool.query(
+      'SELECT users.username, users.profileImage, prompts.id, prompts.title, prompts.prompt_text, prompts.created_at from prompts INNER JOIN users ON prompts.creator_id = users.id ORDER BY prompts.created_at DESC LIMIT $1',
+      [count]
+    );
+    return result.rows;
+  },
+
   findMany: async () => {
-    try {
-      const result = await pgPool.query(
-        'SELECT * from prompts ORDER BY username ASC'
-      );
-      return result.rows; // returns a list of objects
-    } catch (err) {
-      console.log(err);
-    }
+    const result = await pgPool.query(
+      'SELECT * from prompts ORDER BY username ASC'
+    );
+    return result.rows; // returns a list of objects
   }
 };

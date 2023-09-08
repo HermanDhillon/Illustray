@@ -5,11 +5,11 @@ const upload = require('../middleware/multer');
 
 const router = express.Router();
 
-router.get('/:username', userController.getUserProfile);
 router.post(
   '/profilepic',
   ensureAuth,
   upload.single('file'),
   userController.updateProfilePic
 );
+router.get('/:username', userController.getUserProfile);
 module.exports = router;
