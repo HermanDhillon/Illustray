@@ -3,8 +3,9 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Uploader from './Upload_Modal'
+import Login_Modal from './Login_Modal'
 
-export default function Prompt() {
+export default function Prompt(props) {
   const [errorData, setErrorData] = useState(false)
   const [postData, setPostData] = useState(null)
   const [userData, setUserData] = useState({
@@ -17,6 +18,16 @@ export default function Prompt() {
     createdAt: 'Loading...',
   })
   const { promptId } = useParams()
+
+  function handleClick() {
+    console.log('func')
+
+    if (props.cookies.username) {
+      window.upload_modal.showModal()
+    } else {
+      window.login_modal.showModal()
+    }
+  }
 
   useEffect(() => {
     axios({
@@ -40,9 +51,7 @@ export default function Prompt() {
         console.log(error)
         setErrorData(error.response.data)
       })
-  }, [promptId])
 
-  useEffect(() => {
     axios({
       method: 'get',
       url: `/api/post/prompt/${promptId}`,
@@ -61,7 +70,7 @@ export default function Prompt() {
   }, [promptId])
 
   return (
-    <div className="bg-[url('/./src/assets/im3.jpg')] bg-opacity-10 ">
+    <div className="bg-[url('/./src/assets/im3.jpg')] ">
       <div className="bg-white bg-opacity-90">
         <div className="min-h-screen py-[4vw]  ">
           {!errorData && (
@@ -74,7 +83,7 @@ export default function Prompt() {
                   <h3 className="font-semibold text-[2.5vh] m-0 underline ">
                     {promptData.title}
                   </h3>
-                  <p className="font-semibold leading-[3.5vh] text-[2vh] mb-[2vw] lg:text-[1.2vw] lg:leading-[3vw]">
+                  <p className=" break-words font-semibold leading-[3.5vh] text-[2vh] mb-[2vw] lg:text-[1.2vw] lg:leading-[3vw]">
                     {promptData.promptText}
                   </p>
                   <span className="mt-auto ml-auto italic">
@@ -82,7 +91,7 @@ export default function Prompt() {
                   </span>
                   <button
                     className="btn btn-primary btn-block mt-auto mb-[2vw] border-none bg-gradient-to-b from-violet-500 to-fuchsia-500 hover:shadow-lg hover:shadow-[#6025F5]/50 h-[3vw] text-[1.5vh] lg:mb-[0] md:mt-2 "
-                    onClick={() => window.upload_modal.showModal()}
+                    onClick={() => handleClick()}
                   >
                     Submit your Art!
                   </button>
@@ -113,6 +122,7 @@ export default function Prompt() {
           )}
         </div>
       </div>
+      <Login_Modal />
       <Uploader uploadUrl={`/api/post/${promptId}`} />
     </div>
   )

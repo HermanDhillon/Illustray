@@ -84,7 +84,7 @@ export default function User(props) {
   }, [username])
 
   return (
-    <div className="bg-contain bg-repeat-x bg-[url('/./src/assets/spacedoodle1.webp')]">
+    <div className=" bg-fixed bg-contain bg-[url('/./src/assets/spacedoodle1.webp')]">
       <div className=" md:min-h-screen py-10">
         {userData && (
           <div className=" w-11/12 mx-auto py-10 bg-white bg-opacity-95 rounded-xl shadow-2xl  drop-shadow-2xl border border-#c4c9d28b mt-24">
@@ -159,7 +159,7 @@ export default function User(props) {
             </div>
           </div>
         )}
-        <div className="bg-white bg-opacity-80">
+        <div className="bg-white bg-opacity-80 ">
           <div className={toggleView.postVis}>
             <Gallery photos={postData} layout="columns" />
           </div>
@@ -177,11 +177,14 @@ export default function User(props) {
                 <div className="card-body overflow-hidden break-words">
                   <h2 className="card-title text-primary">{prompt.title}</h2>
                   <p>{prompt.prompt_text}</p>
-                  <div className="card-actions justify-between">
+                  <div className="card-actions ssm:justify-between">
                     <span className="mt-auto italic">
                       {prompt.created_at.slice(0, 10)}
                     </span>
-                    <a href={`/prompt/${prompt.id}`}>
+                    <a
+                      href={`/prompt/${prompt.id}`}
+                      className="mx-auto ssm:mx-0"
+                    >
                       <button className="btn btn-outline btn-secondary ">
                         Go to Prompt
                       </button>
