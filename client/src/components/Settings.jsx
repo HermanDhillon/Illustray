@@ -9,8 +9,18 @@ import Uploader from './Upload_Modal'
 export default function Settings() {
   const [userData, setUserData] = useState({})
   const [cookies, setCookie] = useCookies()
+  const [bio, setBio] = useState({ bio: '' })
   const navigate = useNavigate()
   const { username } = useParams()
+
+  function handleInput(event) {
+    setBio({ ...bio, [event.target.name]: event.target.value })
+    console.log(bio)
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+  }
 
   useEffect(() => {
     if (!cookies.username) {
@@ -29,6 +39,7 @@ export default function Settings() {
           bio: response.data.bio,
           profileImage: response.data.profileimage,
         })
+        setBio({ bio: response.data.bio })
       })
       .catch((error) => {
         console.log(error)
@@ -60,7 +71,10 @@ export default function Settings() {
                         Username
                       </label>
                       <div className="mt-2">
-                        <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                        <span className="font-semibold text-primary text-2xl ">
+                          {cookies.username}
+                        </span>
+                        {/* <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                           <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm"></span>
                           <input
                             type="text"
@@ -70,7 +84,7 @@ export default function Settings() {
                             className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                             placeholder={cookies.username}
                           />
-                        </div>
+                        </div> */}
                       </div>
                     </div>
 
@@ -83,16 +97,27 @@ export default function Settings() {
                       </label>
                       <div className="mt-2">
                         <textarea
-                          id="about"
-                          name="about"
+                          onChange={handleInput}
+                          id="bio"
+                          name="bio"
                           rows={3}
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                          defaultValue={userData.bio}
+                          defaultValue={bio.bio}
                         />
                       </div>
-                      <p className="mt-3 text-sm leading-6 text-gray-600">
-                        Write a few sentences about yourself.
-                      </p>
+                      <div className="flex justify-between mt-3">
+                        <p className="text-sm leading-6 text-gray-600 align-top">
+                          Write a few sentences about yourself.
+                        </p>
+                        <button
+                          onClick={() => {
+                            handleSubmit()
+                          }}
+                          className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                          Save
+                        </button>
+                      </div>
                     </div>
 
                     <div className="col-span-full">
@@ -457,7 +482,7 @@ export default function Settings() {
               </div> */}
               </div>
 
-              <div className="mt-6 flex items-center justify-end gap-x-6">
+              {/* <div className="mt-6 flex items-center justify-end gap-x-6">
                 <button
                   type="button"
                   className="text-sm font-semibold leading-6 text-gray-900"
@@ -470,7 +495,7 @@ export default function Settings() {
                 >
                   Save
                 </button>
-              </div>
+              </div> */}
             </form>
           </div>
         </div>
