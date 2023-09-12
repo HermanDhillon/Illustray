@@ -26,6 +26,17 @@ module.exports = {
     throw Error('missing a required argument');
   },
 
+  findByUsernameAndUpdateBio: async (username, bio) => {
+    if (username && bio) {
+      const result = await pgPool.query(
+        'UPDATE users SET bio = $1 WHERE username = $2',
+        [bio, username]
+      );
+      return result.rows[0]; // returns a single object
+    }
+    throw Error('missing a required argument');
+  },
+
   findByUsername: async (username) => {
     if (username) {
       const result = await pgPool.query(

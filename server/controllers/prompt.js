@@ -5,8 +5,8 @@ module.exports = {
   create: async (req, res) => {
     const { title, promptText } = req.body;
     try {
-      const promptData = await Prompt.create(1, req.user.id, title, promptText);
-      res.json(promptData);
+      const response = await Prompt.create(1, req.user.id, title, promptText);
+      res.json(response);
     } catch (err) {
       let text = 'Error in creating Prompt';
       if (err.detail === `Key (prompt_text)=(${promptText}) already exists.`) {
@@ -18,12 +18,13 @@ module.exports = {
 
   getPrompt: async (req, res) => {
     try {
-      const promptData = await Prompt.findByPromptId(req.params.promptId);
+      const response = await Prompt.findByPromptId(req.params.promptId);
 
-      const { title } = promptData;
-      const promptText = promptData.prompt_text;
-      const creatorId = promptData.creator_id;
-      const createdAt = promptData.created_at;
+      const { title } = response;
+      const promptText = response.prompt_text;
+      const creatorId = response.creator_id;
+      const createdAt = response.created_at;
+      // TODO: rewrite findByPromptId model so that it joins with users table to avoid this call.
       const userData = await User.findById(creatorId);
       const { username, profileimage } = userData;
 
@@ -40,6 +41,32 @@ module.exports = {
         text = err.cause;
       }
       res.status(404).send(text);
+    }
+  },
+
+  getUserPrompts: async (req, res) => {
+    try {
+      const response = await Prompt.findByUsername(req.params.username);
+      if (!response) {
+        res.json({});
+      }
+      res.json(response);
+    } catch (err) {
+      console.log(err);
+      res.status(502).send('Error in getting users prompts');
+    }
+  },
+
+  getHomePrompts: async (req, res) => {
+    try {
+      const response = await Prompt.findNewestFive();
+      if (!response) {
+        res.json([]);
+      }
+      res.json(response);
+    } catch (err) {
+      console.log(err);
+      res.status(502).send('Could not get hompage prompts');
     }
   }
 };

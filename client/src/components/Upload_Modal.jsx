@@ -6,7 +6,7 @@ import { Dashboard } from '@uppy/react'
 import Compressor from '@uppy/compressor'
 // import ImageEditor from '@uppy/image-editor'
 
-// Don't forget the CSS: core and the UI components + plugins you are using.
+// // Don't forget the CSS: core and the UI components + plugins you are using.
 import '@uppy/core/dist/style.min.css'
 import '@uppy/dashboard/dist/style.min.css'
 import '@uppy/webcam/dist/style.min.css'
@@ -24,6 +24,7 @@ export default function Uploader(props) {
     .use(Compressor)
     .use(XHR, { endpoint: props.uploadUrl })
     .on('complete', () => {
+      props.setCount(p => p+1)
       setTimeout(() => {
         window.upload_modal.close()
       }, 1000)

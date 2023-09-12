@@ -17,7 +17,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/prompt/:promptId" element={<Prompt />} />
+        <Route
+          path="/prompt/:promptId"
+          element={<Prompt cookies={cookies} />}
+        />
         <Route
           path="/user/:username/settings"
           element={<Settings cookies={cookies} />}
