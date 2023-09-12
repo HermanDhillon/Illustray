@@ -123,10 +123,12 @@ export default function Prompt(props) {
         </div>
       </div>
       <Login_Modal />
+
       <Uploader
         setRender={props.setRender}
         uploadUrl={`/api/post/${promptId}`}
       />
+
     </div>
   )
 }

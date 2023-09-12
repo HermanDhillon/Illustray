@@ -94,8 +94,8 @@ export default function Settings(props) {
                             placeholder={cookies.username}
                           />
                         </div> */}
+
                     </div>
-                  </div>
 
                   <div className="col-span-full">
                     <form onSubmit={handleSubmit}>
@@ -140,17 +140,30 @@ export default function Settings(props) {
                       <div className="w-32 mask mask-squircle">
                         <img className="" src={userData.profileImage} />
                       </div>
-                      <button
-                        type="button"
-                        onClick={() => window.upload_modal.showModal()}
-                        className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+
+                    <div className="col-span-full">
+                      <label
+                        htmlFor="photo"
+                        className="block text-sm font-medium leading-6 text-gray-900"
                       >
-                        Change
-                      </button>
+                        Photo
+                      </label>
+                      <div className="mt-2 flex items-center gap-x-3">
+                        <div className="w-32 mask mask-squircle">
+                          <img className=""src={userData.profileImage} />
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => window.upload_modal.showModal()}
+                          className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                        >
+                          Change
+                        </button>
+                      </div>
                     </div>
-                  </div>
 
                   {/* <div className="col-span-full">
+
                     <label
                       htmlFor="cover-photo"
                       className="block text-sm font-medium leading-6 text-gray-900"
@@ -193,9 +206,9 @@ export default function Settings(props) {
                     </div>
                   </div> */}
                 </div>
-              </div>
 
               {/* <div className="border-b border-gray-900/10 pb-12">
+
                 <h2 className="text-base font-semibold leading-7 text-gray-900">
                   Personal Information
                 </h2>
@@ -492,6 +505,7 @@ export default function Settings(props) {
             </div>
 
             {/* <div className="mt-6 flex items-center justify-end gap-x-6">
+
                 <button
                   type="button"
                   className="text-sm font-semibold leading-6 text-gray-900"
