@@ -45,7 +45,7 @@ export default function Navbar(props) {
           console.log(error)
         })
     }
-  }, [props.cookies.username])
+  }, [props.cookies.username, props.render])
 
   return (
     //TODO: hide profile image if user not logged in, and replace with 'login/signup'

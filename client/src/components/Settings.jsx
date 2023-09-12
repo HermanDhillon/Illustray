@@ -6,7 +6,7 @@ import Uploader from './Upload_Modal'
 
 export default function Settings(props) {
   const [userData, setUserData] = useState({})
-  const [bio, setBio] = useState({ bio: null})
+  const [bio, setBio] = useState({ bio: null })
   const [count, setCount] = useState(0)
   const navigate = useNavigate()
   const { username } = useParams()
@@ -29,64 +29,61 @@ export default function Settings(props) {
         .catch((error) => {
           console.log(error)
         })
-    }else {
+    } else {
       console.log("Bio didn't change.")
     }
-    
-   
   }
 
   useEffect(() => {
     if (!props.cookies.username) {
       navigate('/')
-    }else{
+    } else {
       axios({
         method: 'get',
         url: `/api/user/${props.cookies.username}`,
       })
-      .then((response) => {
-        setUserData({
-          username: response.data.username,
-          bio: response.data.bio,
-          profileImage: response.data.profileimage,
+        .then((response) => {
+          setUserData({
+            username: response.data.username,
+            bio: response.data.bio,
+            profileImage: response.data.profileimage,
+          })
+          setBio({ bio: response.data.bio })
         })
-        setBio({ bio: response.data.bio })
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+        .catch((error) => {
+          console.log(error)
+        })
     }
-  }, [username, count])
+  }, [username, props.render])
 
   return (
     <>
       <div className="bg-contain bg-repeat  bg-[url('/./src/assets/doodles.webp')] h-screen">
         <div className="w-11/12 pt-10 mx-auto ">
           <div className="p-8 rounded-xl shadow-2xl  drop-shadow-2xl border border-#c4c9d28b bg-white bg-opacity-95">
-      
-              <div className="space-y-12">
-                <div className="border-b border-gray-900/10 pb-12">
-                  <h1 className=" text-3xl font-semibold leading-7 text-gray-900">
-                    Settings
-                  </h1>
-                  <p className="mt-1 text-sm leading-6 text-gray-600">
-                    This information will be displayed publicly so be careful
-                    what you share.
-                  </p>
+            <div className="space-y-12">
+              <div className="border-b border-gray-900/10 pb-12">
+                <h1 className=" text-3xl font-semibold leading-7 text-gray-900">
+                  Settings
+                </h1>
+                <p className="mt-1 text-sm leading-6 text-gray-600">
+                  This information will be displayed publicly so be careful what
+                  you share.
+                </p>
 
-                  <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                    <div className="sm:col-span-4">
-                      <label
-                        htmlFor="username"
-                        className="block text-sm font-medium leading-6 text-gray-900"
-                      >
-                        Username
-                      </label>
-                      <div className="mt-2">
-                        <span className="font-semibold text-primary text-2xl ">
-                          {props.cookies.username}
-                        </span>
-                        {/* <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                  <div className="sm:col-span-4">
+                    <label
+                      htmlFor="username"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Username
+                    </label>
+                    <div className="mt-2">
+                      <span className="font-semibold text-primary text-2xl ">
+                        {props.cookies.username}
+                      </span>
+                      {/* <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                           <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm"></span>
                           <input
                             type="text"
@@ -97,11 +94,11 @@ export default function Settings(props) {
                             placeholder={cookies.username}
                           />
                         </div> */}
-                      </div>
                     </div>
+                  </div>
 
-                    <div className="col-span-full">
-                      <form onSubmit={handleSubmit}>
+                  <div className="col-span-full">
+                    <form onSubmit={handleSubmit}>
                       <label
                         htmlFor="about"
                         className="block text-sm font-medium leading-6 text-gray-900"
@@ -123,38 +120,37 @@ export default function Settings(props) {
                           Write a few sentences about yourself.
                         </p>
                         <button
-                        type= 'submit'
-                         
+                          type="submit"
                           className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
                           Save
                         </button>
                       </div>
-                      </form>
-                      </div>
+                    </form>
+                  </div>
 
-                    <div className="col-span-full">
-                      <label
-                        htmlFor="photo"
-                        className="block text-sm font-medium leading-6 text-gray-900"
+                  <div className="col-span-full">
+                    <label
+                      htmlFor="photo"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Photo
+                    </label>
+                    <div className="mt-2 flex items-center gap-x-3">
+                      <div className="w-32 mask mask-squircle">
+                        <img className="" src={userData.profileImage} />
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => window.upload_modal.showModal()}
+                        className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                       >
-                        Photo
-                      </label>
-                      <div className="mt-2 flex items-center gap-x-3">
-                        <div className="w-32 mask mask-squircle">
-                          <img className=""src={userData.profileImage} />
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => window.upload_modal.showModal()}
-                          className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                        >
-                          Change
-                        </button>
-                      </div>
+                        Change
+                      </button>
                     </div>
+                  </div>
 
-                    {/* <div className="col-span-full">
+                  {/* <div className="col-span-full">
                     <label
                       htmlFor="cover-photo"
                       className="block text-sm font-medium leading-6 text-gray-900"
@@ -196,10 +192,10 @@ export default function Settings(props) {
                       </div>
                     </div>
                   </div> */}
-                  </div>
                 </div>
+              </div>
 
-                {/* <div className="border-b border-gray-900/10 pb-12">
+              {/* <div className="border-b border-gray-900/10 pb-12">
                 <h2 className="text-base font-semibold leading-7 text-gray-900">
                   Personal Information
                 </h2>
@@ -493,9 +489,9 @@ export default function Settings(props) {
                   </fieldset>
                 </div>
               </div> */}
-              </div>
+            </div>
 
-              {/* <div className="mt-6 flex items-center justify-end gap-x-6">
+            {/* <div className="mt-6 flex items-center justify-end gap-x-6">
                 <button
                   type="button"
                   className="text-sm font-semibold leading-6 text-gray-900"
@@ -509,10 +505,13 @@ export default function Settings(props) {
                   Save
                 </button>
               </div> */}
-        
           </div>
         </div>
-        <Uploader uploadUrl={`/api/user/profilepic`} setCount={setCount}/>
+        <Uploader
+          setRender={props.setRender}
+          uploadUrl={`/api/user/profilepic`}
+          setCount={setCount}
+        />
       </div>
       <a href="https://www.freepik.com/free-vector/hand-drawing-illustration-mixed-set-lifestyle_2780438.htm#page=2&query=doodle&position=35&from_view=search&track=sph">
         Image by rawpixel.com

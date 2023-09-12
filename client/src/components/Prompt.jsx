@@ -67,7 +67,7 @@ export default function Prompt(props) {
       .catch((error) => {
         console.log(error)
       })
-  }, [promptId])
+  }, [promptId, props.render])
 
   return (
     <div className="bg-[url('/./src/assets/im3.jpg')] ">
@@ -123,7 +123,10 @@ export default function Prompt(props) {
         </div>
       </div>
       <Login_Modal />
-      <Uploader uploadUrl={`/api/post/${promptId}`} />
+      <Uploader
+        setRender={props.setRender}
+        uploadUrl={`/api/post/${promptId}`}
+      />
     </div>
   )
 }
