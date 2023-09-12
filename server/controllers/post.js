@@ -68,7 +68,7 @@ module.exports = {
       res.status(502).send('Error in getting posts');
     }
   },
-  getPost: async (req, res) => {},
-  likePost: async (req, res) => {},
-  deletePost: async (req, res) => {}
+  // getPost: async (req, res) => {},
+  // likePost: async (req, res) => {},
+  // deletePost: async (req, res) => {}
 };
