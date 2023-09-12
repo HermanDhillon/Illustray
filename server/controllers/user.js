@@ -28,5 +28,14 @@ module.exports = {
       console.log(err);
       res.status(502);
     }
-  }
+  },
+  updateBio: async (req, res)  => { 
+    try { 
+      await User.findByUsernameAndUpdateBio(req.user.username, req.body.bio.trim());
+      res.send("Bio updated")
+    } catch (err) {
+      console.log(err)    
+      res.status(502).send("Error in updating bio");
+    }
+    }
 };

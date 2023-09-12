@@ -1,38 +1,49 @@
 import { useState, useEffect } from 'react'
-import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
-
 import axios from 'axios'
 import Uploader from './Upload_Modal'
 
-export default function Settings() {
+export default function Settings(props) {
   const [userData, setUserData] = useState({})
-  const [cookies, setCookie] = useCookies()
-  const [bio, setBio] = useState({ bio: '' })
+  const [bio, setBio] = useState({ bio: null})
+  const [count, setCount] = useState(0)
   const navigate = useNavigate()
   const { username } = useParams()
 
   function handleInput(event) {
     setBio({ ...bio, [event.target.name]: event.target.value })
-    console.log(bio)
   }
 
   function handleSubmit(event) {
     event.preventDefault()
+    if (bio.bio !== userData.bio) {
+      axios({
+        method: 'post',
+        url: `/api/user/bio`,
+        data: bio,
+      })
+        .then((response) => {
+          setBio({ bio: response.data.bio })
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }else {
+      console.log("Bio didn't change.")
+    }
+    
+   
   }
 
   useEffect(() => {
-    if (!cookies.username) {
-      navigate('/#Login')
-    }
-  }, [])
-
-  useEffect(() => {
-    axios({
-      method: 'get',
-      url: `/api/user/${cookies.username}`,
-    })
+    if (!props.cookies.username) {
+      navigate('/')
+    }else{
+      axios({
+        method: 'get',
+        url: `/api/user/${props.cookies.username}`,
+      })
       .then((response) => {
         setUserData({
           username: response.data.username,
@@ -44,14 +55,15 @@ export default function Settings() {
       .catch((error) => {
         console.log(error)
       })
-  }, [username])
+    }
+  }, [username, count])
 
   return (
     <>
       <div className="bg-contain bg-repeat  bg-[url('/./src/assets/doodles.webp')] h-screen">
         <div className="w-11/12 pt-10 mx-auto ">
           <div className="p-8 rounded-xl shadow-2xl  drop-shadow-2xl border border-#c4c9d28b bg-white bg-opacity-95">
-            <form>
+      
               <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
                   <h1 className=" text-3xl font-semibold leading-7 text-gray-900">
@@ -72,7 +84,7 @@ export default function Settings() {
                       </label>
                       <div className="mt-2">
                         <span className="font-semibold text-primary text-2xl ">
-                          {cookies.username}
+                          {props.cookies.username}
                         </span>
                         {/* <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                           <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm"></span>
@@ -89,6 +101,7 @@ export default function Settings() {
                     </div>
 
                     <div className="col-span-full">
+                      <form onSubmit={handleSubmit}>
                       <label
                         htmlFor="about"
                         className="block text-sm font-medium leading-6 text-gray-900"
@@ -110,15 +123,15 @@ export default function Settings() {
                           Write a few sentences about yourself.
                         </p>
                         <button
-                          onClick={() => {
-                            handleSubmit()
-                          }}
+                        type= 'submit'
+                         
                           className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
                           Save
                         </button>
                       </div>
-                    </div>
+                      </form>
+                      </div>
 
                     <div className="col-span-full">
                       <label
@@ -129,7 +142,7 @@ export default function Settings() {
                       </label>
                       <div className="mt-2 flex items-center gap-x-3">
                         <div className="w-32 mask mask-squircle">
-                          <img src={userData.profileImage} />
+                          <img className=""src={userData.profileImage} />
                         </div>
                         <button
                           type="button"
@@ -496,10 +509,10 @@ export default function Settings() {
                   Save
                 </button>
               </div> */}
-            </form>
+        
           </div>
         </div>
-        <Uploader uploadUrl={`/api/user/profilepic`} />
+        <Uploader uploadUrl={`/api/user/profilepic`} setCount={setCount}/>
       </div>
       <a href="https://www.freepik.com/free-vector/hand-drawing-illustration-mixed-set-lifestyle_2780438.htm#page=2&query=doodle&position=35&from_view=search&track=sph">
         Image by rawpixel.com

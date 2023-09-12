@@ -12,4 +12,5 @@ router.post(
   userController.updateProfilePic
 );
 router.get('/:username', userController.getUserProfile);
+router.post('/bio', userController.updateBio);
 module.exports = router;
