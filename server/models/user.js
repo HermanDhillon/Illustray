@@ -27,7 +27,6 @@ module.exports = {
   },
 
   findByUsernameAndUpdateBio: async (username, bio) => {
-    console.log('in model')
     if (username && bio) {
       const result = await pgPool.query(
         'UPDATE users SET bio = $1 WHERE username = $2',
