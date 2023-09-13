@@ -1,7 +1,17 @@
 import PhotoAlbum from 'react-photo-album'
-import LoginModal from './Login_Modal'
+import ImageModal from './Image_Modal'
+import { useState, useEffect } from 'react'
 
 export default function Gallery(props) {
+  const [postData, setPostData] = useState(null)
+
+  useEffect(() => {
+    if (props.postId && props.postsData) {
+      let singlePost = props.postsData?.filter((e) => e.id == props.postId)
+      console.log('SINGLE POST', singlePost)
+      setPostData(singlePost[0])
+    }
+  }, [props.postsData])
   return (
     <div className="">
       <PhotoAlbum
@@ -14,7 +24,7 @@ export default function Gallery(props) {
           if (containerWidth < 930) return 4
           return 5
         }}
-        photos={props.postData}
+        photos={props.postsData}
         componentsProps={() => ({
           containerProps: {
             className: 'my-10 w-11/12 mx-auto',
@@ -24,9 +34,13 @@ export default function Gallery(props) {
               ' rounded-md shadow-lg drop-shadow-lg overflow-hidden transistion transform hover:-translate-y-1 hover:brightness-50 duration-300 hover:rounded-none duration-300',
           },
         })}
-        onClick={({ photo }) => console.log(photo)}
+        onClick={({ photo }) => {
+          setPostData(photo)
+          let newUrl = `/prompt/${photo.promptId}/${photo.id}`
+          window.history.pushState(null, '', newUrl)
+        }}
       />
-      <LoginModal />
+      {postData && <ImageModal setPostData={setPostData} postData={postData} />}
     </div>
   )
 }

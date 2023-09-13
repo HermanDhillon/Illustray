@@ -26,6 +26,12 @@ function App() {
           }
         />
         <Route
+          path="/prompt/:promptId/:postId"
+          element={
+            <Prompt setRender={setRender} render={render} cookies={cookies} />
+          }
+        />
+        <Route
           path="/user/:username/settings"
           element={
             <Settings cookies={cookies} setRender={setRender} render={render} />

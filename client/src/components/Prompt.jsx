@@ -5,8 +5,9 @@ import { useParams } from 'react-router-dom'
 import Uploader from './Upload_Modal'
 
 export default function Prompt(props) {
+  const { promptId, postId } = useParams()
   const [errorData, setErrorData] = useState(false)
-  const [postData, setPostData] = useState(null)
+  const [postData, setPostData] = useState(undefined)
   const [userData, setUserData] = useState({
     username: 'Loading...',
     bio: 'Loading...',
@@ -16,11 +17,8 @@ export default function Prompt(props) {
     promptText: 'Loading...',
     createdAt: 'Loading...',
   })
-  const { promptId } = useParams()
 
   function handleClick() {
-    console.log('func')
-
     if (props.cookies.username) {
       window.upload_modal.showModal()
     } else {
@@ -62,6 +60,7 @@ export default function Prompt(props) {
           height: post.height,
           id: post.id,
           creator: post.username,
+          promptId: promptId,
         }))
         setPostData(posts)
       })
@@ -111,7 +110,7 @@ export default function Prompt(props) {
                   </div>
                 </div>
               </div>
-              <Gallery postData={postData} layout="columns" />
+              <Gallery postsData={postData} postId={postId} layout="columns" />
             </div>
           )}
           {errorData && (
