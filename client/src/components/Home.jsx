@@ -38,7 +38,7 @@ export default function Home() {
   return (
     <>
       <main className="min-h-screen bg-[url('/./src/assets/stars.jpeg')] bg-fixed">
-        <div className="bg-white bg-opacity-80">
+        <div className="bg-white bg-opacity-70 h-screen">
           {/* <div>
           <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -96,17 +96,16 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <div className="absolute mt-auto">
-            <a
-              className=""
-              href="https://www.freepik.com/free-vector/pattern-with-black-stars-white-background_949778.htm#query=stars%20doodle&position=13&from_view=search&track=ais"
-            >
-              Image by 0melapics
-            </a>
-            <span>on Freepik</span>
-          </div>
         </div>
       </main>
+
+      <a
+        className=""
+        href="https://www.freepik.com/free-vector/pattern-with-black-stars-white-background_949778.htm#query=stars%20doodle&position=13&from_view=search&track=ais"
+      >
+        Image by 0melapics
+      </a>
+      <span>on Freepik</span>
     </>
   )
 }
