@@ -16,6 +16,9 @@ export default function Home() {
           src: post.image_url,
           width: post.width,
           height: post.height,
+          id: post.id,
+          creator: post.username,
+          promptId: post.prompt_id,
         }))
         setPostData(posts)
       })
@@ -37,8 +40,8 @@ export default function Home() {
 
   return (
     <>
-      <main className="min-h-screen bg-[url('/./src/assets/stars.jpeg')] bg-fixed">
-        <div className="bg-white bg-opacity-70 h-screen">
+      <div className=" bg-[url('/./src/assets/stars.jpeg')] bg-fixed h-full min-h-screen">
+        <div className="bg-white bg-opacity-70 h-full min-h-screen">
           {/* <div>
           <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -53,9 +56,9 @@ export default function Home() {
               Latest Posts!
             </h2>
             <hr className="mx-10"></hr>
-            <Gallery layout="rows" photos={postData} />
+            <Gallery layout="rows" postData={postData} />
           </div>
-          <div>
+          <div className="">
             <h2 className="text-3xl font-extrabold mx-auto mt-5 mb-2 ml-14">
               Latest Prompts!
             </h2>
@@ -97,8 +100,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </main>
-
+      </div>
       <a
         className=""
         href="https://www.freepik.com/free-vector/pattern-with-black-stars-white-background_949778.htm#query=stars%20doodle&position=13&from_view=search&track=ais"

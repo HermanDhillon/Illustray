@@ -161,7 +161,7 @@ export default function User(props) {
         )}
         <div className="bg-white bg-opacity-80 ">
           <div className={toggleView.postVis}>
-            <Gallery photos={postData} layout="columns" />
+            <Gallery postData={postData} layout="columns" />
           </div>
           <div
             className={

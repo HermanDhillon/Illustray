@@ -3,7 +3,6 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Uploader from './Upload_Modal'
-import Login_Modal from './Login_Modal'
 
 export default function Prompt(props) {
   const [errorData, setErrorData] = useState(false)
@@ -61,6 +60,8 @@ export default function Prompt(props) {
           src: post.image_url,
           width: post.width,
           height: post.height,
+          id: post.id,
+          creator: post.username,
         }))
         setPostData(posts)
       })
@@ -100,7 +101,7 @@ export default function Prompt(props) {
                   <div className="flex flex-row">
                     <a href={`/user/${userData.username}`}>
                       <img
-                        className="h-[4vw] min-h-[4rem] mx-2 mask mask-squircle overflow-hidden flex-start"
+                        className="h-[4vw] min-h-[4rem] mask mask-squircle overflow-hidden flex-start"
                         src={userData.profileImage}
                       />
                     </a>
@@ -110,7 +111,7 @@ export default function Prompt(props) {
                   </div>
                 </div>
               </div>
-              <Gallery photos={postData} layout="columns" />
+              <Gallery postData={postData} layout="columns" />
             </div>
           )}
           {errorData && (
@@ -122,7 +123,6 @@ export default function Prompt(props) {
           )}
         </div>
       </div>
-      <Login_Modal />
       <Uploader
         setRender={props.setRender}
         uploadUrl={`/api/post/${promptId}`}
