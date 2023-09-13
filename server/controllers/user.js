@@ -29,7 +29,7 @@ module.exports = {
       res.status(502);
     }
   },
-  updateBio: async (req, res)  => {
+  updateBio: async (req, res) => {
     try {
       await User.findByUsernameAndUpdateBio(req.user.username, req.body.bio.trim());
       res.send('Bio updated');
