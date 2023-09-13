@@ -24,7 +24,7 @@ export default function Uploader(props) {
     .use(Compressor)
     .use(XHR, { endpoint: props.uploadUrl })
     .on('complete', () => {
-      props.setCount(p => p+1)
+      props.setRender((p) => p + 1)
       setTimeout(() => {
         window.upload_modal.close()
       }, 1000)
