@@ -1,4 +1,3 @@
-const { query } = require('express');
 const { pgPool } = require('../config/database');
 
 module.exports = {
@@ -27,7 +26,7 @@ module.exports = {
   findByPromptId: async (promptId) => {
     if (promptId) {
       const result = await pgPool.query(
-        'SELECT * from posts WHERE prompt_id=$1',
+        'SELECT * from posts WHERE prompt_id=$1 ORDER BY created_at DESC',
         [promptId]
       );
       return result.rows; // returns list of object
