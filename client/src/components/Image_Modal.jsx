@@ -11,6 +11,9 @@ import 'yet-another-react-lightbox/plugins/thumbnails.css'
 export default function ImageModal(props) {
   const [lightbox, setLightbox] = useState(false)
 
+  let modalUrl = `/prompt/${props.postData.promptId}/${props.postData.id}`
+  window.history.pushState(null, '', modalUrl)
+
   function handleClose() {
     let newUrl = `/prompt/${props.postData.promptId}`
     window.history.pushState(null, '', newUrl)

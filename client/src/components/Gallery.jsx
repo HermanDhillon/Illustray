@@ -1,14 +1,16 @@
 import PhotoAlbum from 'react-photo-album'
 import ImageModal from './Image_Modal'
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function Gallery(props) {
+  let navigate = useNavigate()
+
   const [postData, setPostData] = useState(null)
 
   useEffect(() => {
     if (props.postId && props.postsData) {
       let singlePost = props.postsData?.filter((e) => e.id == props.postId)
-      console.log('SINGLE POST', singlePost)
       setPostData(singlePost[0])
     }
   }, [props.postsData])
@@ -35,12 +37,20 @@ export default function Gallery(props) {
           },
         })}
         onClick={({ photo }) => {
-          setPostData(photo)
-          let newUrl = `/prompt/${photo.promptId}/${photo.id}`
-          window.history.pushState(null, '', newUrl)
+          if (props.link) {
+            navigate(`/prompt/${photo.promptId}/${photo.id}`)
+          } else {
+            setPostData(photo)
+          }
         }}
       />
-      {postData && <ImageModal setPostData={setPostData} postData={postData} />}
+      {postData && (
+        <ImageModal
+          link={props.link}
+          setPostData={setPostData}
+          postData={postData}
+        />
+      )}
     </div>
   )
 }
