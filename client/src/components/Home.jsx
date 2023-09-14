@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Gallery from './Gallery'
 import axios from 'axios'
-import illustraySvg from '../assets/illustray.svg'
+
 export default function Home() {
   const [postsData, setPostsData] = useState({})
   const [promptData, setPromptData] = useState([])
@@ -50,7 +50,6 @@ export default function Home() {
                 transform="translate(100 100)"
               />
             </svg> */}
-            {/* <img className="absolute" src={illustraySvg} /> */}
           </div>
           <div>
             <h2 className="text-3xl font-extrabold ml-14 pt-5 mb-2">

@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function Signup() {
   let navigate = useNavigate()
@@ -24,18 +26,24 @@ export default function Signup() {
       data: signupData,
     })
       .then((response) => {
-        // setResponse(response.data)
-        console.log(response.data)
-        if (response.data.error) {
-          console.log(...response.data.error)
-        }
-        if (response.data.signup === 'successful') {
+        toast.success('Signup Successful!', {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1000, //1 seconds
+        })
+        setTimeout(() => {
           navigate('/')
           navigate(0)
-        }
+        }, 1000)
       })
       .catch((error) => {
-        console.log(error)
+        for (let err of error.response.data) {
+          toast.error(err, {
+            autoClose: 10000, //10 seconds
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+          })
+        }
       })
   }
   return (
@@ -112,6 +120,7 @@ export default function Signup() {
         </a>{' '}
         on Freepik
       </div>
+      <ToastContainer />
     </div>
   )
 }

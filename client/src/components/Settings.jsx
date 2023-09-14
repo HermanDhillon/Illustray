@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import Uploader from './Upload_Modal'
+import { Slide, ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function Settings(props) {
   const [userData, setUserData] = useState({})
@@ -25,12 +27,23 @@ export default function Settings(props) {
       })
         .then((response) => {
           setBio({ bio: response.data.bio })
+          toast.success('Saved!', {
+            autoClose: 3000, //10 seconds
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+          })
         })
         .catch((error) => {
           console.log(error)
         })
     } else {
-      console.log("Bio didn't change.")
+      toast.warning("Bio didn't change.", {
+        autoClose: 3000, //10 seconds
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+      })
     }
   }
 
@@ -517,6 +530,7 @@ export default function Settings(props) {
         Image by rawpixel.com
       </a>{' '}
       on Freepik
+      <ToastContainer />
     </>
   )
 }

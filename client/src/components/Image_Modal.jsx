@@ -56,8 +56,10 @@ export default function ImageModal(props) {
           ></img>
         </div>
         <div className="min-h-[25vh] bg-gray-400 bg-opacity-100 bg-[url('/./src/assets/hello.jpg')]  h-[20vh]  md:h-auto  md:mt-0 md:w-[35%] md:max-h-[71vh] md:min-h-[60vh] ">
-          <div className="bg-white bg-opacity-95 h-full">
-            <h3>Comments</h3>
+          <div className="flex align-middle bg-white bg-opacity-95 h-full">
+            <h3 className="font-semibold mt-auto">
+              Comment section is under construction
+            </h3>
           </div>
         </div>
       </div>
