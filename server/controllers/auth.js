@@ -80,7 +80,6 @@ module.exports = {
         'Username must be between 4 and 30 characters long.'
       );
     }
-  
     email = validator.normalizeEmail(email, { gmail_remove_dots: true });
     const hash = await hashifier(password);
     // Check to see if username or email already exists.
