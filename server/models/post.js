@@ -26,7 +26,7 @@ module.exports = {
   findByPromptId: async (promptId) => {
     if (promptId) {
       const result = await pgPool.query(
-        'SELECT * from posts WHERE prompt_id=$1 ORDER BY created_at DESC',
+        'SELECT posts.image_url, posts.id, posts.width, posts.height, users.username from posts INNER JOIN users ON posts.user_id = users.id WHERE prompt_id=$1 ORDER BY posts.created_at DESC',
         [promptId]
       );
       return result.rows; // returns list of object
@@ -34,9 +34,9 @@ module.exports = {
     throw new Error('promptId is a required input.');
   },
 
-  findNewestFive: async (count = 5) => {
+  findNewestTen: async (count = 10) => {
     const result = await pgPool.query(
-      'SELECT * FROM posts ORDER BY created_at DESC LIMIT $1',
+      'SELECT posts.image_url, posts.id, posts.width, posts.height, posts.prompt_id, users.username from posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.created_at DESC LIMIT $1',
       [count]
     );
     return result.rows;

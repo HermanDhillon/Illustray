@@ -5,7 +5,7 @@ import axios from 'axios'
 import Gallery from './Gallery'
 
 export default function User(props) {
-  const [postData, setPostData] = useState(null)
+  const [postsData, setPostData] = useState(null)
   const [promptData, setPromptData] = useState([])
   const [postCount, setPostCount] = useState('N/A')
   const [promptCount, setPromptCount] = useState('N/A')
@@ -62,6 +62,9 @@ export default function User(props) {
           src: post.image_url,
           width: post.width,
           height: post.height,
+          id: post.id,
+          creator: post.username,
+          promptId: post.prompt_id,
         }))
         setPostCount(posts.length)
         setPostData(posts)
@@ -161,7 +164,7 @@ export default function User(props) {
         )}
         <div className="bg-white bg-opacity-80 ">
           <div className={toggleView.postVis}>
-            <Gallery photos={postData} layout="columns" />
+            <Gallery link={true} postsData={postsData} layout="columns" />
           </div>
           <div
             className={

@@ -80,18 +80,17 @@ module.exports = {
         'Username must be between 4 and 30 characters long.'
       );
     }
-    if (validationErrors.length) {
-      return res.json({ error: validationErrors });
-    }
-
     email = validator.normalizeEmail(email, { gmail_remove_dots: true });
     const hash = await hashifier(password);
     // Check to see if username or email already exists.
     const userLookup = await User.findByEmailOrUsername(email, username);
 
     if (userLookup) {
-      console.log('email already exists');
-      return res.json({ error: ['Username or email already in use.'] });
+      validationErrors.push('Username or email already in use.');
+    }
+
+    if (validationErrors.length) {
+      return res.status(403).json(validationErrors);
     }
 
     const user = await User.create(username, email, hash);
@@ -100,7 +99,7 @@ module.exports = {
         return next(err);
       }
       res.cookie('username', user.username, { maxAge: 24 * 60 * 60 * 1000 }); // Expires in 01 days
-      res.json({ signup: 'successful' });
+      res.send('Signup successful!');
     });
   }
 };

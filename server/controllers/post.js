@@ -34,7 +34,7 @@ module.exports = {
   },
   getHomePosts: async (req, res) => {
     try {
-      const response = await Post.findNewestFive();
+      const response = await Post.findNewestTen();
       if (!response) {
         res.json({});
       }
