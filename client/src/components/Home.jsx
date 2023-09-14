@@ -23,7 +23,7 @@ export default function Home() {
         setPostsData(posts)
       })
       .catch((error) => {
-        console.log(error)
+        // console.log(error)
       })
 
     axios({
@@ -34,7 +34,7 @@ export default function Home() {
         setPromptData(response.data)
       })
       .catch((error) => {
-        console.log(error)
+        // console.log(error)
       })
   }, [])
 
