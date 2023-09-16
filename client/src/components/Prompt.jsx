@@ -76,13 +76,30 @@ export default function Prompt(props) {
           {!errorData && (
             <div>
               <div className="w-[85vw] mx-auto mb-[65px] bg-white bg-opacity-95 rounded-xl shadow-xl  drop-shadow-2xl border border-#c4c9d28b  lg:min-h-[20vw] flex flex-col-reverse lg:flex-row lg:w-[60vw]">
-                <div className="m-[2vh] mb-0 md:mt-0 lg:w-[70%] relative flex flex-col lg:mb-[1vw] ">
-                  <h2 className="font-semibold leading-[4vw] text-[2vh] m-none">
-                    PROMPT:
-                  </h2>
-                  <h3 className="font-semibold text-[2.5vh] m-0 underline ">
-                    {promptData.title}
-                  </h3>
+                <div className="m-[2vh] mb-0 md:mt-0 lg:w-[100%] relative flex flex-col lg:mb-[1vw] ">
+                  <div className="flex flex-col-reverse md:flex-row md:justify-between ">
+                    <div>
+                      <h2 className="font-semibold leading-[4vw] text-[2vh] m-none">
+                        PROMPT:
+                      </h2>
+                      <h3 className="font-semibold text-[2.5vh] m-0 underline break-words">
+                        {promptData.title}
+                      </h3>
+                    </div>
+                    <div className=" mb-2 py-2 rounded-xl border font-extrabold border-#c4c9d28b md:min-w-[20%] md:mt-[1vw] md:ml-0 ">
+                      <div className="flex flex-row">
+                        <a href={`/user/${userData.username}`}>
+                          <img
+                            className="h-[4vw] min-h-[4rem] mask mask-squircle overflow-hidden flex-start"
+                            src={userData.profileImage}
+                          />
+                        </a>
+                        <h4 className=" my-auto mr-1 text-lg break-words">
+                          {userData.username}
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
                   <p className=" break-words font-semibold leading-[3.5vh] text-[2vh] mb-[2vw] lg:text-[1.2vw] lg:leading-[3vw]">
                     {promptData.promptText}
                   </p>
@@ -90,24 +107,11 @@ export default function Prompt(props) {
                     {new Date(promptData.createdAt).toDateString()}
                   </span>
                   <button
-                    className="btn btn-primary btn-block mt-auto mb-[2vw] border-none bg-gradient-to-b from-violet-500 to-fuchsia-500 hover:shadow-lg hover:shadow-[#6025F5]/50 h-[3vw] text-[1.5vh] lg:mb-[0] md:mt-2 "
+                    className="btn btn-primary btn-block mt-auto mb-[2vw] border-none bg-gradient-to-b from-violet-500 to-fuchsia-500 hover:shadow-lg hover:shadow-[#6025F5]/50 h-[3vw] text-[1.5vh] lg:mb-[0] md:mt-2 md:mx-auto"
                     onClick={() => handleClick()}
                   >
                     Submit your Art!
                   </button>
-                </div>
-                <div className="m-[2vw] mb-0 py-2 rounded-xl border border-#c4c9d28b lg:w-[20vw]  lg:m-[1vw] lg:ml-0 lg:min-h-[20vw]">
-                  <div className="flex flex-row">
-                    <a href={`/user/${userData.username}`}>
-                      <img
-                        className="h-[4vw] min-h-[4rem] mask mask-squircle overflow-hidden flex-start"
-                        src={userData.profileImage}
-                      />
-                    </a>
-                    <h4 className=" my-auto mr-auto text-lg break-words">
-                      {userData.username}
-                    </h4>
-                  </div>
                 </div>
               </div>
               <Gallery postsData={postData} postId={postId} layout="columns" />
