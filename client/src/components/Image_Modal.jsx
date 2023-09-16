@@ -54,9 +54,20 @@ export default function ImageModal(props) {
               src={props.postData.src}
               className="max-h-[45vh] md:max-h-[71vh] m-auto p-auto hover:cursor-zoom-in"
               onClick={() => setLightbox(true)}
-            ></img>
+            />
           </div>
-          <div className="min-h-[25vh] bg-gray-400 bg-opacity-100 bg-[url('/./src/assets/hello.jpg')]  h-[20vh]  md:h-auto  md:mt-0 md:w-[35%] md:max-h-[71vh] md:min-h-[60vh] ">
+          <div className="min-h-[35vh] bg-gray-400 bg-opacity-100 bg-[url('/./src/assets/hello.jpg')]  h-[20vh]  md:h-auto  md:mt-0 md:w-[35%] md:max-h-[71vh] md:min-h-[60vh] ">
+            <div className="bg-white h-14 border bottom-1 flex flex-row">
+              <a href={`/user/${props.postData.username}`}>
+                <img
+                  className="mask mask-squircle h-12 mt-[2px]"
+                  src={props.postData.profileImage}
+                />
+              </a>
+              <span className="my-auto font-semibold">
+                {props.postData.username}
+              </span>
+            </div>
             <div className="flex align-middle bg-white bg-opacity-95 h-full">
               <h3 className="font-semibold mt-auto">
                 Comment section is under construction
