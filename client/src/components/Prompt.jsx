@@ -86,7 +86,7 @@ export default function Prompt(props) {
                         {promptData.title}
                       </h3>
                     </div>
-                    <div className=" mb-2 py-2 rounded-xl border border-#c4c9d28b md:min-w-[30%] md:mt-[1vw] md:ml-0 ">
+                    <div className=" mb-2 py-2 rounded-xl border font-extrabold border-#c4c9d28b md:min-w-[20%] md:mt-[1vw] md:ml-0 ">
                       <div className="flex flex-row">
                         <a href={`/user/${userData.username}`}>
                           <img
@@ -94,7 +94,7 @@ export default function Prompt(props) {
                             src={userData.profileImage}
                           />
                         </a>
-                        <h4 className=" mb-auto mr-1 text-lg break-words">
+                        <h4 className=" my-auto mr-1 text-lg break-words">
                           {userData.username}
                         </h4>
                       </div>
