@@ -61,6 +61,8 @@ export default function Prompt(props) {
           id: post.id,
           creator: post.username,
           promptId: promptId,
+          profileImage: post.profileimage,
+          username: post.username,
         }))
         setPostData(posts)
       })

@@ -26,7 +26,7 @@ module.exports = {
   findByPromptId: async (promptId) => {
     if (promptId) {
       const result = await pgPool.query(
-        'SELECT posts.image_url, posts.id, posts.width, posts.height, users.username from posts INNER JOIN users ON posts.user_id = users.id WHERE prompt_id=$1 ORDER BY posts.created_at DESC',
+        'SELECT users.profileimage, posts.image_url, posts.id, posts.width, posts.height, users.username from posts INNER JOIN users ON posts.user_id = users.id WHERE prompt_id=$1 ORDER BY posts.created_at DESC',
         [promptId]
       );
       return result.rows; // returns list of object
