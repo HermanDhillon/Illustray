@@ -15,5 +15,6 @@ router.get('/', postController.getPost);
 router.get('/prompt/:promptId', postController.getPromptPosts);
 router.get('/home', postController.getHomePosts);
 router.get('/user/:username', postController.getUserPosts);
+router.delete('/delete/:postId', ensureAuth, postController.deletePost)
 
 module.exports = router;

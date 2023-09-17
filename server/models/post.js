@@ -51,5 +51,26 @@ module.exports = {
     } catch (err) {
       console.log(err);
     }
-  }
+  },
+
+  findByIdAndDelete: async (postId) => {
+    if (postId) {
+      const result = await pgPool.query(
+        'DELETE FROM posts WHERE posts.id = $1', [postId]
+      );
+      return result.rows;
+    }
+    throw new Error('postsId is a required input.');
+  },
+
+  findById: async (postId) => {
+    if (postId) {
+      const result = await pgPool.query(
+        'SELECT * FROM posts WHERE posts.id = $1', [postId]
+      );
+      return result.rows[0];
+    }
+    throw new Error('postsId is a required input.');
+  },
+        
 };

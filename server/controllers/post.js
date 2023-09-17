@@ -68,7 +68,19 @@ module.exports = {
       res.status(502).send('Error in getting posts');
     }
   },
-  getPost: async () => {},
-  likePost: async () => {},
-  deletePost: async () => {}
+  deletePost: async (req, res) => {
+    try {
+      let post = await findById(req.params.postId);
+      const { username } = post;
+      if (req.user.username !== username){
+        res.status(403).send('Unauthorized');
+      }else {
+        await Post.findByIdAndDelete(req.params.postId);
+        res.send('Post deleted');
+      }
+    }catch (err){
+      console.log(err);
+      res.status(502).send('Error in deleting post');
+    }
+  }
 };
