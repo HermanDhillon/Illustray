@@ -56,9 +56,8 @@ module.exports = {
   findByIdAndDelete: async (postId) => {
     if (postId) {
       const result = await pgPool.query(
-        'DELETE FROM posts WHERE posts.id = $1', [postId]
-      );
-      return result.rows;
+        'DELETE FROM posts WHERE posts.id = $1 RETURNING *', [postId]);
+      return result.rows[0];
     }
     throw new Error('postsId is a required input.');
   },
@@ -66,7 +65,7 @@ module.exports = {
   findById: async (postId) => {
     if (postId) {
       const result = await pgPool.query(
-        'SELECT * FROM posts WHERE posts.id = $1', [postId]
+        'SELECT users.username, posts.id FROM posts INNER JOIN users ON users.id = posts.user_id WHERE posts.id = $1', [postId]
       );
       return result.rows[0];
     }

@@ -116,7 +116,12 @@ export default function Prompt(props) {
                   </button>
                 </div>
               </div>
-              <Gallery postsData={postData} postId={postId} layout="columns" />
+              <Gallery
+                postsData={postData}
+                postId={postId}
+                layout="columns"
+                setRender={props.setRender}
+              />
             </div>
           )}
           {errorData && (

@@ -49,6 +49,7 @@ export default function Gallery(props) {
           link={props.link}
           setPostData={setPostData}
           postData={postData}
+          setRender={props.setRender}
         />
       )}
     </div>
