@@ -196,7 +196,7 @@ export default function User(props) {
                   <p>{prompt.prompt_text}</p>
                   <div className="card-actions ssm:justify-between">
                     <span className="mt-auto italic">
-                      {prompt.created_at.slice(0, 10)}
+                      {new Date(prompt.created_at).toDateString()}
                     </span>
                     <a
                       href={`/prompt/${prompt.id}`}

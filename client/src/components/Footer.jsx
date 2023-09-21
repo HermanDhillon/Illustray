@@ -1,5 +1,3 @@
-import img from '../assets/pencilRocket.png'
-
 export default function Footer() {
   let year = new Date().getFullYear()
   return (
