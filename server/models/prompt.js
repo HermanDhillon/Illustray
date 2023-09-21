@@ -42,7 +42,7 @@ module.exports = {
     );
   },
 
-  findNewestFive: async (count = 5) => {
+  findFeed: async (count = 20) => {
     const result = await pgPool.query(
       'SELECT users.username, users.profileImage, prompts.id, prompts.title, prompts.prompt_text, prompts.created_at from prompts INNER JOIN users ON prompts.creator_id = users.id ORDER BY prompts.created_at DESC LIMIT $1',
       [count]

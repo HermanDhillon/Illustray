@@ -55,26 +55,6 @@ export default function User(props) {
 
     axios({
       method: 'get',
-      url: `/api/post/user/${username}`,
-    })
-      .then((response) => {
-        const posts = response.data.map((post) => ({
-          src: post.image_url,
-          width: post.width,
-          height: post.height,
-          id: post.id,
-          creator: post.username,
-          promptId: post.prompt_id,
-        }))
-        setPostCount(posts.length)
-        setPostData(posts)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-
-    axios({
-      method: 'get',
       url: `/api/prompt/user/${username}`,
     })
       .then((response) => {
@@ -85,6 +65,29 @@ export default function User(props) {
         console.log(error)
       })
   }, [username])
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: `/api/post/user/${username}`,
+    })
+      .then((response) => {
+        const posts = response.data.map((post) => ({
+          src: post.image_url,
+          width: post.width,
+          height: post.height,
+          id: post.id,
+          username: username,
+          profileImage: post.profileimage,
+          promptId: post.prompt_id,
+        }))
+        setPostCount(posts.length)
+        setPostData(posts)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [props.render])
 
   return (
     <div className=" bg-fixed bg-contain bg-[url('/./src/assets/spacedoodle1.webp')]">
@@ -115,10 +118,16 @@ export default function User(props) {
               </div>
               {!ownPage && (
                 <div className="space-x-8 flex justify-around mt-32 md:mt-0 md:justify-center">
-                  <button className="btn btn-primary border-none bg-primary hover:shadow-lg hover:shadow-[#6025F5]/50">
+                  <button
+                    disabled
+                    className=" btn btn-primary border-none bg-primary hover:shadow-lg hover:shadow-[#6025F5]/50"
+                  >
                     Connect
                   </button>
-                  <button className="btn btn-secondary border-none hover:shadow-lg hover:shadow-[#6025F5]/50">
+                  <button
+                    disabled
+                    className="btn btn-secondary border-none hover:shadow-lg hover:shadow-[#6025F5]/50"
+                  >
                     Message
                   </button>
                 </div>
@@ -164,7 +173,12 @@ export default function User(props) {
         )}
         <div className="bg-white bg-opacity-80 ">
           <div className={toggleView.postVis}>
-            <Gallery link={true} postsData={postsData} layout="columns" />
+            <Gallery
+              link={true}
+              postsData={postsData}
+              layout="columns"
+              setRender={props.setRender}
+            />
           </div>
           <div
             className={

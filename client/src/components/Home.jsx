@@ -17,8 +17,9 @@ export default function Home() {
           width: post.width,
           height: post.height,
           id: post.id,
-          creator: post.username,
+          username: post.username,
           promptId: post.prompt_id,
+          profileImage: post.profileimage,
         }))
         setPostsData(posts)
       })

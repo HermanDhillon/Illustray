@@ -59,7 +59,7 @@ module.exports = {
 
   getHomePrompts: async (req, res) => {
     try {
-      const response = await Prompt.findNewestFive();
+      const response = await Prompt.findFeed();
       if (!response) {
         res.json([]);
       }
