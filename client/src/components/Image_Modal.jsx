@@ -11,18 +11,38 @@ import deleteIcon from '../assets/trash-bin-red-circle.png'
 import { useCookies } from 'react-cookie'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer, toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
+import linkIcon from '../assets/link.png'
 
 export default function ImageModal(props) {
   const [lightbox, setLightbox] = useState(false)
   const [cookies, setCookie] = useCookies()
+  let navigate = useNavigate()
 
   let modalUrl = `/prompt/${props.postData.promptId}/${props.postData.id}`
   window.history.pushState(null, '', modalUrl)
 
   function handleClose() {
     let newUrl = `/prompt/${props.postData.promptId}`
-    window.history.pushState(null, '', newUrl)
+    // window.history.pushState(null, '', newUrl)
+    if (!props.link) {
+      navigate(`/prompt/${props.postData.promptId}`)
+    }
     props.setPostData(null)
+  }
+
+  function handleCopy() {
+    const hostUrl = window.location.host
+    navigator.clipboard.writeText(
+      `${hostUrl}/prompt/${props.postData.promptId}/${props.postData.id}`,
+    )
+    toast('URL copied to clipboard!', {
+      position: toast.POSITION.TOP_CENTER,
+    })
+  }
+
+  function handleRedirect() {
+    navigate(`/prompt/${props.postData.promptId}/${props.postData.id}`)
   }
 
   function handleDelete() {
@@ -34,6 +54,9 @@ export default function ImageModal(props) {
         document.getElementById('delete_modal').close()
         handleClose()
         props.setRender((p) => !p)
+        toast.success('Post Deleted', {
+          position: toast.POSITION.TOP_CENTER,
+        })
       })
       .catch((error) => {
         toast.error('Unable to delete post.', {
@@ -44,6 +67,7 @@ export default function ImageModal(props) {
         })
         document.getElementById('delete_modal').close()
       })
+    props.setRender((p) => !p)
   }
 
   return (
@@ -63,7 +87,7 @@ export default function ImageModal(props) {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
+              className="h-6 w-6 rounded-full bg-white md:bg-inherit md:rounded-none"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -96,22 +120,39 @@ export default function ImageModal(props) {
               onClick={() => setLightbox(true)}
             />
           </div>
-          <div className="min-h-[35vh] bg-gray-400 bg-opacity-100 bg-[url('/./src/assets/hello.jpg')]  h-[20vh]  md:h-auto  md:mt-0 md:w-[35%] md:max-h-[71vh] md:min-h-[60vh] ">
-            <div className="bg-white h-14 border bottom-1 flex flex-row">
-              <a href={`/user/${props.postData.username}`}>
-                <img
-                  className="mask mask-squircle h-12 mt-[2px]"
-                  src={props.postData.profileImage}
-                />
+          <div className="flex flex-col min-h-[35vh]  md:h-auto  md:mt-0 md:w-[35%] md:max-h-[71vh] md:min-h-[60vh] ">
+            <div className="bg-white h-16 border bottom-1 flex flex-row">
+              <a href={`/user/${props.postData.username}`} className="avatar">
+                <div className="w-12 mask mask-squircle mx-2">
+                  <img
+                    className="inline-block "
+                    src={props.postData.profileImage}
+                  />
+                </div>
               </a>
               <span className="my-auto font-semibold">
                 {props.postData.username}
               </span>
+              <div className="flex flex-row my-auto mr-2 m-auto md:mr-14">
+                <button onClick={() => handleCopy()} className="my-auto">
+                  <img src={linkIcon} className="w-8" />
+                </button>
+                {props.link && (
+                  <button
+                    onClick={() => handleRedirect()}
+                    className="border-none btn bg-gradient-to-r from-amber-600 to-yellow-500 hover:drop-shadow-lg hover:shadow-lg ml-2"
+                  >
+                    Go
+                  </button>
+                )}
+              </div>
             </div>
-            <div className="flex align-middle bg-white bg-opacity-95 h-full">
-              <h3 className="font-semibold mt-auto">
-                Comment section is under construction
-              </h3>
+            <div className="bg-[url('/./src/assets/hello.jpg')] min-h-[35vh] h-full ">
+              <div className="bg-white bg-opacity-95 min-h-[35vh] h-full">
+                <p className="font-semibold ">
+                  Comment section is under construction
+                </p>
+              </div>
             </div>
           </div>
         </div>

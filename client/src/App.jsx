@@ -37,7 +37,12 @@ function App() {
             <Settings cookies={cookies} setRender={setRender} render={render} />
           }
         />
-        <Route path="/user/:username" element={<User cookies={cookies} />} />
+        <Route
+          path="/user/:username"
+          element={
+            <User cookies={cookies} setRender={setRender} render={render} />
+          }
+        />
       </Routes>
       <Footer />
     </>

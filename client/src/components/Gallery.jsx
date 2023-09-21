@@ -37,11 +37,7 @@ export default function Gallery(props) {
           },
         })}
         onClick={({ photo }) => {
-          if (props.link) {
-            navigate(`/prompt/${photo.promptId}/${photo.id}`)
-          } else {
-            setPostData(photo)
-          }
+          setPostData(photo)
         }}
       />
       {postData && (

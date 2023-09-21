@@ -59,7 +59,6 @@ export default function Prompt(props) {
           width: post.width,
           height: post.height,
           id: post.id,
-          creator: post.username,
           promptId: promptId,
           profileImage: post.profileimage,
           username: post.username,
@@ -89,13 +88,19 @@ export default function Prompt(props) {
                       </h3>
                     </div>
                     <div className=" mb-2 py-2 rounded-xl border font-extrabold border-#c4c9d28b md:min-w-[20%] md:mt-[1vw] md:ml-0 ">
-                      <div className="flex flex-row">
-                        <a href={`/user/${userData.username}`}>
-                          <img
-                            className="h-[4vw] min-h-[4rem] mask mask-squircle overflow-hidden flex-start"
-                            src={userData.profileImage}
-                          />
+                      <div className="flex flex-row ">
+                        <a
+                          href={`/user/${userData.username}`}
+                          className="avatar"
+                        >
+                          <div className="w-16 mask mask-squircle mx-2">
+                            <img
+                              className="inline-block"
+                              src={userData.profileImage}
+                            />
+                          </div>
                         </a>
+
                         <h4 className=" my-auto mr-1 text-lg break-words">
                           {userData.username}
                         </h4>

@@ -15,7 +15,7 @@ module.exports = {
   findByUsername: async (username) => {
     if (username) {
       const result = await pgPool.query(
-        'SELECT posts.prompt_id, posts.image_url, posts.id, posts.width, posts.height from posts INNER JOIN users ON posts.user_id = users.id WHERE users.username = $1 ORDER BY posts.created_at DESC',
+        'SELECT posts.prompt_id, posts.image_url, posts.id, posts.width, posts.height, users.username, users.profileimage from posts INNER JOIN users ON posts.user_id = users.id WHERE users.username = $1 ORDER BY posts.created_at DESC',
         [username]
       );
       return result.rows; // returns a list of objects
@@ -34,9 +34,9 @@ module.exports = {
     throw new Error('promptId is a required input.');
   },
 
-  findNewestTen: async (count = 10) => {
+  findFeed: async (count = 10) => {
     const result = await pgPool.query(
-      'SELECT posts.image_url, posts.id, posts.width, posts.height, posts.prompt_id, users.username from posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.created_at DESC LIMIT $1',
+      'SELECT posts.image_url, posts.id, posts.width, posts.height, posts.prompt_id, users.username, users.profileimage from posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.created_at DESC LIMIT $1',
       [count]
     );
     return result.rows;
