@@ -70,21 +70,18 @@ module.exports = {
   },
   deletePost: async (req, res) => {
     try {
-      let post = await Post.findById(req.params.postId);
+      const post = await Post.findById(req.params.postId);
       const { username } = post;
-      console.log(req.user.username, username)
-      if (req.user.username !== username){
+
+      if (req.user.username !== username) {
         res.status(403).send('Unauthorized');
-      }else {
-        let response = await Post.findByIdAndDelete(req.params.postId);
+      } else {
+        const response = await Post.findByIdAndDelete(req.params.postId);
         const imageUrl = new URL(response.image_url);
         const publicId = imageUrl.pathname.split('/').at(-1).split('.')[0];
-        await cloudinary.uploader
-          .destroy(publicId)
-          .then((resp) => res.send(resp));
-        
+        await cloudinary.uploader.destroy(publicId).then((resp) => res.send(resp));
       }
-    }catch (err){
+    } catch (err) {
       console.log(err);
       res.status(502).send('Error in deleting post');
     }
