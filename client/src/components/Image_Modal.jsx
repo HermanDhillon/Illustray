@@ -101,7 +101,8 @@ export default function ImageModal(props) {
             </svg>
           </button>
           <div className="min-h-[30vh] flex flex-col align-middle bg-black bg-opacity-100 md:w-[65%] md:max-h-[71vh]">
-            {props.postData.username === cookies.username && (
+            {(props.postData.username === cookies.username ||
+              cookies.username === 'illustray') && (
               <button
                 onClick={() =>
                   document.getElementById('delete_modal').showModal()
