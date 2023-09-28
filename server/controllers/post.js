@@ -72,14 +72,13 @@ module.exports = {
     try {
       const post = await Post.findById(req.params.postId);
       const { username } = post;
-
-      if (req.user.username !== username) {
-        res.status(403).send('Unauthorized');
-      } else {
+      if ((req.user.username === 'illustray') || (req.user.username === username)) {
         const response = await Post.findByIdAndDelete(req.params.postId);
         const imageUrl = new URL(response.image_url);
         const publicId = imageUrl.pathname.split('/').at(-1).split('.')[0];
         await cloudinary.uploader.destroy(publicId).then((resp) => res.send(resp));
+      } else {
+        res.status(403).send('Unauthorized Delete Request');
       }
     } catch (err) {
       console.log(err);

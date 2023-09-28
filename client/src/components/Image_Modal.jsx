@@ -101,7 +101,8 @@ export default function ImageModal(props) {
             </svg>
           </button>
           <div className="min-h-[30vh] flex flex-col align-middle bg-black bg-opacity-100 md:w-[65%] md:max-h-[71vh]">
-            {props.postData.username === cookies.username && (
+            {(props.postData.username === cookies.username ||
+              cookies.username === 'illustray') && (
               <button
                 onClick={() =>
                   document.getElementById('delete_modal').showModal()
@@ -147,7 +148,7 @@ export default function ImageModal(props) {
                 )}
               </div>
             </div>
-            <div className="bg-[url('/./src/assets/hello.jpg')] min-h-[35vh] h-full ">
+            <div className="bg-[url('/./src/assets/blah.png')] bg-contain min-h-[35vh] h-full ">
               <div className="bg-white bg-opacity-95 min-h-[35vh] h-full">
                 <p className="font-semibold ">
                   Comment section is under construction
