@@ -147,7 +147,7 @@ export default function ImageModal(props) {
                 )}
               </div>
             </div>
-            <div className="bg-[url('/./src/assets/hello.jpg')] min-h-[35vh] h-full ">
+            <div className="bg-[url('/./src/assets/blah.png')] bg-contain min-h-[35vh] h-full ">
               <div className="bg-white bg-opacity-95 min-h-[35vh] h-full">
                 <p className="font-semibold ">
                   Comment section is under construction
