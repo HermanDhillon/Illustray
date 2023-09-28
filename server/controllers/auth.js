@@ -83,7 +83,7 @@ module.exports = {
     email = validator.normalizeEmail(email, { gmail_remove_dots: true });
     const hash = await hashifier(password);
     // Check to see if username or email already exists.
-    const userLookup = await User.findByEmailOrUsername(email, username);
+    const userLookup = await User.findByEmailOrUsername(email, username.toLowerCase());
 
     if (userLookup) {
       validationErrors.push('Username or email already in use.');
@@ -93,7 +93,7 @@ module.exports = {
       return res.status(403).json(validationErrors);
     }
 
-    const user = await User.create(username, email, hash);
+    const user = await User.create(username.toLowerCase(), email, hash);
     req.logIn(user, (err) => {
       if (err) {
         return next(err);
