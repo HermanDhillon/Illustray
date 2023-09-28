@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Gallery from './Gallery'
 import axios from 'axios'
-import mainLogo from '../assets/illustray.png'
+import mainLogo from '../assets/illustray3.png'
 
 export default function Home() {
   const [postsData, setPostsData] = useState({})
@@ -44,8 +44,8 @@ export default function Home() {
     <>
       <div className=" bg-[url('/./src/assets/stars.jpeg')] bg-fixed h-full min-h-screen">
         <div className="bg-white bg-opacity-70 h-full min-h-screen">
-          <div>
-            <img className=" mx-auto w-5/6" src={mainLogo} />
+          <div className=" pt-10 w-11/12 mx-auto lg:w-4/6">
+            <img className="  h-full w-full" src={mainLogo} />
           </div>
           <div>
             <h2 className="text-3xl font-extrabold ml-14 pt-5 mb-2">
