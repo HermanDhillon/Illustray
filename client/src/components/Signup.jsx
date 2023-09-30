@@ -47,7 +47,7 @@ export default function Signup() {
       })
   }
   return (
-    <div className="bg-contain  bg-[url('./src/assets/spacedoodle1.webp')]">
+    <div className="bg-contain  bg-[url('/./src/assets/spacedoodle1.webp')]">
       <div className="relative flex flex-col justify-center h-screen overflow-hidden">
         <div className="w-11/12 p-6 m-auto bg-white rounded-lg border border-#c4c9d28b shadow-2xl drop-shadow-2xl sm:max-w-lg">
           <h2 className="text-3xl font-semibold text-center ">
