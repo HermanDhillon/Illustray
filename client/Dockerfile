@@ -4,7 +4,6 @@ COPY ./package.json ./
 RUN npm install
 COPY . .
 RUN npm run build
-# CMD ["npm", "run", "start"]
 
 FROM nginx:alpine
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
