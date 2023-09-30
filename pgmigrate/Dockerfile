@@ -3,3 +3,5 @@ WORKDIR /app
 COPY ./package.json ./
 RUN npm install
 COPY . .
+ENV DATABASE_URL=${DATABASE_URL}
+CMD ["npm", "run", "migrate", "up"]
