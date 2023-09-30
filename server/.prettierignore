@@ -1,9 +1,0 @@
-# Ignoring directories
-**/node_modules/**
-
-
-
-# Ignoring files
-package.json
-package-lock.json
-.env.*
