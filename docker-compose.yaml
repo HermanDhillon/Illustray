@@ -19,9 +19,6 @@ services:
     build:
       context: ./pgmigrate
       dockerfile: Dockerfile
-    volumes:
-      - /app/node_modules
-      - ./pgmigrate:/app
     environment:
       - DATABASE_URL=${DATABASE_URL}
     command: ["npm", "run", "migrate", "up"]
@@ -33,9 +30,6 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile
-    volumes:
-      - /app/node_modules
-      - ./server:/app
     env_file:
       - .env
     depends_on:
@@ -48,9 +42,6 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile
-    volumes:
-      - /app/node_modules
-      - ./client:/app
     depends_on:
       - api
     ports:
