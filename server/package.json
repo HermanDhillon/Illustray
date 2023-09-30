@@ -13,8 +13,7 @@
     "validator": "^13.9.0"
   },
   "scripts": {
-    "start": "NODE_ENV=production node server.js",
-    "dev": "nodemon ./lib/server.js",
+    "start": "nodemon ./lib/server.js",
     "lint": "eslint . --ext .js",
     "build": "babel . -d lib"
   },
@@ -35,5 +34,5 @@
   },
   "author": "Herman Dhillon",
   "license": "ISC",
-  "description": "Backend API for a react frontent app"
+  "description": "Illustray Backend API"
 }
