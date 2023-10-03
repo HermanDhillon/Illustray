@@ -31,7 +31,7 @@ app.use(
     saveUninitialized: true,
     secret: process.env.SESSION_COOKIE_SECRET,
     resave: false,
-    cookie: { maxAge: 24 * 60 * 60 * 1000 } // 01 days
+    cookie: { maxAge: 365 * 24 * 60 * 60 * 1000 } // 365 days
     // Insert express-session options here
   })
 );
