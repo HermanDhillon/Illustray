@@ -42,7 +42,7 @@ export default function ImageModal(props) {
   }
 
   function handleRedirect() {
-    navigate(`/prompt/${props.postData.promptId}/${props.postData.id}`)
+    navigate(`/prompt/${props.postData.promptId}`)
   }
 
   function handleDelete() {
