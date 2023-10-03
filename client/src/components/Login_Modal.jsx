@@ -45,7 +45,7 @@ export default function Login_Modal() {
   return (
     <div>
       <dialog
-        className="modal-box shadow-2xl border border-#c4c9d28b"
+        className="modal-box shadow-2xl pb-1 border border-#c4c9d28b"
         id="login_modal"
       >
         <div className="">
@@ -111,6 +111,15 @@ export default function Login_Modal() {
               >
                 Login
               </button>
+              <div className="flex flex-row justify-end gap-1 pt-1 ">
+                <p className="text-xs ml-auto">Need an account?</p>
+                <a
+                  className="text-xs hover:underline hover:text-blue-600"
+                  href="/signup"
+                >
+                  Sign Up
+                </a>
+              </div>
             </div>
           </form>
         </div>
