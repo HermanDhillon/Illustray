@@ -45,7 +45,7 @@ export default function Login_Modal() {
   return (
     <div>
       <dialog
-        className="modal-box shadow-2xl  drop-shadow-2xl border border-#c4c9d28b"
+        className="modal-box shadow-2xl border border-#c4c9d28b"
         id="login_modal"
       >
         <div className="">
