@@ -112,12 +112,12 @@ export default function User(props) {
                 </div>
               </div>
               <div className="">
-                <div className="mask mask-squircle w-48 h-48 bg-transparent mx-auto  inset-x-0 top-0  flex items-center justify-center text-indigo-500 avatar mt-24 md:-mt-24">
+                <div className="mask mask-squircle w-48 h-48 bg-transparent mx-auto  inset-x-0 top-0  flex items-center justify-center text-indigo-500 avatar md:-mt-34">
                   <img className="" src={userData.profileimage}></img>
                 </div>
               </div>
               {!ownPage && (
-                <div className="space-x-8 flex justify-around mt-32 md:mt-0 md:justify-center">
+                <div className="space-x-8 flex justify-around mt-10 md:mt-0 md:justify-center">
                   <button
                     disabled
                     className=" btn btn-primary border-none bg-primary hover:shadow-lg hover:shadow-[#6025F5]/50"
@@ -133,7 +133,7 @@ export default function User(props) {
                 </div>
               )}
               {ownPage && (
-                <div className="space-x-8 flex justify-center mt-32 md:mt-0 md:justify-center">
+                <div className="space-x-8 flex justify-center mt-10 md:mt-0 md:justify-center">
                   <button
                     onClick={() => window.prompt_modal.showModal()}
                     className="btn btn-secondary border-none hover:shadow-lg hover:shadow-[#6025F5]/50"
