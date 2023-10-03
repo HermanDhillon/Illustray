@@ -20,7 +20,7 @@ export default function ImageModal(props) {
   let navigate = useNavigate()
 
   let modalUrl = `/prompt/${props.postData.promptId}/${props.postData.id}`
-  window.history.pushState(null, '', modalUrl)
+  // window.history.pushState(null, '', modalUrl)
 
   function handleClose() {
     let newUrl = `/prompt/${props.postData.promptId}`
@@ -143,7 +143,7 @@ export default function ImageModal(props) {
                     onClick={() => handleRedirect()}
                     className="border-none btn bg-gradient-to-r from-amber-600 to-yellow-500 hover:drop-shadow-lg hover:shadow-lg ml-2"
                   >
-                    Go
+                    Prompt
                   </button>
                 )}
               </div>
