@@ -38,7 +38,7 @@ export default function Prompt_Modal() {
         className="-z-10 inset-0 fixed"
         onClick={() => window.prompt_modal.close()}
       />
-      <div className="">
+      <div className="m-[15px]">
         <button
           onClick={() => window.prompt_modal.close()}
           className="btn btn-sm btn-circle btn-outline absolute right-2 top-2"
