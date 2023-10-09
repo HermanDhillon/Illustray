@@ -48,7 +48,7 @@ module.exports = {
           return next(error);
         }
         // res.redirect(req.session.returnTo || '/');
-        res.cookie('username', user.username, { maxAge: 24 * 60 * 60 * 1000 }); // Expires in 01 days
+        res.cookie('username', user.username, { maxAge: 365 * 24 * 60 * 60 * 1000 }); // Expires in 365 days
         res.json({ login: 'successful' });
       });
     })(req, res, next);
